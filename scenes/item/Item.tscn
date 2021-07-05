@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/fonts/munro.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/sprites/circle.png" type="Texture" id=2]
+[ext_resource path="res://scenes/item/Item.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 8.0
+
+[node name="Item" type="Node2D"]
+z_index = 1
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.16, 0.16 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -64.0
+margin_top = -32.0
+margin_right = 64.0
+margin_bottom = -8.0
+custom_fonts/font = ExtResource( 1 )
+text = "ITEM TEXT"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

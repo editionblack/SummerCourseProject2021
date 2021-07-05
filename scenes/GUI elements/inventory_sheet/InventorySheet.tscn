@@ -1,0 +1,167 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/GUI elements/inventory_sheet/InventorySheet.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/munro.tres" type="DynamicFont" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.890196, 0.894118, 0.894118, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.0117647, 0.0117647, 0.0117647, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0156863, 0.0156863, 0.0156863, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.831373, 0.819608, 0.819608, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.831373, 0.819608, 0.819608, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+
+[node name="InventorySheet" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -418.0
+margin_top = -186.0
+margin_right = -20.0
+margin_bottom = 186.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EquippedLabel" type="Label" parent="Panel"]
+margin_left = 10.0
+margin_top = 6.0
+margin_right = 138.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 2 )
+text = "Equipped items:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InventoryLabel" type="Label" parent="Panel"]
+margin_left = 202.0
+margin_top = 6.0
+margin_right = 330.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 2 )
+text = "Inventory:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EquippedItemList" type="ItemList" parent="Panel"]
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 194.0
+margin_bottom = 206.0
+focus_mode = 0
+custom_styles/bg = SubResource( 2 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.745098, 0.717647, 0.717647, 1 )
+fixed_icon_size = Vector2( 10, 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InventoryItemList" type="ItemList" parent="Panel"]
+margin_left = 202.0
+margin_top = 30.0
+margin_right = 386.0
+margin_bottom = 206.0
+focus_mode = 0
+custom_styles/bg = SubResource( 2 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_selected = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.745098, 0.717647, 0.717647, 1 )
+fixed_icon_size = Vector2( 10, 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EquipButton" type="Button" parent="Panel"]
+margin_left = 202.0
+margin_top = 214.0
+margin_right = 386.0
+margin_bottom = 234.0
+focus_mode = 0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+text = "Equip"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiscardButton" type="Button" parent="Panel"]
+margin_left = 202.0
+margin_top = 254.0
+margin_right = 386.0
+margin_bottom = 284.0
+focus_mode = 0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+text = "Discard"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnequipButton" type="Button" parent="Panel"]
+margin_left = 10.0
+margin_top = 214.0
+margin_right = 194.0
+margin_bottom = 234.0
+focus_mode = 0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+text = "Unequip"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="item_selected" from="Panel/EquippedItemList" to="." method="_on_EquippedItemList_item_selected"]
+[connection signal="item_selected" from="Panel/InventoryItemList" to="." method="_on_InventoryItemList_item_selected"]
+[connection signal="pressed" from="Panel/EquipButton" to="." method="_on_EquipButton_pressed"]
+[connection signal="pressed" from="Panel/DiscardButton" to="." method="_on_DiscardButton_pressed"]
+[connection signal="pressed" from="Panel/UnequipButton" to="." method="_on_UnequipButton_pressed"]

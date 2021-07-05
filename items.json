@@ -1,0 +1,44 @@
+{
+    "items" : {
+        "basic_sword" : {
+            "name" : "Sword",
+            "type" : "weapon",
+            "primary_ability" : "swing",
+            "stats" : {
+                "damage" : 1
+            }
+        },
+        "basic_bow" : {
+            "name" : "Bow",
+            "type" : "weapon",
+            "primary_ability" : "shoot_projectile",
+            "stats" : {
+                "damage" : 1
+            }
+        },
+        "basic_chest" : {
+            "name" : "Chestplate",
+            "type" : "chest",
+            "stats" : {
+                "max_health" : 5,
+                "movement_speed" : 5
+            }
+        },
+        "basic_head" : {
+            "name" : "Helmet",
+            "type" : "head",
+            "stats" : {
+                "max_health" : 5,
+                "attack_speed" : 1.0
+            }
+        },
+        "basic_boots" : {
+            "name" : "Boots",
+            "type" : "boots",
+            "stats" : {
+                "attack_speed" : 0.5,
+                "movement_speed" : 10
+            }
+        }
+    }
+}

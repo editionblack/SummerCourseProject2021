@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/GUI elements/character_sheet/CharacterSheet.gd" type="Script" id=1]
+[ext_resource path="res://scenes/GUI elements/character_sheet/StatBoxContainer.tscn" type="PackedScene" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.890196, 0.894118, 0.894118, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+
+[node name="CharacterSheet" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -186.0
+margin_right = 438.0
+margin_bottom = 186.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -180.0
+margin_right = 200.0
+margin_bottom = 180.0
+rect_clip_content = false
+scroll_vertical_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="Panel/ScrollContainer"]
+margin_right = 304.0
+margin_bottom = 355.0
+rect_min_size = Vector2( 304, 355 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatBoxContainer" parent="Panel/ScrollContainer/GridContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 304.0
+margin_bottom = 24.0
+static_value = true
+
+[node name="StatBoxContainer2" parent="Panel/ScrollContainer/GridContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 28.0
+margin_right = 304.0
+margin_bottom = 52.0
+static_value = true
+
+[node name="StatBoxContainer3" parent="Panel/ScrollContainer/GridContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 56.0
+margin_right = 304.0
+margin_bottom = 80.0
+static_value = true

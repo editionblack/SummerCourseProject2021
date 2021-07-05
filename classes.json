@@ -1,0 +1,31 @@
+{
+    "classes": {
+
+        "archer" : {
+            "icon" : "res://assets/sprites/rectangle.png",
+            "icon_color" : "4b9131",
+            "primary" : "shoot_projectile",
+            "secondary" : "volley",
+            "stats" : {
+                "max_health": 100,
+                "health" : 100,
+                "damage" : 5,
+                "movement_speed" : 250,
+                "attack_speed" : 5.0
+            }
+        },
+        "bruiser" : {
+            "icon" : "res://assets/sprites/octagon.png",
+            "icon_color" : "3f2d1b",
+            "primary" : "swing",
+            "secondary" : "dash",
+            "stats" : {
+                "max_health": 250,
+                "health" : 250,
+                "damage" : 10,
+                "movement_speed" : 250,
+                "attack_speed" : 1.0
+            }
+        }
+    }
+}

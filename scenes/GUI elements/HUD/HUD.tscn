@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/GUI elements/character_sheet/CharacterSheet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/GUI elements/HUD/HUD.gd" type="Script" id=2]
+[ext_resource path="res://scenes/GUI elements/game_over_panel/GameOverPanel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/GUI elements/class_picker/ClassPicker.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/GUI elements/inventory_sheet/InventorySheet.tscn" type="PackedScene" id=5]
+
+[node name="HUD" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 2 )
+
+[node name="ClassPicker" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[node name="CharacterSheet" parent="." instance=ExtResource( 1 )]
+visible = false
+
+[node name="InventorySheet" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[node name="GameOverPanel" parent="." instance=ExtResource( 3 )]
+visible = false

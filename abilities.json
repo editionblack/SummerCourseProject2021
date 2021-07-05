@@ -1,0 +1,32 @@
+{
+    "abilities" : {
+        "shoot_projectile" : {
+            "scene" : "res://scenes/abilities/shoot_projectile/ShootProjectile.tscn",
+            "stats" : {
+                
+            }
+        },
+        "swing" : {
+            "scene" : "res://scenes/abilities/swing/Swing.tscn",
+            "stats" : {
+                
+            }
+        },
+        "dash" : {
+            "scene" : "res://scenes/abilities/dash/Dash.tscn",
+            "stats" : {
+                "cooldown" : 2.0
+            }
+        },
+        "volley" : {
+            "scene" : "res://scenes/abilities/volley/Volley.tscn",
+            "stats" : {
+                "damage" : 5,
+                "cooldown" : 5.0,
+                "projectile_amount" : 10,
+                "delay" : 0.1,
+                "spread" : 22.5
+            }
+        }
+    }
+}

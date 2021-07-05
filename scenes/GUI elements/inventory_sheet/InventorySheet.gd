@@ -10,6 +10,9 @@ var selected_i_item = null
 
 var player
 
+func _ready():
+	theme.set_color("font_color", "TooltipLabel", Color.white)
+
 func reload_inventory_sheet():
 	equipped_items = player.get_items()
 	inventory_items = player.get_inventory()

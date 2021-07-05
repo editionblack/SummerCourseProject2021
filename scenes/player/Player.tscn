@@ -22,6 +22,7 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2( 1.5, 1.5 )
 smoothing_enabled = true
 
 [node name="PrimaryAbilityTimer" type="Timer" parent="."]
@@ -30,14 +31,14 @@ one_shot = true
 [node name="SecondaryAbilityTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Healthbar" parent="." instance=ExtResource( 3 )]
-margin_left = -32.0
-margin_top = -48.0
-margin_right = 32.0
-margin_bottom = -32.0
-
 [node name="Items" type="Node2D" parent="."]
 
 [node name="Inventory" type="Node2D" parent="."]
+
+[node name="Healthbar" parent="." instance=ExtResource( 3 )]
+margin_left = -40.0
+margin_top = -56.0
+margin_right = 40.0
+margin_bottom = -40.0
 
 [node name="Tween" type="Tween" parent="."]

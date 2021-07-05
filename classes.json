@@ -24,7 +24,7 @@
                 "health" : 250,
                 "damage" : 10,
                 "movement_speed" : 250,
-                "attack_speed" : 1.0
+                "attack_speed" : 2.5
             }
         }
     }

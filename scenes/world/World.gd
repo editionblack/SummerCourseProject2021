@@ -1,6 +1,5 @@
 extends Node2D
 
-# comment for git add lol
 onready var HUD = $HUD
 var player
 

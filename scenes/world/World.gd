@@ -37,7 +37,7 @@ func get_player():
 	return player
 
 func _on_SpawnTimer_timeout():
-	var new_enemy = EnemyHandler.create_enemy("chaser")
+	var new_enemy = EnemyHandler.create_enemy("ranged_test")
 	new_enemy.global_position = $SpawnPoints.get_children()[randi() % $SpawnPoints.get_children().size()].global_position
 	$Entities.call_deferred("add_child", new_enemy)
 

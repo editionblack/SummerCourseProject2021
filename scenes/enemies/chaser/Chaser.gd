@@ -15,7 +15,6 @@ func attack():
 		rotation_speed = lerp(rotation_speed, min_rotation_speed, 0.25)
 
 func move():
-	var player = world.get_player()
 	var direction = Vector2(0,0)
 	
 	# raycast to the player position and get the first thing that the raycast collides with
@@ -31,7 +30,7 @@ func move():
 	# if the raycast does hit the player the enemy just moves straight towards it.
 	if raycast_collision != player:
 		if path.size() < 1:
-			path = nav2d.get_simple_path(global_position, player.global_position, false)
+			path = get_path_to_player()
 			if path.size() < 1:
 				queue_free()
 				return

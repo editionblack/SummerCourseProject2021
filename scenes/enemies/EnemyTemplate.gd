@@ -9,6 +9,7 @@ var is_stunned = false
 var nav2d = null
 var path = []
 var world = null
+var player = null
 
 var velocity = Vector2()
 
@@ -16,7 +17,7 @@ func _ready():
 	$Sprite.modulate = color
 	world = get_tree().get_root().get_node("World")
 	nav2d = world.get_node("Navigation2D")
-
+	player = world.get_node("Entities/Player")
 
 func _process(_delta):
 	# if we are stunned and cant move there is nothing to do this frame.
@@ -28,6 +29,9 @@ func _process(_delta):
 	if !can_move:
 		return
 	move()
+
+func get_path_to_player():
+	return nav2d.get_simple_path(global_position, player.global_position, false)
 
 func on_hit(damage):
 	stats["health"] -= damage

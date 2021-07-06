@@ -8,12 +8,21 @@ func _process(_delta):
 	if is_stunned or !can_move:
 		return
 	var player = world.get_player()
+	var direction = Vector2(0,0)
 	$RayCast2D.cast_to = player.global_position - global_position
 	$RayCast2D.force_raycast_update()
 	var raycast_collision = $RayCast2D.get_collider()
 	if raycast_collision != player:
-		return
-	var direction = (player.global_position - global_position).normalized()
+		if path.size() < 1:
+			path = nav2d.get_simple_path(global_position, player.global_position, false)
+		if global_position.distance_to(path[0]) < 5:
+			path.remove(0)
+		else:
+			direction = (path[0] - global_position).normalized()
+	else:
+		path = []
+		direction = (player.global_position - global_position).normalized()
+	
 	var _velocity = move_and_slide(direction * stats["movement_speed"])
 
 func _physics_process(delta):

@@ -8,6 +8,7 @@ var accent_color = null
 var can_move = true
 var is_stunned = false
 var nav2d = null
+var path = []
 var world = null
 
 func _ready():

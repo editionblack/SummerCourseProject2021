@@ -23,6 +23,7 @@ scale = Vector2( 0.48, 0.48 )
 texture = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Sprite"]
+self_modulate = Color( 0.537255, 0.529412, 0.529412, 1 )
 show_behind_parent = true
 position = Vector2( 0, -33.3333 )
 z_index = 2
@@ -30,6 +31,7 @@ z_as_relative = false
 texture = ExtResource( 3 )
 
 [node name="Sprite4" type="Sprite" parent="Sprite"]
+self_modulate = Color( 0.537255, 0.529412, 0.529412, 1 )
 show_behind_parent = true
 position = Vector2( 2.27374e-13, 33.3333 )
 rotation = 3.14159
@@ -38,6 +40,7 @@ z_as_relative = false
 texture = ExtResource( 3 )
 
 [node name="Sprite2" type="Sprite" parent="Sprite"]
+self_modulate = Color( 0.537255, 0.529412, 0.529412, 1 )
 show_behind_parent = true
 position = Vector2( 33.3333, -3.8147e-06 )
 rotation = 1.5708
@@ -46,6 +49,7 @@ z_as_relative = false
 texture = ExtResource( 3 )
 
 [node name="Sprite3" type="Sprite" parent="Sprite"]
+self_modulate = Color( 0.537255, 0.529412, 0.529412, 1 )
 show_behind_parent = true
 position = Vector2( -33.3333, -3.8147e-06 )
 rotation = -1.5708
@@ -73,6 +77,10 @@ shape = SubResource( 2 )
 autostart = true
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+collision_mask = 3
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_Hurtbox_body_entered"]
 [connection signal="body_exited" from="Hurtbox" to="." method="_on_Hurtbox_body_exited"]

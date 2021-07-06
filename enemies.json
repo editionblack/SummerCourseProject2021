@@ -3,13 +3,23 @@
         "chaser": {
             "scene" : "res://scenes/enemies/chaser/Chaser.tscn",
             "color" : "bc1717",
-            "accent_color" : "661e1e",
             "stats" : {
                 "max_health" : 20,
                 "health" : 20,
                 "movement_speed" : 100,
                 "damage" : 5,
                 "damage_frequency" : 0.1
+            }
+        },
+        "ranged_test" : {
+            "scene" : "res://scenes/enemies/ranged_test/RangedTest.tscn",
+            "color" : "bc1717",
+            "stats" : {
+                "max_health" : 20,
+                "health" : 20,
+                "movement_speed" : 100,
+                "damage" : 5,
+                "attack_speed" : 1.0
             }
         }
     }

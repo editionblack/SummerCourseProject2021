@@ -2,7 +2,7 @@ extends "res://scenes/abilities/AbilityTemplate.gd"
 
 func _ready():
 	._ready()
-	$AttackSpeed.wait_time = 1.0 / user.stats["attack_speed"]
+	hide_weapon()
 
 func use_ability(direction):
 	if !$AttackSpeed.is_stopped() or $AnimationPlayer.is_playing():
@@ -17,6 +17,13 @@ func use_ability(direction):
 	
 	$AttackSpeed.start()
 
+# used so that the weapon + effect can still be visible in the editor but hides once it
+# enters a scene.
+func hide_weapon():
+	$Area2D/CollisionShape2D.disabled = true
+	$Area2D/Sprite.visible = false
+	$AttackSpeed.wait_time = 1.0 / user.stats["attack_speed"]
+	$Area2D/Particles2D.emitting = false
 
 func _on_Area2D_body_entered(body):
 	if body.has_method("on_hit"):

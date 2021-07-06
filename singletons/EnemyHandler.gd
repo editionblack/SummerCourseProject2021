@@ -9,7 +9,6 @@ func create_enemy(enemy_type):
 	var enemy = load(enemy_data[enemy_type]["scene"]).instance()
 	enemy.stats = enemy_data[enemy_type]["stats"].duplicate(true)
 	enemy.color = enemy_data[enemy_type]["color"]
-	enemy.accent_color = enemy_data[enemy_type]["accent_color"]
 	return enemy
 
 func read_enemy_file(path):

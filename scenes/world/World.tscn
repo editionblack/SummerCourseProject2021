@@ -38,7 +38,7 @@ position = Vector2( 700, 500 )
 position = Vector2( 700, -100 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 5.0
 
 [node name="Entities" type="Node2D" parent="."]
 

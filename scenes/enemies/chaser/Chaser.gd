@@ -31,17 +31,6 @@ func _physics_process(delta):
 	if !is_stunned:
 		$Sprite.rotation += rotation_speed * delta
 
-func on_hit(damage):
-	damage_taken_effect()
-	.on_hit(damage)
-
-func damage_taken_effect():
-	$Sprite.scale = Vector2(0.33, 0.33)
-	$Sprite.modulate = Color.white
-	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, Vector2(0.48, 0.48), 0.25)
-	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(color), 0.5)
-	$Tween.start()
-
 func _on_Hurtbox_body_entered(body):
 	targets.append(body)
 	$DamageTimer.start()

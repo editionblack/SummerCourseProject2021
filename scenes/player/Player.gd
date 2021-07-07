@@ -18,7 +18,7 @@ var color = Color.white
 
 func _ready():
 	base_stats = stats.duplicate(true)
-	$Sprite.self_modulate = color
+	$Sprite.modulate = color
 	
 func _process(_delta):
 	if can_move:
@@ -105,12 +105,15 @@ func recalculate_stats():
 	$Healthbar.max_value = stats["max_health"]
 
 func on_hit(damage):
-	$Sprite.scale = Vector2(0.38, 0.38)
-	$Sprite.modulate = Color.gray
-	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, Vector2(0.48, 0.48), 0.25)
-	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color.white, 0.5)
-	$Tween.start()
+	damage_taken_effect()
 	stats["health"] -= damage
 	if stats["health"] <= 0:
 		emit_signal("player_death")
 		$CollisionShape2D.disabled = true
+
+func damage_taken_effect():
+	$Sprite.scale = Vector2(0.38, 0.38)
+	$Sprite.modulate = Color.white
+	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, Vector2(0.48, 0.48), 0.25)
+	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(color), 0.5)
+	$Tween.start()

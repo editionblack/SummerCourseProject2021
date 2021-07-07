@@ -8,8 +8,16 @@ func _ready():
 	call_deferred("add_child", ability)
 
 func attack():
-	$RayCast2D.cast_to = player.global_position - global_position
-	$RayCast2D.force_raycast_update()
-	var collider = $RayCast2D.get_collider()
-	if collider == player:
+	if is_player_in_sight():
 		ability.use_ability((player.global_position - global_position).normalized())
+
+func move():
+	var direction = Vector2()
+	if !is_player_in_sight() or distance_to_player() > 300:
+		direction = pathfind_direction_to_player()
+	else:
+		if distance_to_player() < 280:
+			direction = (player.global_position - global_position).normalized() * -1
+	velocity = move_and_slide(direction * stats["movement_speed"])
+
+

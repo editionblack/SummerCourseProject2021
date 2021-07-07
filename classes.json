@@ -9,6 +9,7 @@
             "stats" : {
                 "max_health": 100,
                 "health" : 100,
+                "defence" : 0.0,
                 "damage" : 5,
                 "movement_speed" : 250,
                 "attack_speed" : 5.0
@@ -22,8 +23,9 @@
             "stats" : {
                 "max_health": 250,
                 "health" : 250,
+                "defence" : 0.0,
                 "damage" : 10,
-                "movement_speed" : 250,
+                "movement_speed" : 200,
                 "attack_speed" : 2.5
             }
         }

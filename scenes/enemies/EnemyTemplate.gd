@@ -38,7 +38,7 @@ func is_player_in_sight():
 	return true if raycast_collision == player else false
 
 func pathfind_direction_to_player():
-	if path.empty():
+	if path.empty() or path[path.size() - 1].distance_to(player.global_position) > 100:
 		path = get_path_to_player()
 	if !path.empty():
 		if global_position.distance_to(path[0]) < 1:
@@ -47,14 +47,25 @@ func pathfind_direction_to_player():
 			return (path[0] - global_position).normalized()
 	return Vector2(0, 0)
 
+func distance_to_player():
+	return global_position.distance_to(player.global_position)
+
 func get_path_to_player():
 	return nav2d.get_simple_path(global_position, player.global_position, false)
 
 func on_hit(damage):
+	damage_taken_effect()
 	stats["health"] -= damage
 	if stats["health"] <= 0:
 		drop_item()
 		queue_free()
+
+func damage_taken_effect():
+	$Sprite.scale = Vector2(0.33, 0.33)
+	$Sprite.modulate = Color.white
+	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, Vector2(0.48, 0.48), 0.25)
+	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(color), 0.5)
+	$Tween.start()
 
 func drop_item():
 	var item = ItemHandler.create_item()

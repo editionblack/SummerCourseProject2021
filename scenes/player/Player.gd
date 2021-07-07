@@ -113,7 +113,7 @@ func on_hit(damage):
 	while defence_points - i > 0:
 		damage_reduction += reduction_per_point
 		i += 1
-		if i % 10:
+		if i % 10 == 0:
 			reduction_per_point /= 2
 	damage -= damage * (damage_reduction / 100)
 	stats["health"] -= damage 

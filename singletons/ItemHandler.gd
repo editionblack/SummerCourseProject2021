@@ -38,26 +38,30 @@ func random_rarity(_luck : int):
 
 func random_stats(rarity : String):
 	var stats = {}
-	var amount_of_stats
+	var amount_of_stats = 1
+	var stat_multiplier = 1.0
+	
 	match rarity:
-		"common":
-			amount_of_stats = 1
 		"uncommon":
 			amount_of_stats = 2
+			stat_multiplier = 1.5
 		"rare":
 			amount_of_stats = 3
+			stat_multiplier = 2.0
 		"epic":
 			amount_of_stats = 4
+			stat_multiplier = 2.5
 		"legendary":
 			amount_of_stats = 5
-		_:
-			amount_of_stats = 1
+			stat_multiplier = 3.0
+			
+			
 	for _i in range(amount_of_stats):
 		var stat = possible_stats[randi() % possible_stats.size()]
 		if stats.has(stat):
 			stats[stat] += 1.0
 		else:
-			stats[stat] = 1.0
+			stats[stat] = 1.0 * stat_multiplier
 	
 	return stats
 	

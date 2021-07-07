@@ -29,8 +29,8 @@ func _process(_delta):
 	for ability in abilities_held_down:
 		ability.use_ability((get_global_mouse_position() - position).normalized())
 		
-	stats["health"] += 0.1
-	stats["health"] = clamp(stats["health"], 0, stats["max_health"])
+	#stats["health"] += 0.1
+	#stats["health"] = clamp(stats["health"], 0, stats["max_health"])
 
 # so that the player doesn't accidentally attack while using menus.
 func _unhandled_input(event):
@@ -106,7 +106,17 @@ func recalculate_stats():
 
 func on_hit(damage):
 	damage_taken_effect()
-	stats["health"] -= damage
+	var defence_points = stats["defence"]
+	var damage_reduction = 0
+	var reduction_per_point = 3.0
+	var i = 0
+	while defence_points - i > 0:
+		damage_reduction += reduction_per_point
+		i += 1
+		if i % 10:
+			reduction_per_point /= 2
+	damage -= damage * (damage_reduction / 100)
+	stats["health"] -= damage 
 	if stats["health"] <= 0:
 		emit_signal("player_death")
 		$CollisionShape2D.disabled = true

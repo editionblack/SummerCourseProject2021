@@ -17,27 +17,10 @@ func attack():
 func move():
 	var direction = Vector2(0,0)
 	
-	# raycast to the player position and get the first thing that the raycast collides with
-	$RayCast2D.cast_to = player.global_position - global_position
-	$RayCast2D.force_raycast_update()
-	var raycast_collision = $RayCast2D.get_collider()
-	
-	# if the raycast cant directly hit the player we use the navigation2d node to get a simple path
-	# that the enemy will try to follow instead. if no path to the player is possible we simply remove
-	# the enemy for the time being as this would indicate that the enemey has been spawned somewhere
-	# it shouldn't have. If a path is available the enemy will move towards the first position in the array
-	# until its close enough that the position should be removed.
-	# if the raycast does hit the player the enemy just moves straight towards it.
-	if raycast_collision != player:
-		if path.size() < 1:
-			path = get_path_to_player()
-			if path.size() < 1:
-				queue_free()
-				return
-		if global_position.distance_to(path[0]) < 1:
-			path.remove(0)
-		else:
-			direction = (path[0] - global_position).normalized()
+	# raycast to player. If hit, the direction is set towards the player. If not, we find a direction to move towards through
+	# pathfinding.
+	if !is_player_in_sight():
+		direction = pathfind_direction_to_player()
 	else:
 		path = []
 		direction = (player.global_position - global_position).normalized()

@@ -30,6 +30,23 @@ func _process(_delta):
 		return
 	move()
 
+func is_player_in_sight():
+	$RayCast2D.cast_to = player.global_position - global_position
+	$RayCast2D.force_raycast_update()
+	var raycast_collision = $RayCast2D.get_collider()
+	
+	return true if raycast_collision == player else false
+
+func pathfind_direction_to_player():
+	if path.empty():
+		path = get_path_to_player()
+	if !path.empty():
+		if global_position.distance_to(path[0]) < 1:
+			path.remove(0)
+		else:
+			return (path[0] - global_position).normalized()
+	return Vector2(0, 0)
+
 func get_path_to_player():
 	return nav2d.get_simple_path(global_position, player.global_position, false)
 

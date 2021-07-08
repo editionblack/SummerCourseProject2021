@@ -123,7 +123,7 @@ func on_hit(damage):
 	stats["health"] -= damage 
 	if stats["health"] <= 0:
 		emit_signal("player_death")
-		$CollisionShape2D.disabled = true
+		collision_layer = 0
 
 func damage_taken_effect():
 	$Sprite.scale = Vector2(0.38, 0.38)

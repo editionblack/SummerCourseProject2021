@@ -36,6 +36,7 @@ func hide_game_over():
 	game_over.visible = false
 
 func _on_Game_reset():
+	get_parent().clear_entities()
 	get_tree().paused = false
 	hide_game_over()
 	get_parent().pick_class_and_restart()

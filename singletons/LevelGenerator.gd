@@ -1,9 +1,9 @@
 extends Node
 
-const width = 20
-const height = 20
-const walk_amount = 60
-const step_amount = 10
+const width = 100
+const height = 100
+const walk_amount = 100
+const step_amount = 3
 
 func generate_level(tilemap : TileMap):
 	tilemap.clear()

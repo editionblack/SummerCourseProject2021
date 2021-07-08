@@ -106,6 +106,10 @@ func recalculate_stats():
 
 func on_hit(damage):
 	damage_taken_effect()
+	
+	# could be replaced by some math stuff?? fine for now
+	# for the first ten defence points the damage is reduced by 3%
+	# for every ten points the 3% is halved.
 	var defence_points = stats["defence"]
 	var damage_reduction = 0
 	var reduction_per_point = 3.0
@@ -114,7 +118,7 @@ func on_hit(damage):
 		damage_reduction += reduction_per_point
 		i += 1
 		if i % 10 == 0:
-			reduction_per_point /= 2
+			reduction_per_point /= 2.0
 	damage -= damage * (damage_reduction / 100)
 	stats["health"] -= damage 
 	if stats["health"] <= 0:

@@ -20,6 +20,7 @@ PlayerClassHandler="*res://singletons/PlayerClassHandler.gd"
 EnemyHandler="*res://singletons/EnemyHandler.gd"
 ItemHandler="*res://singletons/ItemHandler.gd"
 AbilityHandler="*res://singletons/AbilityHandler.gd"
+LevelGenerator="*res://singletons/LevelGenerator.gd"
 
 [display]
 

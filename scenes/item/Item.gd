@@ -10,12 +10,8 @@ var primary_ability_path = null
 func _ready():
 	$Sprite.self_modulate = rarity_colors[rarity]
 
-func _on_Area2D_body_entered(body):
-	call_deferred("reparent", body)
-
-func reparent(new_parent):
+func reparent():
 	get_parent().remove_child(self)
-	new_parent.item_pick_up(self)
 
 func get_rarity_color():
 	return rarity_colors[rarity]
@@ -28,6 +24,9 @@ func get_name():
 
 func set_text(text):
 	$Label.text = text
+
+func set_highlight(state):
+	$Highlight.visible = state
 
 func get_tooltip():
 	var result = get_name() + '\n' + "- - - - - - - - - - - -" + '\n'

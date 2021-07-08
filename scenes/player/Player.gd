@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal player_death
+signal next_level
 signal item_pickup
 
 var velocity = Vector2()
@@ -9,6 +10,9 @@ var is_stunned = false
 var current_class
 var base_stats
 var stats
+
+var current_interactable = null
+var close_interactables = []
 
 var primary_ability
 var secondary_ability
@@ -28,12 +32,23 @@ func _process(_delta):
 		
 	for ability in abilities_held_down:
 		ability.use_ability((get_global_mouse_position() - position).normalized())
-		
+	
 	#stats["health"] += 0.1
 	#stats["health"] = clamp(stats["health"], 0, stats["max_health"])
 
 # so that the player doesn't accidentally attack while using menus.
 func _unhandled_input(event):
+	
+	if event.is_action_pressed("interact", false):
+		if current_interactable:
+			match current_interactable.get_groups()[0]:
+				"exits":
+					emit_signal("next_level")
+				"items":
+					item_pick_up(current_interactable)
+				_:
+					print("Nothing!")
+	
 	if event.is_action_pressed("left_click", true):
 		abilities_held_down.append(primary_ability)
 	if event.is_action_released("left_click"):
@@ -67,6 +82,7 @@ func get_inventory():
 	return $Inventory.get_children()
 
 func item_pick_up(item):
+	item.reparent()
 	$Inventory.add_child(item)
 	item.visible = false
 	emit_signal("item_pickup")
@@ -131,3 +147,25 @@ func damage_taken_effect():
 	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, Vector2(0.48, 0.48), 0.25)
 	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(color), 0.5)
 	$Tween.start()
+
+
+func _on_InteractRange_area_entered(area):
+	close_interactables.append(area.get_parent())
+	
+	if current_interactable == null:
+		area.get_parent().set_highlight(true)
+		current_interactable = area.get_parent()
+		$InteractLabel.visible = true
+
+func _on_InteractRange_area_exited(area):
+	close_interactables.erase(area.get_parent())
+	
+	if current_interactable == area.get_parent():
+		area.get_parent().set_highlight(false)
+		current_interactable = null
+		$InteractLabel.visible = false
+		
+		if close_interactables.size() > 0:
+			close_interactables[0].set_highlight(true)
+			current_interactable = close_interactables[0]
+			$InteractLabel.visible = true

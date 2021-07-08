@@ -1,9 +1,9 @@
 extends Node
 
-const width = 100
-const height = 100
-const walk_amount = 100
-const step_amount = 3
+const width = 60
+const height = 60
+const walk_amount = 10
+const step_amount = 5
 
 func generate_level(tilemap : TileMap):
 	tilemap.clear()
@@ -45,6 +45,6 @@ func generate_level(tilemap : TileMap):
 	return starting_point
 
 func fill(tilemap : TileMap, cell_id : int):
-	for i in range(width):
-		for j in range(height):
+	for i in range(-width, width*2):
+		for j in range(-height, height*2):
 			tilemap.set_cell(i, j, cell_id)

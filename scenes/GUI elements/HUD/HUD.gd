@@ -34,9 +34,11 @@ func show_game_over():
 
 func hide_game_over():
 	game_over.visible = false
+	
 
 func _on_Game_reset():
 	get_parent().clear_entities()
+	get_parent().player.queue_free()
 	get_tree().paused = false
 	hide_game_over()
 	get_parent().pick_class_and_restart()

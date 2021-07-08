@@ -64,7 +64,7 @@ func damage_taken_effect():
 	$Sprite.scale = Vector2(0.33, 0.33)
 	$Sprite.modulate = Color.white
 	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, Vector2(0.48, 0.48), 0.25)
-	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(color), 0.5)
+	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(color), 0.25)
 	$Tween.start()
 
 func drop_item():

@@ -19,7 +19,7 @@ func create_item():
 	new_item.rarity = random_rarity(1)
 	new_item.stats = random_stats(new_item.rarity)
 	if items_data[random_item].has("primary_ability"):
-		new_item.primary_ability_path = items_data[random_item]["primary_ability"]
+		new_item.primary_ability = items_data[random_item]["primary_ability"]
 	return new_item
 
 # placeholder rarity function. TODO: make it based on a "luck"-stat

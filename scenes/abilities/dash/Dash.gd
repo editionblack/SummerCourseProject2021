@@ -6,7 +6,7 @@ func _ready():
 	._ready()
 	$Cooldown.wait_time = stats["cooldown"]
 
-func use_ability(direction):
+func use_ability(_direction):
 	if !$Cooldown.is_stopped() or in_use:
 		return
 		
@@ -14,7 +14,7 @@ func use_ability(direction):
 	user.can_move = false
 	var speed = 1200
 	while speed > 100:
-		user.velocity = direction * speed
+		user.velocity = user.velocity.normalized() * speed
 		speed /= 2
 		yield(get_tree().create_timer(0.1),"timeout")
 	user.can_move = true

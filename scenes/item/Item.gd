@@ -4,7 +4,7 @@ var stats
 var type 
 var rarity
 var rarity_colors = {"common" : Color.white, "uncommon" : Color.mediumseagreen, "rare" : Color.dodgerblue, "epic" : Color.mediumpurple, "legendary" : Color.gold}
-var primary_ability_path = null
+var primary_ability = null
 
 
 func _ready():

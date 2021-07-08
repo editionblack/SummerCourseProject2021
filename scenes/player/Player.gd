@@ -17,6 +17,7 @@ var close_interactables = []
 
 var primary_ability
 var secondary_ability
+var utility_ability
 var abilities_held_down = [] # to be processed every frame and used if possible
 
 var color = Color.white
@@ -24,6 +25,8 @@ var color = Color.white
 func _ready():
 	base_stats = stats.duplicate(true)
 	$Sprite.modulate = color
+	utility_ability = AbilityHandler.get_ability("dash", 1 + 4)
+	add_child(utility_ability)
 	
 func _process(_delta):
 	if can_move:
@@ -57,11 +60,16 @@ func _unhandled_input(event):
 		abilities_held_down.append(primary_ability)
 	if event.is_action_released("left_click"):
 		abilities_held_down.erase(primary_ability)
-		
+	
 	if event.is_action_pressed("right_click", true):
 		abilities_held_down.append(secondary_ability)
 	if event.is_action_released("right_click"):
 		abilities_held_down.erase(secondary_ability)
+		
+	if event.is_action_pressed("utility", false):
+		abilities_held_down.append(utility_ability)
+	if event.is_action_released("utility"):
+		abilities_held_down.erase(utility_ability)
 
 # checks for input and moves in appropiate direction
 func move():
@@ -97,7 +105,7 @@ func item_equip(item):
 	if item.type == "weapon":
 		remove_child(primary_ability)
 		primary_ability.call_deferred("queue_free")
-		var new_primary_ability = AbilityHandler.get_ability(item.primary_ability_path, 1 + 4)
+		var new_primary_ability = AbilityHandler.get_ability(item.primary_ability, 1 + 4)
 		call_deferred("add_child", new_primary_ability)
 		primary_ability = new_primary_ability
 	recalculate_stats()
@@ -149,7 +157,7 @@ func damage_taken_effect():
 	$Sprite.scale = Vector2(0.38, 0.38)
 	$Sprite.modulate = Color.white
 	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, Vector2(0.48, 0.48), 0.25)
-	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(color), 0.5)
+	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(color), 0.25)
 	$Tween.start()
 
 

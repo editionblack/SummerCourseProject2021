@@ -12,6 +12,7 @@ func _ready():
 	for player_class in data.keys():
 		item_list.add_item(player_class, load(data[player_class]["icon"]), true)
 		item_list.set_item_icon_modulate(i, data[player_class]["icon_color"])
+		item_list.set_item_tooltip_enabled(i, false)
 		i += 1
 
 func _on_ItemList_item_selected(_index):

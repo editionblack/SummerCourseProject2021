@@ -3,6 +3,7 @@ extends KinematicBody2D
 signal player_death
 signal next_level
 signal item_pickup
+signal reset_game
 
 var velocity = Vector2()
 var can_move = true
@@ -48,6 +49,9 @@ func _unhandled_input(event):
 					item_pick_up(current_interactable)
 				_:
 					print("Nothing!")
+	
+	if event.is_action_pressed("reset", false):
+		emit_signal("reset_game")
 	
 	if event.is_action_pressed("left_click", true):
 		abilities_held_down.append(primary_ability)

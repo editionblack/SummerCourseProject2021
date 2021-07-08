@@ -27,9 +27,14 @@ func populate_level(world, level_start):
 			spawn_item(world, tilemap.map_to_world(floor_cell) + Vector2(50, 50))
 		elif randi() % 101 > 80:
 			spawn_enemy(world, tilemap.map_to_world(floor_cell) + Vector2(50, 50))
-	
+	spawn_entrance(world, tilemap.map_to_world(level_start) + Vector2(50, 50))
 	spawn_exit(world, tilemap.map_to_world(furthest_away) + Vector2(50, 50))
-	
+
+func spawn_entrance(world, position):
+	var new_entrance = load("res://scenes/entrance/Entrance.tscn").instance()
+	new_entrance.global_position = position
+	world.get_node("Entities").call_deferred("add_child", new_entrance)
+
 func spawn_exit(world, position):
 	var new_exit = load("res://scenes/exit/Exit.tscn").instance()
 	new_exit.global_position = position

@@ -38,6 +38,7 @@ func spawn_entrance(world, position):
 func spawn_exit(world, position):
 	var new_exit = load("res://scenes/exit/Exit.tscn").instance()
 	new_exit.global_position = position
+	world.exit = new_exit
 	world.get_node("Entities").call_deferred("add_child", new_exit)
 
 func spawn_enemy(world, position):

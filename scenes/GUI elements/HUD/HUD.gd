@@ -4,6 +4,7 @@ onready var character_sheet = $CharacterSheet
 onready var game_over = $GameOverPanel
 onready var class_picker = $ClassPicker
 onready var inventory_sheet = $InventorySheet
+onready var minimap = $Minimap
 
 var player
 
@@ -27,9 +28,16 @@ func hide_class_picker():
 	class_picker.visible = false
 	class_picker.reset_item_list()
 
+func show_minimap():
+	minimap.visible = true
+
+func clear_minimap():
+	minimap.get_node("TileMap").clear()
+
 func show_game_over():
 	character_sheet.visible = false
 	inventory_sheet.visible = false
+	minimap.visible = false
 	game_over.visible = true
 
 func hide_game_over():

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/tilemaps/minimap.tres" type="TileSet" id=1]
+
+[node name="Minimap" type="Control"]
+pause_mode = 1
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 0.1, 0.1 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 100, 100 )
+cell_custom_transform = Transform2D( 10, 0, 0, 10, 0, 0 )
+cell_clip_uv = true
+format = 1

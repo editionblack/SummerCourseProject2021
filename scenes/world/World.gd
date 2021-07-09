@@ -2,11 +2,16 @@ extends Node2D
 
 onready var HUD = $HUD
 var player
+var exit
 
 func _ready():
 	randomize()
 	pick_class_and_restart()
-	
+
+func _physics_process(_delta):
+	if HUD.get_node("Minimap").is_visible():
+		update_minimap()
+
 func pick_class_and_restart():
 	HUD.show_class_picker()
 	var player_class = yield(HUD.get_node("ClassPicker"), "class_chosen")
@@ -28,9 +33,26 @@ func restart(player_class):
 	HUD.inventory_sheet.player = new_player
 	new_player.connect("item_pickup", HUD.inventory_sheet, "reload_inventory_sheet")
 	player = new_player
-	
+	HUD.clear_minimap()
+	HUD.show_minimap()
 	LevelDirector.populate_level(self, level_start)
 
+# code that should be moved to minimap
+func update_minimap():
+	var minimap = HUD.get_node("Minimap/TileMap")
+	var tilemap = $Navigation2D/TileMap
+	var cells = tilemap.get_used_cells()
+	var player_cell = minimap.world_to_map(player.position)
+	var exit_cell = minimap.world_to_map(exit.position)
+	var vision_range = 3
+	var offset = Vector2(0, 0)
+	for cell in cells:
+		if cell.x >= player_cell.x - vision_range and cell.x <= player_cell.x + vision_range and cell.y >= player_cell.y - vision_range and cell.y <= player_cell.y + vision_range:
+			minimap.set_cellv(cell + offset, tilemap.get_cellv(cell))
+			if cell == exit_cell:
+				minimap.set_cellv(cell + offset, 3)
+	minimap.set_cellv(player_cell + offset, 2)
+		
 func clear_entities():
 	for entity in $Entities.get_children():
 		if entity == player:
@@ -42,6 +64,7 @@ func get_player():
 
 func _on_Next_level():
 	clear_entities()
+	HUD.clear_minimap()
 	var level_start = LevelGenerator.generate_level($Navigation2D/TileMap)
 	var player_start = $Navigation2D/TileMap.map_to_world(level_start) + Vector2(50, 50)
 	player.global_position = player_start

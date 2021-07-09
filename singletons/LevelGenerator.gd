@@ -2,8 +2,8 @@ extends Node
 
 const width = 30
 const height = 30
-const walk_amount = 30
-const step_amount = 6
+const walk_amount = 40
+const step_amount = 5
 
 func generate_level(tilemap : TileMap):
 	tilemap.clear()
@@ -11,8 +11,8 @@ func generate_level(tilemap : TileMap):
 	
 	fill(tilemap, 0)
 			
-	var starting_points = [Vector2(1, 1), Vector2(1, height-2), Vector2(width-2, 1), Vector2(width-2, height-2)]
-	var starting_point = starting_points[randi() % 4]
+	var starting_points = [Vector2(1, 1)] #Vector2(1, height-2), Vector2(width-2, 1), Vector2(width-2, height-2)]
+	var starting_point = starting_points[randi() % starting_points.size()]
 	var current_point = starting_point
 	visited_coordinates.append(current_point)
 	var current_direction = null

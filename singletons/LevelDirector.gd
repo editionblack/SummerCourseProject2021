@@ -23,9 +23,7 @@ func populate_level(world, level_start):
 	
 	# randomly spawn in enemies and loot
 	for floor_cell in floor_cells:
-		if randi() % 101 > 95:
-			spawn_item(world, tilemap.map_to_world(floor_cell) + Vector2(50, 50))
-		elif randi() % 101 > 80:
+		if randi() % 101 > 80:
 			spawn_enemy(world, tilemap.map_to_world(floor_cell) + Vector2(50, 50))
 	spawn_entrance(world, tilemap.map_to_world(level_start) + Vector2(50, 50))
 	spawn_exit(world, tilemap.map_to_world(furthest_away) + Vector2(50, 50))

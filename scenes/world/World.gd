@@ -41,14 +41,11 @@ func restart(player_class):
 func update_minimap():
 	var minimap = HUD.get_node("Minimap/TileMap")
 	var tilemap = $Navigation2D/TileMap
-	var cells = tilemap.get_used_cells()
 	var player_cell = minimap.world_to_map(player.position)
 	var exit_cell = minimap.world_to_map(exit.position)
-	var vision_range = 5
 	var offset = Vector2(1, 1)
 	
-	var size = 13
-	
+	var size = 19
 	for x in range(0, size):
 		for y in range(0, size):
 			if x == floor(size/2) and y == floor(size/2):
@@ -59,12 +56,6 @@ func update_minimap():
 					minimap.set_cellv(Vector2(x,y) + offset, 3)
 				else:
 					minimap.set_cellv(Vector2(x,y) + offset, tilemap.get_cellv(player_relative_tile))
-#	for cell in cells:
-#		if cell.x >= player_cell.x - vision_range and cell.x <= player_cell.x + vision_range and cell.y >= player_cell.y - vision_range and cell.y <= player_cell.y + vision_range:
-#			minimap.set_cellv(cell + offset, tilemap.get_cellv(cell))
-#			if cell == exit_cell:
-#				minimap.set_cellv(cell + offset, 3)
-#	minimap.set_cellv(player_cell + offset, 2)
 
 func clear_entities():
 	for entity in $Entities.get_children():

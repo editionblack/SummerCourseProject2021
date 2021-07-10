@@ -1,8 +1,8 @@
 extends Node
 
-const width = 30
-const height = 30
-const walk_amount = 40
+const width = 200
+const height = 200
+const walk_amount = 120
 const step_amount = 5
 
 func generate_level(tilemap : TileMap):

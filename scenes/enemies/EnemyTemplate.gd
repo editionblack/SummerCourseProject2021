@@ -56,12 +56,13 @@ func get_path_to_player():
 func on_hit(damage):
 	damage_taken_effect()
 	var fdn = load("res://scenes/floating_number/FloatingNumber.tscn").instance()
-	fdn.value = damage
+	fdn.init_floating_number(damage, Color.red)
 	fdn.position = position
 	world.add_child(fdn)
 	stats["health"] -= damage
 	if stats["health"] <= 0:
-		drop_item()
+		if randi() % 101 > 75:
+			drop_item()
 		queue_free()
 
 func damage_taken_effect():

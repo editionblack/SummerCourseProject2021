@@ -4,6 +4,7 @@
 [ext_resource path="res://scenes/floating_number/FloatingNumber.gd" type="Script" id=2]
 
 [node name="FloatingNumber" type="Position2D"]
+scale = Vector2( 1.25, 1.25 )
 z_index = 10
 script = ExtResource( 2 )
 

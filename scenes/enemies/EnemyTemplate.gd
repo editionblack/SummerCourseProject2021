@@ -14,6 +14,8 @@ var player = null
 
 var velocity = Vector2()
 
+var floating_number = preload("res://scenes/floating_number/FloatingNumber.tscn")
+
 func _ready():
 	add_to_group("enemies")
 	$Sprite.modulate = color
@@ -23,7 +25,6 @@ func _ready():
 
 func _process(_delta):
 	if !awake and $VisibilityNotifier2D.is_on_screen():
-		print("i am on screen")
 		awake = true
 	if !awake:
 		return
@@ -63,7 +64,7 @@ func get_path_to_player():
 
 func on_hit(damage):
 	damage_taken_effect()
-	var fdn = load("res://scenes/floating_number/FloatingNumber.tscn").instance()
+	var fdn = floating_number.instance()
 	fdn.init_floating_number(damage, Color.red)
 	fdn.position = position
 	world.add_child(fdn)

@@ -2,10 +2,6 @@ extends "res://scenes/abilities/AbilityTemplate.gd"
 
 var in_use = false
 
-func _ready():
-	._ready()
-	$Cooldown.wait_time = stats["cooldown"]
-
 func use_ability(_direction):
 	if !$Cooldown.is_stopped() or in_use:
 		return

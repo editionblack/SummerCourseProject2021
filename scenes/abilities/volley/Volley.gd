@@ -3,10 +3,6 @@ extends "res://scenes/abilities/AbilityTemplate.gd"
 var in_use = false
 var projectile_scene = load("res://scenes/projectiles/basic_projectile/BasicProjectile.tscn")
 
-func _ready():
-	._ready()
-	$Cooldown.wait_time = stats["cooldown"]
-
 func use_ability(direction):
 	if !$Cooldown.is_stopped() or in_use:
 		return

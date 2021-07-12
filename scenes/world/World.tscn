@@ -21,3 +21,6 @@ format = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 4 )
+
+[node name="AntiBugCamera2D" type="Camera2D" parent="."]
+zoom = Vector2( 0.1, 0.1 )

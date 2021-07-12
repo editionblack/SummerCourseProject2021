@@ -67,12 +67,16 @@ func get_player():
 	return player
 
 func _on_Next_level():
+	$AntiBugCamera2D.current = true
 	clear_entities()
 	HUD.clear_minimap()
 	var level_start = LevelGenerator.generate_level($Navigation2D/TileMap)
 	var player_start = $Navigation2D/TileMap.map_to_world(level_start) + Vector2(50, 50)
+	$AntiBugCamera2D.global_position = player_start
 	player.global_position = player_start
 	LevelDirector.populate_level(self, level_start)
+	player.get_node("Camera2D").reset_smoothing()
+	player.get_node("Camera2D").current = true
 	
 func _on_Player_death():
 	HUD.show_game_over()

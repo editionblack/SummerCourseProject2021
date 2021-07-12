@@ -37,7 +37,7 @@ func _process(_delta):
 	for ability in abilities_held_down:
 		ability.use_ability((get_global_mouse_position() - position).normalized())
 	
-	stats["health"] += 0.1
+	stats["health"] += 0.05
 	stats["health"] = clamp(stats["health"], 0, stats["max_health"])
 
 # so that the player doesn't accidentally attack while using menus.

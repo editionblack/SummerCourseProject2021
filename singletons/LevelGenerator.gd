@@ -12,7 +12,7 @@ func generate_level(tilemap : TileMap):
 	
 	fill(tilemap, 0)
 			
-	var starting_points = [Vector2(1, 1)] #Vector2(1, height-2), Vector2(width-2, 1), Vector2(width-2, height-2)]
+	var starting_points = [Vector2(1, 1), Vector2(1, height-2), Vector2(width-2, 1), Vector2(width-2, height-2)]
 	var starting_point = starting_points[randi() % starting_points.size()]
 	var current_point = starting_point
 	visited_coordinates.append(current_point)

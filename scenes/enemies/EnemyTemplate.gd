@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal health_changed(new_value)
+
 var stats
 var targets = []
 var color = null
@@ -72,6 +74,7 @@ func on_hit(damage):
 	fdn.position = position
 	world.add_child(fdn)
 	stats["health"] -= damage
+	emit_signal("health_changed", stats["health"])
 	if stats["health"] <= 0:
 		if randi() % 101 >= 0:
 			drop_item()

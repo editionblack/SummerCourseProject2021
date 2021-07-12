@@ -4,6 +4,7 @@ signal player_death
 signal next_level
 signal item_pickup
 signal reset_game
+signal health_changed(new_value)
 
 var velocity = Vector2()
 var can_move = true
@@ -37,9 +38,6 @@ func _process(_delta):
 		
 	for ability in abilities_held_down:
 		ability.use_ability((get_global_mouse_position() - position).normalized())
-	
-	stats["health"] += 0.05
-	stats["health"] = clamp(stats["health"], 0, stats["max_health"])
 
 # so that the player doesn't accidentally attack while using menus.
 func _unhandled_input(event):
@@ -150,7 +148,8 @@ func on_hit(damage):
 		if i % 10 == 0:
 			reduction_per_point /= 2.0
 	damage -= damage * (damage_reduction / 100)
-	stats["health"] -= damage 
+	stats["health"] -= damage
+	emit_signal("health_changed", stats["health"])
 	if stats["health"] <= 0:
 		emit_signal("player_death")
 		collision_layer = 0

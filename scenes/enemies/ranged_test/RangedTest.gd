@@ -8,8 +8,8 @@ func _ready():
 	call_deferred("add_child", ability)
 
 func attack():
-	if is_player_in_sight():
-		ability.use_ability((player.global_position - global_position).normalized())
+	if is_player_in_sight() and distance_to_player() < 500:
+		ability.use_ability((player.global_position - global_position).normalized().rotated(deg2rad(randi() % 51 - 25)))
 
 func move():
 	var direction = Vector2()

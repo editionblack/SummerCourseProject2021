@@ -27,3 +27,5 @@ enabled = true
 collision_mask = 3
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]

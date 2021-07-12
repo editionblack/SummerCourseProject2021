@@ -27,6 +27,13 @@
                 "delay" : 0.1,
                 "spread" : 22.5
             }
+        },
+        "heal" : {
+            "scene" : "res://scenes/abilities/heal/Heal.tscn",
+            "stats" : {
+                "heal_amount" : 50,
+                "cooldown" : 5.0
+            }
         }
     }
 }

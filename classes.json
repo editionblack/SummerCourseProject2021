@@ -19,7 +19,7 @@
             "icon" : "res://assets/sprites/octagon.png",
             "icon_color" : "3f2d1b",
             "primary" : "swing",
-            "secondary" : "dash",
+            "secondary" : "heal",
             "stats" : {
                 "max_health": 250,
                 "health" : 250,

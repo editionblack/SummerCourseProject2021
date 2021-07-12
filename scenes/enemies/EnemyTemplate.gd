@@ -4,6 +4,7 @@ var stats
 var targets = []
 var color = null
 
+var awake = false
 var can_move = true
 var is_stunned = false
 var nav2d = null
@@ -14,15 +15,22 @@ var player = null
 var velocity = Vector2()
 
 func _ready():
+	add_to_group("enemies")
 	$Sprite.modulate = color
 	world = get_tree().get_root().get_node("World")
 	nav2d = world.get_node("Navigation2D")
 	player = world.get_node("Entities/Player")
 
 func _process(_delta):
+	if !awake and $VisibilityNotifier2D.is_on_screen():
+		print("i am on screen")
+		awake = true
+	if !awake:
+		return
 	# if we are stunned and cant move there is nothing to do this frame.
 	# attacks or such should still process if we aren't stunned but can't move.
 	# subject to change but it's fine for now.
+	
 	if is_stunned:
 		return
 	attack()

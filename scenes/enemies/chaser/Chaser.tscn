@@ -82,6 +82,10 @@ autostart = true
 enabled = true
 collision_mask = 3
 
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 2.38419e-07, 2.38419e-07 )
+scale = Vector2( 0.4, 0.4 )
+
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_Hurtbox_body_entered"]
 [connection signal="body_exited" from="Hurtbox" to="." method="_on_Hurtbox_body_exited"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_DamageTimer_timeout"]

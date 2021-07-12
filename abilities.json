@@ -15,7 +15,7 @@
         "dash" : {
             "scene" : "res://scenes/abilities/dash/Dash.tscn",
             "stats" : {
-                "cooldown" : 2.0
+                "cooldown" : 1.0
             }
         },
         "volley" : {

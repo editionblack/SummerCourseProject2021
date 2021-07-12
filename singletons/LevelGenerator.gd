@@ -1,9 +1,10 @@
 extends Node
 
-const width = 200
-const height = 200
-const walk_amount = 120
-const step_amount = 5
+const width = 100
+const height = 100
+const walk_amount = 60
+const step_amount = 3
+const least_amount = 2
 
 func generate_level(tilemap : TileMap):
 	tilemap.clear()
@@ -33,7 +34,7 @@ func generate_level(tilemap : TileMap):
 		
 		current_direction = directions[randi() % directions.size()]
 		
-		for _step in range(randi() % step_amount + 1):
+		for _step in range(randi() % step_amount + least_amount):
 			var next_step = current_point + current_direction
 			if next_step.x == 0 or next_step.x == width-1 or next_step.y == 0 or next_step.y == height-1:
 				break
@@ -42,8 +43,23 @@ func generate_level(tilemap : TileMap):
 				visited_coordinates.append(current_point)
 	for coordinate in visited_coordinates:
 		tilemap.set_cell(coordinate.x, coordinate.y, 1)
+	smooth_out_map(tilemap)
 	return starting_point
-
+	
+func smooth_out_map(tilemap : TileMap):
+	var clean_copy = tilemap.duplicate()
+	for x in range(0, width):
+		for y in range(0, height):
+			var walls = 0
+			for i in range(x - 1, x + 1):
+				for j in range(y - 1, y + 1):
+					if i == x and j == y:
+						continue
+					if clean_copy.get_cellv(Vector2(i,j)) == 0:
+						walls += 1
+			if clean_copy.get_cellv(Vector2(x, y)) == 0 and walls < 2:
+				tilemap.set_cellv(Vector2(x,y), 1)
+				
 func fill(tilemap : TileMap, cell_id : int):
 	for i in range(-10, width+10):
 		for j in range(-10, height+10):

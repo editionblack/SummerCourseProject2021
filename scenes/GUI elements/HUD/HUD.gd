@@ -20,6 +20,8 @@ func _unhandled_input(event):
 		if !inventory_sheet.visible:
 			inventory_sheet.reload_inventory_sheet()
 		inventory_sheet.visible = !inventory_sheet.visible
+	if event.is_action_pressed("tab") and !class_picker.visible:
+		minimap.visible = !minimap.visible
 		
 func show_class_picker():
 	class_picker.visible = true

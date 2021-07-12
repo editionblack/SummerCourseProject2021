@@ -1,7 +1,6 @@
 extends "res://scenes/abilities/AbilityTemplate.gd"
 
 func _ready():
-	._ready()
 	hide_weapon()
 
 func use_ability(direction):
@@ -26,4 +25,4 @@ func hide_weapon():
 
 func _on_Area2D_body_entered(body):
 	if body.has_method("on_hit"):
-		body.on_hit(user.stats["damage"])
+		body.on_hit(DamageCalculationHandler.calculate_primary_damage(user))

@@ -17,6 +17,6 @@ func _physics_process(_delta):
 	actual_health = user.stats["health"]
 	if actual_health != value:
 		value = lerp(value, actual_health, 0.25)
-	if value >= (max_value * 0.99):
+	if value >= float(max_value * 0.99):
 		value = max_value
 	tint_progress = gradient.interpolate(float(value / max_value))

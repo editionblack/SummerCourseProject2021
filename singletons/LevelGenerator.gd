@@ -2,23 +2,25 @@ extends Node
 
 const width = 100
 const height = 100
-const walk_amount = 150
+const walk_amount = 25
 const step_amount = 5
 const least_amount = 1
 
 func generate_level(tilemap : TileMap):
+	var scaling = Global.get_scaling()
+	
 	tilemap.clear()
 	var visited_coordinates = []
 	
 	fill(tilemap, 0)
 			
-	var starting_points = [Vector2(1, 1), Vector2(1, height-2), Vector2(width-2, 1), Vector2(width-2, height-2)]
+	var starting_points = [Vector2(width/2.0, height/2.0), Vector2(1, 1), Vector2(1, height-2), Vector2(width-2, 1), Vector2(width-2, height-2)]
 	var starting_point = starting_points[randi() % starting_points.size()]
 	var current_point = starting_point
 	visited_coordinates.append(current_point)
 	var current_direction = null
 	
-	for _walk in range(walk_amount):
+	for _walk in range(walk_amount * scaling):
 		var directions = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 		
 		if current_point.x - 1 == 0:

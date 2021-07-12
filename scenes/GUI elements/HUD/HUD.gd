@@ -5,11 +5,13 @@ onready var game_over = $GameOverPanel
 onready var class_picker = $ClassPicker
 onready var inventory_sheet = $InventorySheet
 onready var minimap = $Minimap
+onready var scaling_label = $ScalingLabel
 
 var player
 
 func _ready():
 	game_over.connect("reset_game", self, "_on_Game_reset")
+	var _conn_value = Global.connect("scaling_changed", self, "set_scaling_label")
 
 func _unhandled_input(event):
 	if event.is_action_pressed("c") and !class_picker.visible:
@@ -36,6 +38,12 @@ func show_minimap():
 func clear_minimap():
 	minimap.get_node("TileMap").clear()
 
+func show_scaling_label():
+	scaling_label.visible = true
+	
+func hide_scaling_label():
+	scaling_label.visible = false
+
 func show_game_over():
 	character_sheet.visible = false
 	inventory_sheet.visible = false
@@ -44,7 +52,9 @@ func show_game_over():
 
 func hide_game_over():
 	game_over.visible = false
-	
+
+func set_scaling_label(value : float):
+	scaling_label.text = "Scaling: " + str(value)
 
 func _on_Game_reset():
 	get_parent().clear_entities()

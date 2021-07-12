@@ -1,6 +1,8 @@
 extends Node
 
 func populate_level(world, level_start):
+	var scaling = Global.get_scaling()
+	
 	var tilemap = world.get_node("Navigation2D/TileMap")
 	var floor_cells = []
 	
@@ -23,7 +25,7 @@ func populate_level(world, level_start):
 	
 	# randomly spawn in enemies and loot
 	for floor_cell in floor_cells:
-		if randi() % 101 > 80:
+		if randi() % 101 > 95.0 - scaling / 2.0:
 			spawn_enemy(world, tilemap.map_to_world(floor_cell) + Vector2(50, 50))
 	spawn_entrance(world, tilemap.map_to_world(level_start) + Vector2(50, 50))
 	spawn_exit(world, tilemap.map_to_world(furthest_away) + Vector2(50, 50))

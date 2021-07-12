@@ -3,7 +3,6 @@ extends "res://scenes/abilities/AbilityTemplate.gd"
 var projectile_scene = load("res://scenes/projectiles/basic_projectile/BasicProjectile.tscn")
 
 func _ready():
-	._ready()
 	$AttackSpeed.wait_time = 1.0 / user.stats["attack_speed"] 
 
 func use_ability(direction):
@@ -12,7 +11,7 @@ func use_ability(direction):
 	
 	var offset = 35 # distance from users origin
 	var projectile = projectile_scene.instance()
-	projectile.damage = user.stats["damage"]
+	projectile.damage = DamageCalculationHandler.calculate_primary_damage(user)
 	projectile.position = user.position + direction * offset
 	projectile.direction = direction
 	projectile.rotation = direction.angle()

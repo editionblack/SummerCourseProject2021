@@ -3,9 +3,11 @@ extends Node
 var item_base = preload("res://scenes/item/Item.tscn")
 var items_data
 var rarities = ["common", "uncommon", "rare", "epic", "legendary"]
+var rarity_value = {"common" : 1, "uncommon" : 2, "rare" : 3, "epic" : 4, "legendary" : 5}
 
 # possible stats to get on an item, consider it a placeholder
-var possible_stats = ["damage", "max_health", "attack_speed", "movement_speed", "defence"] 
+var possible_stats = ["damage", "max_health", "attack_speed", "movement_speed", "defence"]
+
 
 func _ready():
 	items_data = read_items_file()["items"]
@@ -17,7 +19,7 @@ func create_item():
 	new_item.set_text(items_data[random_item]["name"])
 	new_item.type = items_data[random_item]["type"]
 	new_item.rarity = random_rarity(1)
-	new_item.stats = random_stats(new_item.rarity)
+	new_item.stats = random_stats(new_item.rarity, new_item.type)
 	if items_data[random_item].has("primary_ability"):
 		new_item.primary_ability = items_data[random_item]["primary_ability"]
 	return new_item
@@ -36,32 +38,34 @@ func random_rarity(_luck : int):
 		return rarities[4]
 	return rarities[0]
 
-func random_stats(rarity : String):
+func random_stats(rarity : String, type : String):
 	var stats = {}
-	var amount_of_stats = 1
-	var stat_multiplier = 1.0
+	var rarity_power = rarity_value[rarity]
+	var scaling = Global.get_scaling()
 	
-	match rarity:
-		"uncommon":
-			amount_of_stats = 2
-			stat_multiplier = 1.5
-		"rare":
-			amount_of_stats = 3
-			stat_multiplier = 2.0
-		"epic":
-			amount_of_stats = 4
-			stat_multiplier = 2.5
-		"legendary":
-			amount_of_stats = 5
-			stat_multiplier = 3.0
-			
-			
-	for _i in range(amount_of_stats):
-		var stat = possible_stats[randi() % possible_stats.size()]
-		if stats.has(stat):
-			stats[stat] += 1.0
+	match type:
+		"weapon":
+			stats["weapon_damage"] = [(5 + rarity_power) * scaling, (10 + rarity_power) * scaling]
+			stats["weapon_attack_speed"] = rand_range(0.5, 2.0)
+		"chest":
+			stats["max_health"] = 25 + (5 * rarity_power) * scaling
+			stats["defence"] = 2.0 + (0.2 * rarity_power) * scaling
+		"head":
+			stats["max_health"] = 15 + (2.5 * rarity_power) * scaling
+			stats["defence"] = 1.0 + (0.1 * rarity_power) * scaling
+		"boots":
+			stats["movement_speed"] = 25 + (5 * rarity_power) * scaling
+			stats["defence"] = 0.5 + (0.1 * rarity_power) * scaling
+		"gloves":
+			stats["attack_speed"] = 0.5
+			stats["defence"] = 1.5 + (0.1 * rarity_power) * scaling
+	for stat in stats:
+		var value = stats[stat]
+		if value is Array:
+			for el in value:
+				el = stepify(el, 0.01)
 		else:
-			stats[stat] = 1.0 * stat_multiplier
+			value = stepify(value, 0.01)
 	
 	return stats
 	

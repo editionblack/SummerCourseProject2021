@@ -5,7 +5,6 @@ var min_rotation_speed = 5.0
 var max_rotation_speed = 20.0
 
 func _ready():
-	._ready()
 	$DamageTimer.wait_time = stats["damage_frequency"]
 
 func attack():

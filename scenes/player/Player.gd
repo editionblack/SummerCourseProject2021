@@ -11,6 +11,7 @@ var is_stunned = false
 var current_class
 var base_stats
 var stats
+var weapon = null
 
 var current_interactable = null
 var close_interactables = []
@@ -103,6 +104,7 @@ func item_equip(item):
 	$Inventory.remove_child(item)
 	$Items.add_child(item)
 	if item.type == "weapon":
+		weapon = item
 		remove_child(primary_ability)
 		primary_ability.call_deferred("queue_free")
 		var new_primary_ability = AbilityHandler.get_ability(item.primary_ability, 1 + 4)

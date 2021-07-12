@@ -12,6 +12,8 @@ var path = []
 var world = null
 var player = null
 
+var weapon = null
+
 var velocity = Vector2()
 
 var floating_number = preload("res://scenes/floating_number/FloatingNumber.tscn")
@@ -22,6 +24,7 @@ func _ready():
 	world = get_tree().get_root().get_node("World")
 	nav2d = world.get_node("Navigation2D")
 	player = world.get_node("Entities/Player")
+	scale_stats()
 
 func _process(_delta):
 	if !awake and $VisibilityNotifier2D.is_on_screen():
@@ -70,7 +73,7 @@ func on_hit(damage):
 	world.add_child(fdn)
 	stats["health"] -= damage
 	if stats["health"] <= 0:
-		if randi() % 101 > 75:
+		if randi() % 101 >= 0:
 			drop_item()
 		queue_free()
 
@@ -86,6 +89,12 @@ func drop_item():
 	item.global_position = global_position
 	get_parent().call_deferred("add_child", item)
 
+func scale_stats():
+	var current_scaling = Global.get_scaling()
+	stats["damage"] *= current_scaling
+	stats["max_health"] *= current_scaling
+	stats["health"] *= current_scaling
+	
 func move():
 	pass
 

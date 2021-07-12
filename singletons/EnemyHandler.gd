@@ -8,6 +8,7 @@ func _ready():
 func create_enemy(enemy_type):
 	var enemy = load(enemy_data[enemy_type]["scene"]).instance()
 	enemy.stats = enemy_data[enemy_type]["stats"].duplicate(true)
+	enemy.stats["movement_speed"] += randi() % 51 - 25
 	enemy.color = enemy_data[enemy_type]["color"]
 	return enemy
 

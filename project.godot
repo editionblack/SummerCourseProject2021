@@ -22,6 +22,8 @@ ItemHandler="*res://singletons/ItemHandler.gd"
 AbilityHandler="*res://singletons/AbilityHandler.gd"
 LevelGenerator="*res://singletons/LevelGenerator.gd"
 LevelDirector="*res://singletons/LevelDirector.gd"
+Global="*res://singletons/Global.gd"
+DamageCalculationHandler="*res://singletons/DamageCalculationHandler.gd"
 
 [display]
 

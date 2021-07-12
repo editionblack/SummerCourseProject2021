@@ -3,13 +3,12 @@ extends "res://scenes/enemies/EnemyTemplate.gd"
 var ability
 
 func _ready():
-	._ready()
 	ability = AbilityHandler.get_ability("shoot_projectile", 1+2)
 	call_deferred("add_child", ability)
 
 func attack():
 	if is_player_in_sight() and distance_to_player() < 500:
-		ability.use_ability((player.global_position - global_position).normalized().rotated(deg2rad(randi() % 51 - 25)))
+		ability.use_ability((player.global_position - global_position).normalized().rotated(deg2rad(randi() % 21 - 10)))
 
 func move():
 	var direction = Vector2()

@@ -7,8 +7,8 @@
             "primary" : "shoot_projectile",
             "secondary" : "volley",
             "stats" : {
-                "max_health": 100,
-                "health" : 100,
+                "max_health": 100.0,
+                "health" : 100.0,
                 "defence" : 0.0,
                 "damage" : 5,
                 "movement_speed" : 250,
@@ -21,8 +21,8 @@
             "primary" : "swing",
             "secondary" : "heal",
             "stats" : {
-                "max_health": 250,
-                "health" : 250,
+                "max_health": 250.0,
+                "health" : 250.0,
                 "defence" : 0.0,
                 "damage" : 10,
                 "movement_speed" : 200,

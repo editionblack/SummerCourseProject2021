@@ -5,6 +5,7 @@
 [ext_resource path="res://scenes/enemies/ranged_test/RangedTest.gd" type="Script" id=3]
 
 [node name="RangedTest" type="KinematicBody2D"]
+z_index = 2
 collision_layer = 4
 collision_mask = 3
 script = ExtResource( 3 )

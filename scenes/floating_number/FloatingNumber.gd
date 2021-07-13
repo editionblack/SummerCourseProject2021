@@ -14,7 +14,7 @@ func _ready():
 	tween.interpolate_property(self, "scale", Vector2(1.25, 1.25), Vector2(0.1, 0.1), 0.6, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0.4)
 	tween.start()
 
-func init_floating_number(val : int, col : Color):
+func init_floating_number(val : float, col : Color):
 	value = val
 	color = col
 	

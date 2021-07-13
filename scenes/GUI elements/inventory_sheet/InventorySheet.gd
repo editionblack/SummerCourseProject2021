@@ -36,6 +36,9 @@ func _on_DiscardButton_pressed():
 	reload_inventory_sheet()
 
 func _on_EquipButton_pressed():
+	equip()
+
+func equip():
 	if !selected_i_item:
 		return
 	var item_type = selected_i_item.type
@@ -52,7 +55,6 @@ func _on_EquipButton_pressed():
 		player.item_equip(selected_i_item)
 		
 	reload_inventory_sheet()
-
 func _on_UnequipButton_pressed():
 	if !selected_e_item:
 		return
@@ -64,3 +66,7 @@ func _on_InventoryItemList_item_selected(index):
 
 func _on_EquippedItemList_item_selected(index):
 	selected_e_item = equipped_items[index]
+
+
+func _on_InventoryItemList_item_activated(_index):
+	equip()

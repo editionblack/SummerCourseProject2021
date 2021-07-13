@@ -169,6 +169,7 @@ __meta__ = {
 }
 
 [connection signal="item_selected" from="Panel/EquippedItemList" to="." method="_on_EquippedItemList_item_selected"]
+[connection signal="item_activated" from="Panel/InventoryItemList" to="." method="_on_InventoryItemList_item_activated"]
 [connection signal="item_selected" from="Panel/InventoryItemList" to="." method="_on_InventoryItemList_item_selected"]
 [connection signal="pressed" from="Panel/EquipButton" to="." method="_on_EquipButton_pressed"]
 [connection signal="pressed" from="Panel/DiscardButton" to="." method="_on_DiscardButton_pressed"]

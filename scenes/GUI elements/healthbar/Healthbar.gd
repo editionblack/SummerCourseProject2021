@@ -12,6 +12,7 @@ func _ready():
 	tint_progress = gradient.interpolate(float(value / max_value))
 
 func _on_Health_update(new_value):
+	max_value = user.stats["max_health"]
 	tween.interpolate_property(self, "value", value, new_value, 0.1, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0.0)
 	tween.start()
 	

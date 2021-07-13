@@ -97,6 +97,7 @@ func scale_stats():
 	stats["damage"] *= current_scaling
 	stats["max_health"] *= current_scaling
 	stats["health"] *= current_scaling
+	emit_signal("health_changed", stats["health"])
 	
 func move():
 	pass

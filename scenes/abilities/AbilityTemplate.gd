@@ -25,7 +25,10 @@ func create_attackspeed_timer():
 	attackspeed_timer.name = "AttackSpeed"
 	attackspeed_timer.autostart = false
 	attackspeed_timer.one_shot = true
-	attackspeed_timer.wait_time = 1.0 / user.stats["attack_speed"]
+	var wep_attack_speed = 0
+	if user.weapon:
+		wep_attack_speed = user.weapon.stats["weapon_attack_speed"]
+	attackspeed_timer.wait_time = 1.0 / user.stats["attack_speed"] + wep_attack_speed
 	add_child(attackspeed_timer)
 
 func use_ability(_direction):

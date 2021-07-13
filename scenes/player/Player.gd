@@ -17,6 +17,7 @@ var weapon = null
 var current_interactable = null
 var close_interactables = []
 
+var base_primary_ability
 var primary_ability
 var secondary_ability
 var utility_ability
@@ -103,14 +104,13 @@ func item_equip(item):
 	$Items.add_child(item)
 	if item.type == "weapon":
 		weapon = item
-		remove_child(primary_ability)
-		primary_ability.call_deferred("queue_free")
-		var new_primary_ability = AbilityHandler.get_ability(item.primary_ability, 1 + 4)
-		call_deferred("add_child", new_primary_ability)
-		primary_ability = new_primary_ability
+		switch_ability(item.primary_ability)
 	recalculate_stats()
 	
 func item_unequip(item):
+	if item.type == "weapon":
+		weapon = null
+		switch_ability(base_primary_ability)
 	$Items.remove_child(item)
 	$Inventory.add_child(item)
 	recalculate_stats()
@@ -120,7 +120,14 @@ func item_discard(item):
 		$Items.remove_child(item)
 	if $Inventory.get_children().has(item):
 		$Inventory.remove_child(item)
-		
+
+func switch_ability(ability_name : String):
+	remove_child(primary_ability)
+	primary_ability.call_deferred("queue_free")
+	var new_primary_ability = AbilityHandler.get_ability(ability_name, 1 + 4)
+	call_deferred("add_child", new_primary_ability)
+	primary_ability = new_primary_ability
+
 func recalculate_stats():
 	for stat in stats:
 		if stat == "health": # workaround so that items wont heal the player on every recalc

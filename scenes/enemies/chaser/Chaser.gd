@@ -42,4 +42,4 @@ func _on_Hurtbox_body_exited(body):
 func _on_DamageTimer_timeout():
 	if !is_stunned:
 		for target in targets:
-			target.on_hit(stats["damage"])
+			target.on_hit(stats["damage"], self)

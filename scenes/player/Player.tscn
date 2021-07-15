@@ -12,7 +12,7 @@ extents = Vector2( 24, 24 )
 radius = 64.4981
 
 [node name="Player" type="KinematicBody2D"]
-z_index = 2
+z_index = 3
 collision_layer = 2
 collision_mask = 13
 script = ExtResource( 1 )

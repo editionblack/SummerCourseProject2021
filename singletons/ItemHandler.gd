@@ -14,14 +14,17 @@ func _ready():
 
 func create_item():
 	var new_item = item_base.instance()
-	var items = items_data.keys()
+	var item_types = items_data.keys()
+	var random_item_type = item_types[randi() % item_types.size()]
+	var items = items_data[random_item_type].keys()
 	var random_item = items[randi() % items.size()]
-	new_item.set_text(items_data[random_item]["name"])
-	new_item.type = items_data[random_item]["type"]
+	var item = items_data[random_item_type][random_item]
+	new_item.set_text(item["name"])
+	new_item.type = item["type"]
 	new_item.rarity = random_rarity(1)
 	new_item.stats = random_stats(new_item.rarity, new_item.type)
-	if items_data[random_item].has("primary_ability"):
-		new_item.primary_ability = items_data[random_item]["primary_ability"]
+	if item.has("primary_ability"):
+		new_item.primary_ability = item["primary_ability"]
 	return new_item
 
 # placeholder rarity function. TODO: make it based on a "luck"-stat

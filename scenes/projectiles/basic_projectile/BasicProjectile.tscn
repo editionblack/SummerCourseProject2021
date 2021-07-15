@@ -4,9 +4,12 @@
 [ext_resource path="res://assets/sprites/rectangle.png" type="Texture" id=2]
 [ext_resource path="res://scenes/projectiles/basic_projectile/BasicProjectile.gd" type="Script" id=3]
 
-[node name="BasicProjectile" type="Area2D"]
+[node name="BasicProjectile" type="Area2D" groups=[
+"projectiles",
+]]
 z_index = 1
 collision_layer = 0
+collision_mask = 0
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -1,31 +1,40 @@
 {
     "items" : {
-        "basic_sword" : {
-            "name" : "Sword",
-            "type" : "weapon",
-            "primary_ability" : "swing"
+        "weapons" : {
+            "basic_sword" : {
+                "name" : "Sword",
+                "type" : "weapon",
+                "primary_ability" : "swing"
+            },
+            "basic_bow" : {
+                "name" : "Bow",
+                "type" : "weapon",
+                "primary_ability" : "shoot_projectile"
+            },
+            "basic_spear" : {
+                "name" : "Spear",
+                "type" : "weapon",
+                "primary_ability" : "stab"
+            }
         },
-        "basic_bow" : {
-            "name" : "Bow",
-            "type" : "weapon",
-            "primary_ability" : "shoot_projectile"
-        },
-        "basic_chest" : {
-            "name" : "Chestplate",
-            "type" : "chest"
-        },
-        "basic_head" : {
-            "name" : "Helmet",
-            "type" : "head"
-        },
-        "basic_boots" : {
-            "name" : "Boots",
-            "type" : "boots"
-        }
-        ,
-        "basic_gloves" : {
-            "name" : "Gloves",
-            "type" : "gloves"
+        "armor" : {
+            "basic_chest" : {
+                "name" : "Chestplate",
+                "type" : "chest"
+            },
+            "basic_head" : {
+                "name" : "Helmet",
+                "type" : "head"
+            },
+            "basic_boots" : {
+                "name" : "Boots",
+                "type" : "boots"
+            }
+            ,
+            "basic_gloves" : {
+                "name" : "Gloves",
+                "type" : "gloves"
+            }
         }
     }
 }

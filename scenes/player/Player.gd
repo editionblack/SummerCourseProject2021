@@ -5,6 +5,7 @@ signal next_level
 signal item_pickup
 signal reset_game
 signal health_changed(new_value)
+signal damage_taken(value, dealer)
 
 var velocity = Vector2()
 var can_move = true
@@ -102,6 +103,7 @@ func item_pick_up(item):
 func item_equip(item):
 	$Inventory.remove_child(item)
 	$Items.add_child(item)
+	item.activate(self)
 	if item.type == "weapon":
 		weapon = item
 		switch_ability(item.primary_ability)
@@ -111,6 +113,7 @@ func item_unequip(item):
 	if item.type == "weapon":
 		weapon = null
 		switch_ability(base_primary_ability)
+	item.deactivate()
 	$Items.remove_child(item)
 	$Inventory.add_child(item)
 	recalculate_stats()
@@ -120,6 +123,7 @@ func item_discard(item):
 		$Items.remove_child(item)
 	if $Inventory.get_children().has(item):
 		$Inventory.remove_child(item)
+	item.queue_free()
 
 func switch_ability(ability_name : String):
 	remove_child(primary_ability)
@@ -139,7 +143,7 @@ func recalculate_stats():
 		stats[stat] = base_stats[stat] + accumulator
 	$Healthbar.max_value = stats["max_health"]
 
-func on_hit(damage):
+func on_hit(damage, dealer):
 	damage_taken_effect()
 	
 	# could be replaced by some math stuff?? fine for now
@@ -160,6 +164,7 @@ func on_hit(damage):
 	if stats["health"] <= 0:
 		emit_signal("player_death")
 		collision_layer = 0
+	emit_signal("damage_taken", damage, dealer)
 
 func damage_taken_effect():
 	$Sprite.scale = Vector2(0.38, 0.38)

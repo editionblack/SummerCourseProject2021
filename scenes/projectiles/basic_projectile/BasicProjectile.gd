@@ -12,7 +12,7 @@ func _process(delta):
 
 func _on_Basic_projectile_body_entered(body):
 	if body.has_method("on_hit") and spent == false:
-		body.on_hit(damage)
+		body.on_hit(damage, self)
 		spent = true
 	create_particles()
 	queue_free()

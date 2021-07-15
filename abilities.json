@@ -12,6 +12,12 @@
                 
             }
         },
+        "stab" : {
+            "scene" : "res://scenes/abilities/stab/Stab.tscn",
+            "stats" : {
+
+            }
+        },
         "dash" : {
             "scene" : "res://scenes/abilities/dash/Dash.tscn",
             "stats" : {

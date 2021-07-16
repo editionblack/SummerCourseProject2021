@@ -51,7 +51,7 @@
                 "name" : "Boots",
                 "type" : "boots",
                 "base_stats" : {
-                    "movement_speed" : 25,
+                    "movement_speed" : 5,
                     "defence" : 0.25
                 }
             }

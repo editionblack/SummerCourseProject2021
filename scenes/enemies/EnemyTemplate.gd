@@ -70,7 +70,7 @@ func get_path_to_player():
 func on_hit(damage, _dealer):
 	damage_taken_effect()
 	var fdn = floating_number.instance()
-	fdn.init_floating_number(damage, Color.red)
+	fdn.init_floating_number(damage, Color.lightcoral)
 	fdn.position = position
 	world.add_child(fdn)
 	stats["health"] -= damage

@@ -3,19 +3,19 @@
         "shoot_projectile" : {
             "scene" : "res://scenes/abilities/shoot_projectile/ShootProjectile.tscn",
             "stats" : {
-                
+                "base_damage" : [5,10]
             }
         },
         "swing" : {
             "scene" : "res://scenes/abilities/swing/Swing.tscn",
             "stats" : {
-                
+                "base_damage" : [5,10]
             }
         },
         "stab" : {
             "scene" : "res://scenes/abilities/stab/Stab.tscn",
             "stats" : {
-
+                "base_damage" : [5,10]
             }
         },
         "dash" : {

@@ -11,7 +11,11 @@ func use_ability(direction):
 	
 	var offset = 35 # distance from users origin
 	var projectile = projectile_scene.instance()
-	projectile.damage = DamageCalculationHandler.calculate_primary_damage(user)
+	var damage_range = stats["base_damage"]
+	if user.weapon:
+		damage_range = user.weapon.stats["weapon_damage"]
+	projectile.damage = DamageCalculationHandler.calculate_primary_damage(user, damage_range)
+	projectile.user = user
 	projectile.position = user.position + direction * offset
 	projectile.direction = direction
 	projectile.rotation = direction.angle()

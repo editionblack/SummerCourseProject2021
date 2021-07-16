@@ -103,7 +103,7 @@ func item_pick_up(item):
 func item_equip(item):
 	$Inventory.remove_child(item)
 	$Items.add_child(item)
-	item.activate(self)
+	item.user = self
 	if item.type == "weapon":
 		weapon = item
 		switch_ability(item.primary_ability)
@@ -113,7 +113,7 @@ func item_unequip(item):
 	if item.type == "weapon":
 		weapon = null
 		switch_ability(base_primary_ability)
-	item.deactivate()
+	item.user = null
 	$Items.remove_child(item)
 	$Inventory.add_child(item)
 	recalculate_stats()
@@ -129,7 +129,7 @@ func switch_ability(ability_name : String):
 	remove_child(primary_ability)
 	primary_ability.call_deferred("queue_free")
 	var new_primary_ability = AbilityHandler.get_ability(ability_name, 1 + 4)
-	call_deferred("add_child", new_primary_ability)
+	add_child(new_primary_ability)
 	primary_ability = new_primary_ability
 
 func recalculate_stats():

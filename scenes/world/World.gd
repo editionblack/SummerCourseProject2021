@@ -14,7 +14,7 @@ func _physics_process(_delta):
 		update_minimap()
 
 func pick_class_and_restart():
-	HUD.hide_scaling_label()
+	HUD.hide_level_label()
 	HUD.show_class_picker()
 	var player_class = yield(HUD.get_node("ClassPicker"), "class_chosen")
 	restart(player_class)
@@ -22,7 +22,7 @@ func pick_class_and_restart():
 
 func restart(player_class):
 	Global.reset_scaling()
-	HUD.show_scaling_label()
+	HUD.show_level_label()
 	
 	var level_start = LevelGenerator.generate_level($Navigation2D/TileMap)
 	var player_start = $Navigation2D/TileMap.map_to_world(level_start) + Vector2(50, 50)

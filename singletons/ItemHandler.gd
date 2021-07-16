@@ -2,11 +2,7 @@ extends Node
 
 var item_base = preload("res://scenes/item/Item.tscn")
 var items_data
-var rarities = ["common", "uncommon", "rare", "epic", "legendary"]
 var rarity_value = {"common" : 1, "uncommon" : 2, "rare" : 3, "epic" : 4, "legendary" : 5}
-
-# possible stats to get on an item, consider it a placeholder
-var possible_stats = ["damage", "max_health", "attack_speed", "movement_speed", "defence"]
 
 
 func _ready():
@@ -18,17 +14,18 @@ func create_item():
 	var random_item_type = item_types[randi() % item_types.size()]
 	var items = items_data[random_item_type].keys()
 	var random_item = items[randi() % items.size()]
-	var item = items_data[random_item_type][random_item]
-	new_item.set_text(item["name"])
+	var item = items_data[random_item_type][random_item].duplicate(true)
+	new_item.set_text(item["name"] + " lvl " + str(Global.get_level()))
 	new_item.type = item["type"]
 	new_item.rarity = random_rarity(1)
-	new_item.stats = random_stats(new_item.rarity, new_item.type)
+	new_item.stats = random_stats(new_item.rarity, item)
 	if item.has("primary_ability"):
 		new_item.primary_ability = item["primary_ability"]
 	return new_item
 
 # placeholder rarity function. TODO: make it based on a "luck"-stat
 func random_rarity(_luck : int):
+	var rarities = rarity_value.keys()
 	if randi() % 101 > 50:
 		return rarities[0]
 	if randi() % 101 > 50:
@@ -41,34 +38,35 @@ func random_rarity(_luck : int):
 		return rarities[4]
 	return rarities[0]
 
-func random_stats(rarity : String, type : String):
+func random_stats(rarity : String, item : Dictionary):
 	var stats = {}
 	var rarity_power = rarity_value[rarity]
 	var scaling = Global.get_scaling()
-	
-	match type:
+	var base_stats = item["base_stats"]
+	match item["type"]:
 		"weapon":
-			stats["weapon_damage"] = [(5 + rarity_power) * scaling, (10 + rarity_power) * scaling]
-			stats["weapon_attack_speed"] = rand_range(0.5, 2.0)
-		"chest":
-			stats["max_health"] = 25 + (5 * rarity_power) * scaling
-			stats["defence"] = 2.0 + (0.2 * rarity_power) * scaling
-		"head":
-			stats["max_health"] = 15 + (2.5 * rarity_power) * scaling
-			stats["defence"] = 1.0 + (0.1 * rarity_power) * scaling
-		"boots":
-			stats["movement_speed"] = 25 + (5 * rarity_power) * scaling
-			stats["defence"] = 0.5 + (0.1 * rarity_power) * scaling
-		"gloves":
-			stats["attack_speed"] = 0.5
-			stats["defence"] = 1.5 + (0.1 * rarity_power) * scaling
-	for stat in stats:
-		var value = stats[stat]
-		if value is Array:
-			for el in value:
-				el = stepify(el, 0.01)
-		else:
-			value = stepify(value, 0.01)
+			var base_weapon_damage = base_stats["weapon_damage"]
+			var deviance = rand_range(0.75, 1.50)
+			var min_weapon_damage = stepify(base_weapon_damage[0] + rarity_power * deviance * scaling, 0.1)
+			var max_weapon_damage = stepify(base_weapon_damage[1] + rarity_power * deviance * scaling, 0.1)
+			stats["weapon_damage"] = [min_weapon_damage, max_weapon_damage]
+			
+			var weapon_attack_speed = base_stats["weapon_attack_speed"]
+			deviance = rand_range(0.75, 1.50)
+			stats["weapon_attack_speed"] = stepify(weapon_attack_speed * deviance, 0.1)
+		_:
+			stats = base_stats
+			for stat in stats:
+				var base_stat = stats[stat]
+				# the item can deviate by 25% less than the base or 50% more than the base
+				var deviance = rand_range(0.75, 1.50)
+				
+				# items with a rarity of uncommon or higher gets 25% stronger base, up to 100%
+				var rarity_modifier = 1.0 + (rarity_power - 1 / 4)
+				
+				base_stat = base_stat * rarity_modifier * deviance * scaling
+				base_stat = stepify(base_stat, 0.1)
+				stats[stat] = base_stat
 	
 	return stats
 	

@@ -3,6 +3,7 @@ extends Area2D
 onready var particles = preload("res://scenes/projectiles/basic_projectile/HitParticles.tscn")
 
 var direction = Vector2()
+var user = null
 var speed = 600
 var damage = 0
 var spent = false
@@ -12,7 +13,7 @@ func _process(delta):
 
 func _on_Basic_projectile_body_entered(body):
 	if body.has_method("on_hit") and spent == false:
-		body.on_hit(damage, self)
+		body.on_hit(damage, user)
 		spent = true
 	create_particles()
 	queue_free()

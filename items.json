@@ -4,36 +4,65 @@
             "basic_sword" : {
                 "name" : "Sword",
                 "type" : "weapon",
-                "primary_ability" : "swing"
+                "primary_ability" : "swing",
+                "base_stats" : {
+                    "weapon_damage" : [5, 10],
+                    "weapon_attack_speed" : 2.0
+                }
             },
             "basic_bow" : {
                 "name" : "Bow",
                 "type" : "weapon",
-                "primary_ability" : "shoot_projectile"
+                "primary_ability" : "shoot_projectile",
+                "base_stats" : {
+                    "weapon_damage" : [4, 8],
+                    "weapon_attack_speed" : 3.0
+                }
             },
             "basic_spear" : {
                 "name" : "Spear",
                 "type" : "weapon",
-                "primary_ability" : "stab"
+                "primary_ability" : "stab",
+                "base_stats" : {
+                    "weapon_damage" : [5, 13],
+                    "weapon_attack_speed" : 0.5
+                }
             }
         },
         "armor" : {
             "basic_chest" : {
                 "name" : "Chestplate",
-                "type" : "chest"
+                "type" : "chest",
+                "base_stats" : {
+                    "health" : 10,
+                    "defence" : 1.0
+                }
             },
             "basic_head" : {
                 "name" : "Helmet",
-                "type" : "head"
+                "type" : "head",
+                "base_stats" : {
+                    "health" : 5,
+                    "damage" : 1,
+                    "defence" : 0.25
+                }
             },
             "basic_boots" : {
                 "name" : "Boots",
-                "type" : "boots"
+                "type" : "boots",
+                "base_stats" : {
+                    "movement_speed" : 25,
+                    "defence" : 0.25
+                }
             }
             ,
             "basic_gloves" : {
                 "name" : "Gloves",
-                "type" : "gloves"
+                "type" : "gloves",
+                "base_stats" : {
+                    "attack_speed" : 0.5,
+                    "defence" : 0.25
+                }
             }
         }
     }

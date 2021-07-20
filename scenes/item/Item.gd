@@ -40,6 +40,10 @@ func get_tooltip():
 			
 		_:
 			for stat in stats:
-				result += stat + " : " + str(stats[stat])
+				match stat:
+					"attack_speed":
+						result += "Attack speed: +" + str(stats[stat]) + "%"
+					_:
+						result += stat + " : " + str(stats[stat])
 				result += '\n'
 	return result

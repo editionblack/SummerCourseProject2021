@@ -34,6 +34,7 @@ func _on_DiscardButton_pressed():
 		return
 	player.item_discard(selected_i_item)
 	reload_inventory_sheet()
+	selected_i_item = null
 
 func _on_EquipButton_pressed():
 	equip()
@@ -55,11 +56,17 @@ func equip():
 		player.item_equip(selected_i_item)
 		
 	reload_inventory_sheet()
-func _on_UnequipButton_pressed():
+	selected_i_item = null
+
+func unequip():
 	if !selected_e_item:
 		return
 	player.item_unequip(selected_e_item)
 	reload_inventory_sheet()
+	selected_e_item = null
+
+func _on_UnequipButton_pressed():
+	unequip()
 
 func _on_InventoryItemList_item_selected(index):
 	selected_i_item = inventory_items[index]
@@ -67,6 +74,8 @@ func _on_InventoryItemList_item_selected(index):
 func _on_EquippedItemList_item_selected(index):
 	selected_e_item = equipped_items[index]
 
-
 func _on_InventoryItemList_item_activated(_index):
 	equip()
+
+func _on_EquippedItemList_item_activated(_index):
+	unequip()

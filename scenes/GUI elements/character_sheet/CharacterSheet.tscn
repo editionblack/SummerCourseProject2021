@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/GUI elements/character_sheet/CharacterSheet.gd" type="Script" id=1]
-[ext_resource path="res://scenes/GUI elements/character_sheet/StatBoxContainer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/fonts/munro.tres" type="DynamicFont" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.890196, 0.894118, 0.894118, 1 )
@@ -38,7 +38,7 @@ anchor_bottom = 0.5
 margin_left = -200.0
 margin_top = -180.0
 margin_right = 200.0
-margin_bottom = 180.0
+margin_bottom = 264.0
 rect_clip_content = false
 scroll_vertical_enabled = false
 __meta__ = {
@@ -53,25 +53,127 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StatBoxContainer" parent="Panel/ScrollContainer/GridContainer" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 304.0
+[node name="Class" type="HBoxContainer" parent="Panel/ScrollContainer/GridContainer"]
+margin_right = 209.0
 margin_bottom = 24.0
-static_value = true
 
-[node name="StatBoxContainer2" parent="Panel/ScrollContainer/GridContainer" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Label" type="Label" parent="Panel/ScrollContainer/GridContainer/Class"]
+margin_right = 48.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "Class: "
+
+[node name="Value" type="Label" parent="Panel/ScrollContainer/GridContainer/Class"]
+margin_left = 52.0
+margin_right = 90.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "Class"
+
+[node name="PrimaryAbility" type="HBoxContainer" parent="Panel/ScrollContainer/GridContainer"]
 margin_top = 28.0
-margin_right = 304.0
+margin_right = 209.0
 margin_bottom = 52.0
-static_value = true
 
-[node name="StatBoxContainer3" parent="Panel/ScrollContainer/GridContainer" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Label" type="Label" parent="Panel/ScrollContainer/GridContainer/PrimaryAbility"]
+margin_right = 132.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "Primary ability: "
+
+[node name="Value" type="Label" parent="Panel/ScrollContainer/GridContainer/PrimaryAbility"]
+margin_left = 136.0
+margin_right = 174.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "Class"
+
+[node name="SecondaryAbility" type="HBoxContainer" parent="Panel/ScrollContainer/GridContainer"]
 margin_top = 56.0
-margin_right = 304.0
+margin_right = 209.0
 margin_bottom = 80.0
-static_value = true
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/GridContainer/SecondaryAbility"]
+margin_right = 150.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "Secondary ability: "
+
+[node name="Value" type="Label" parent="Panel/ScrollContainer/GridContainer/SecondaryAbility"]
+margin_left = 154.0
+margin_right = 192.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "Class"
+
+[node name="DamageRange" type="HBoxContainer" parent="Panel/ScrollContainer/GridContainer"]
+margin_top = 84.0
+margin_right = 209.0
+margin_bottom = 108.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/GridContainer/DamageRange"]
+margin_right = 130.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "Damage range: "
+
+[node name="Value" type="Label" parent="Panel/ScrollContainer/GridContainer/DamageRange"]
+margin_left = 134.0
+margin_right = 162.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "0-0"
+
+[node name="AttackSpeed" type="HBoxContainer" parent="Panel/ScrollContainer/GridContainer"]
+margin_top = 112.0
+margin_right = 209.0
+margin_bottom = 136.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/GridContainer/AttackSpeed"]
+margin_right = 118.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "Attack speed: "
+
+[node name="Value" type="Label" parent="Panel/ScrollContainer/GridContainer/AttackSpeed"]
+margin_left = 122.0
+margin_right = 209.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "0 / second"
+
+[node name="MovementSpeed" type="HBoxContainer" parent="Panel/ScrollContainer/GridContainer"]
+margin_top = 140.0
+margin_right = 209.0
+margin_bottom = 164.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/GridContainer/MovementSpeed"]
+margin_right = 152.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "Movement speed: "
+
+[node name="Value" type="Label" parent="Panel/ScrollContainer/GridContainer/MovementSpeed"]
+margin_left = 156.0
+margin_right = 166.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+
+[node name="Defence" type="HBoxContainer" parent="Panel/ScrollContainer/GridContainer"]
+margin_top = 168.0
+margin_right = 209.0
+margin_bottom = 192.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/GridContainer/Defence"]
+margin_right = 74.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "Defence: "
+
+[node name="Value" type="Label" parent="Panel/ScrollContainer/GridContainer/Defence"]
+margin_left = 78.0
+margin_right = 88.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "0"

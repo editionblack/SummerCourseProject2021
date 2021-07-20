@@ -2,9 +2,6 @@ extends "res://scenes/abilities/AbilityTemplate.gd"
 
 var projectile_scene = load("res://scenes/projectiles/basic_projectile/BasicProjectile.tscn")
 
-func _ready():
-	$AttackSpeed.wait_time = 1.0 / user.stats["attack_speed"] 
-
 func use_ability(direction):
 	if !$AttackSpeed.is_stopped():
 		return

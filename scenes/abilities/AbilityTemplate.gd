@@ -36,8 +36,10 @@ func update_timer():
 	match timer.name:
 		"AttackSpeed":
 			if user.weapon:
-				timer_modifier += user.weapon.stats["weapon_attack_speed"]
-			timer_modifier += user.stats["attack_speed"]
+				timer_modifier = user.weapon.stats["weapon_attack_speed"]
+			else:
+				timer_modifier = stats["base_attack_speed"]
+			timer_modifier *= (1.0 + (user.stats["attack_speed"] / 100.0))
 			timer.wait_time = 1.0 / timer_modifier
 		"Cooldown":
 			timer.wait_time = stats["cooldown"]

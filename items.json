@@ -25,7 +25,7 @@
                 "primary_ability" : "stab",
                 "base_stats" : {
                     "weapon_damage" : [5, 13],
-                    "weapon_attack_speed" : 0.5
+                    "weapon_attack_speed" : 1.0
                 }
             }
         },
@@ -60,7 +60,7 @@
                 "name" : "Gloves",
                 "type" : "gloves",
                 "base_stats" : {
-                    "attack_speed" : 0.5,
+                    "attack_speed" : 10.0,
                     "defence" : 0.25
                 }
             }

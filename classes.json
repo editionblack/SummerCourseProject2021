@@ -18,7 +18,7 @@
                 "defence" : 0.0,
                 "damage" : 0,
                 "movement_speed" : 250,
-                "attack_speed" : 5.0
+                "attack_speed" : 0.0
             }
         },
         "bruiser" : {
@@ -38,7 +38,7 @@
                 "defence" : 0.0,
                 "damage" : 0,
                 "movement_speed" : 200,
-                "attack_speed" : 2.5
+                "attack_speed" : 0.0
             }
         }
     }

@@ -3,23 +3,30 @@ extends Control
 onready var grid_container = $Panel/ScrollContainer/GridContainer
 var stat_box_container = preload("StatBoxContainer.tscn")
 
+# reload values that are typically "static".
 func reload_character_sheet():
-	for child in grid_container.get_children():
-		child.queue_free()
-	grid_container.add_child(new_stat_box("Class", get_parent().player.current_class, true))
-	grid_container.add_child(new_stat_box("Primary ability", get_parent().player.primary_ability.name, true))
-	grid_container.add_child(new_stat_box("Secondary ability", get_parent().player.secondary_ability.name, true))
-	var player_stats = get_parent().player.stats
-	for key in player_stats.keys():
-		grid_container.add_child(new_stat_box(key, str(player_stats[key]), false))
+	var player = get_parent().player
+	if !player:
+		return
+	grid_container.get_node("Class/Value").text = player.current_class
+	grid_container.get_node("PrimaryAbility/Value").text = player.primary_ability.name
+	grid_container.get_node("SecondaryAbility/Value").text = player.secondary_ability.name
 
 func _physics_process(_delta):
-	if visible and grid_container.get_child_count() > 0:
-		var player_stats = get_parent().player.stats
-		for child in grid_container.get_children():
-			if child.static_value:
-				continue
-			child.set_stat_value(str(player_stats[child.get_key()]))
+	var player = get_parent().player
+	if !player:
+		return
+		
+	
+	if player.weapon:
+		grid_container.get_node("DamageRange/Value").text = str(player.weapon.stats["weapon_damage"][0]) + " - " + str(player.weapon.stats["weapon_damage"][1])
+		grid_container.get_node("AttackSpeed/Value").text = str(player.weapon.stats["weapon_attack_speed"] * (1.0 + (player.stats["attack_speed"] / 100.0))) + " / second"
+	else:
+		grid_container.get_node("DamageRange/Value").text = str(player.primary_ability.stats["base_damage"][0]) + " - " + str(player.primary_ability.stats["base_damage"][1])
+		grid_container.get_node("AttackSpeed/Value").text = str(player.primary_ability.stats["base_attack_speed"] * (1.0 + (player.stats["attack_speed"] / 100.0))) + " / second"
+	grid_container.get_node("MovementSpeed/Value").text = str(player.stats["movement_speed"])
+	grid_container.get_node("Defence/Value").text = str(player.stats["defence"])
+
 
 func new_stat_box(text, value, is_static):
 	var result = stat_box_container.instance()

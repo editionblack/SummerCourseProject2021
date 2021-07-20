@@ -34,7 +34,7 @@
                 "name" : "Chestplate",
                 "type" : "chest",
                 "base_stats" : {
-                    "health" : 10,
+                    "max_health" : 10,
                     "defence" : 1.0
                 }
             },
@@ -42,7 +42,7 @@
                 "name" : "Helmet",
                 "type" : "head",
                 "base_stats" : {
-                    "health" : 5,
+                    "max_health" : 5,
                     "damage" : 1,
                     "defence" : 0.25
                 }

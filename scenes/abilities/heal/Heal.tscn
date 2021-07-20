@@ -3,13 +3,13 @@
 [ext_resource path="res://scenes/abilities/heal/Heal.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/square.png" type="Texture" id=2]
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 1
 emission_sphere_radius = 50.0
 flag_disable_z = true
@@ -21,7 +21,7 @@ orbit_velocity_random = 0.0
 damping = 20.0
 scale = 0.1
 scale_random = 0.09
-scale_curve = SubResource( 4 )
+scale_curve = SubResource( 2 )
 color = Color( 0.7, 1.9, 0.7, 1 )
 
 [node name="Heal" type="Node2D"]
@@ -34,5 +34,5 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 0.6
 local_coords = false
-process_material = SubResource( 5 )
+process_material = SubResource( 3 )
 texture = ExtResource( 2 )

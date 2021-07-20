@@ -27,6 +27,7 @@ func _ready():
 	nav2d = world.get_node("Navigation2D")
 	player = world.get_node("Entities/Player")
 	scale_stats()
+	$Node2D/Healthbar.set_user(self)
 
 func _process(_delta):
 	if !awake and $VisibilityNotifier2D.is_on_screen():

@@ -5,7 +5,7 @@ onready var game_over = $GameOverPanel
 onready var class_picker = $ClassPicker
 onready var inventory_sheet = $InventorySheet
 onready var minimap = $Minimap
-onready var level_label = $LevelLabel
+onready var player_control = $PlayerControl
 
 var player
 
@@ -38,11 +38,11 @@ func show_minimap():
 func clear_minimap():
 	minimap.get_node("TileMap").clear()
 
-func show_level_label():
-	level_label.visible = true
+func show_player_control():
+	player_control.visible = true
 	
-func hide_level_label():
-	level_label.visible = false
+func hide_player_control():
+	player_control.visible = false
 
 func show_game_over():
 	character_sheet.visible = false
@@ -54,11 +54,10 @@ func hide_game_over():
 	game_over.visible = false
 
 func set_level_label(value : int):
-	level_label.text = "Level: " + str(value)
+	player_control.get_node("LevelLabel").text = "Level: " + str(value)
 
 func _on_Game_reset():
 	get_parent().clear_entities()
-	get_parent().player.queue_free()
 	get_tree().paused = false
 	hide_game_over()
 	get_parent().pick_class_and_restart()

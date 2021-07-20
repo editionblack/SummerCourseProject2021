@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/square.png" type="Texture" id=2]
-[ext_resource path="res://scenes/GUI elements/healthbar/Healthbar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/player/class_modules/bruiser.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/fonts/munro.tres" type="DynamicFont" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -29,21 +29,9 @@ shape = SubResource( 1 )
 zoom = Vector2( 1.5, 1.5 )
 smoothing_enabled = true
 
-[node name="PrimaryAbilityTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="SecondaryAbilityTimer" type="Timer" parent="."]
-one_shot = true
-
 [node name="Items" type="Node2D" parent="."]
 
 [node name="Inventory" type="Node2D" parent="."]
-
-[node name="Healthbar" parent="." instance=ExtResource( 3 )]
-margin_left = -40.0
-margin_top = -56.0
-margin_right = 40.0
-margin_bottom = -40.0
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -68,6 +56,8 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Bruiser" parent="." instance=ExtResource( 3 )]
 
 [connection signal="area_entered" from="InteractRange" to="." method="_on_InteractRange_area_entered"]
 [connection signal="area_exited" from="InteractRange" to="." method="_on_InteractRange_area_exited"]

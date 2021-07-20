@@ -14,7 +14,7 @@ func _physics_process(_delta):
 		update_minimap()
 
 func pick_class_and_restart():
-	HUD.hide_level_label()
+	HUD.hide_player_control()
 	HUD.show_class_picker()
 	var player_class = yield(HUD.get_node("ClassPicker"), "class_chosen")
 	restart(player_class)
@@ -22,7 +22,7 @@ func pick_class_and_restart():
 
 func restart(player_class):
 	Global.reset_scaling()
-	HUD.show_level_label()
+	HUD.show_player_control()
 	
 	var level_start = LevelGenerator.generate_level($Navigation2D/TileMap)
 	var player_start = $Navigation2D/TileMap.map_to_world(level_start) + Vector2(50, 50)
@@ -37,7 +37,13 @@ func restart(player_class):
 	HUD.player = new_player
 	HUD.inventory_sheet.player = new_player
 	new_player.connect("item_pickup", HUD.inventory_sheet, "reload_inventory_sheet")
+	HUD.player_control.set_player(new_player)
+	# we "pass" the torch of player instance to the new player, and then discard the old player.
+	# this fix ensures that the HUD always has a player instance.
+	var old_player = player
 	player = new_player
+	if old_player:
+		old_player.free()
 	HUD.clear_minimap()
 	HUD.show_minimap()
 	LevelDirector.populate_level(self, level_start)
@@ -66,7 +72,7 @@ func clear_entities():
 	for entity in $Entities.get_children():
 		if entity == player:
 			continue
-		entity.queue_free()
+		entity.free()
 
 func get_player():
 	return player

@@ -7,6 +7,7 @@ var rarity
 var rarity_colors = {"common" : Color.white, "uncommon" : Color.mediumseagreen, "rare" : Color.dodgerblue, "epic" : Color.mediumpurple, "legendary" : Color.gold}
 var primary_ability = null
 
+
 func _ready():
 	$Sprite.self_modulate = rarity_colors[rarity]
 	
@@ -20,10 +21,10 @@ func get_stats():
 	return stats
 
 func get_name():
-	return $Label.text
+	return $Node2D/Label.text
 
 func set_text(text):
-	$Label.text = text
+	$Node2D/Label.text = text
 
 func set_highlight(state):
 	$Highlight.visible = state

@@ -5,6 +5,7 @@ signal next_level
 signal item_pickup
 signal reset_game
 signal health_changed(new_value)
+signal resource_changed(new_value)
 signal damage_taken(value, dealer)
 
 var velocity = Vector2()
@@ -13,6 +14,7 @@ var is_stunned = false
 var current_class
 var base_stats
 var stats
+var resource
 var weapon = null
 
 var current_interactable = null
@@ -141,7 +143,7 @@ func recalculate_stats():
 			if item.get_stats().has(stat):
 				accumulator += item.get_stats()[stat]
 		stats[stat] = base_stats[stat] + accumulator
-	$Healthbar.max_value = stats["max_health"]
+	emit_signal("health_changed", stats["health"])
 
 func on_hit(damage, dealer):
 	damage_taken_effect()

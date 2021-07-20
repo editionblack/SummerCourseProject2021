@@ -9,6 +9,7 @@ func _ready():
 func create_player(player_class : String):
 	var new_player = player_base.instance()
 	new_player.stats = class_data[player_class]["stats"].duplicate(true)
+	new_player.resource = class_data[player_class]["resource"].duplicate(true)
 	new_player.current_class = player_class
 	new_player.color = class_data[player_class]["icon_color"]
 	

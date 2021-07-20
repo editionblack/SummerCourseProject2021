@@ -31,19 +31,15 @@ func set_highlight(state):
 
 func get_tooltip():
 	var result = rarity.to_upper() + '\n' + get_name() + '\n' + "- - - - - - - - - - - -" + '\n'
-	match type:
-		"weapon":
-			result += "Damage : " + str(stats["weapon_damage"][0]) + " - " + str(stats["weapon_damage"][1])
-			result += '\n'
-			result += "Attacks/second : " + str(stats["weapon_attack_speed"])
-			result += '\n'
-			
-		_:
-			for stat in stats:
-				match stat:
-					"attack_speed":
-						result += "Attack speed: +" + str(stats[stat]) + "%"
-					_:
-						result += stat + " : " + str(stats[stat])
-				result += '\n'
+	for stat in stats:
+		match stat:
+			"weapon_damage":
+				result += "Damage : " + str(stats["weapon_damage"][0]) + " - " + str(stats["weapon_damage"][1])
+			"weapon_attack_speed":
+				result += "Attacks/second : " + str(stats["weapon_attack_speed"])
+			"attack_speed":
+				result += "Attack speed: +" + str(stats[stat]) + "%"
+			_:
+				result += stat + " : " + str(stats[stat])
+		result += '\n'
 	return result

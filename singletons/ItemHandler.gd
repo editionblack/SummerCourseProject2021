@@ -43,20 +43,21 @@ func random_stats(rarity : String, item : Dictionary):
 	var rarity_power = rarity_value[rarity]
 	var scaling = Global.get_scaling()
 	var base_stats = item["base_stats"]
-	match item["type"]:
-		"weapon":
-			var base_weapon_damage = base_stats["weapon_damage"]
-			var deviance = rand_range(0.75, 1.50)
-			var min_weapon_damage = stepify(base_weapon_damage[0] + rarity_power * deviance * scaling, 0.1)
-			var max_weapon_damage = stepify(base_weapon_damage[1] + rarity_power * deviance * scaling, 0.1)
-			stats["weapon_damage"] = [min_weapon_damage, max_weapon_damage]
-			
-			var weapon_attack_speed = base_stats["weapon_attack_speed"]
-			deviance = rand_range(0.75, 1.50)
-			stats["weapon_attack_speed"] = stepify(weapon_attack_speed * deviance, 0.1)
-		_:
-			stats = base_stats
-			for stat in stats:
+
+	stats = base_stats
+	for stat in stats:
+		match stat:
+			"weapon_damage":
+				var base_weapon_damage = base_stats["weapon_damage"]
+				var deviance = rand_range(0.75, 1.50)
+				var min_weapon_damage = stepify(base_weapon_damage[0] + rarity_power * deviance * scaling, 0.1)
+				var max_weapon_damage = stepify(base_weapon_damage[1] + rarity_power * deviance * scaling, 0.1)
+				stats["weapon_damage"] = [min_weapon_damage, max_weapon_damage]
+			"weapon_attack_speed":
+				var weapon_attack_speed = base_stats["weapon_attack_speed"]
+				var deviance = rand_range(0.75, 1.50)
+				stats["weapon_attack_speed"] = stepify(weapon_attack_speed * deviance, 0.1)
+			_:
 				var base_stat = stats[stat]
 				# the item can deviate by 25% less than the base or 50% more than the base
 				var deviance = rand_range(0.75, 1.50)

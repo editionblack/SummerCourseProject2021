@@ -106,10 +106,28 @@ margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "Class"
 
-[node name="DamageRange" type="HBoxContainer" parent="Panel/ScrollContainer/GridContainer"]
+[node name="Health" type="HBoxContainer" parent="Panel/ScrollContainer/GridContainer"]
 margin_top = 84.0
 margin_right = 209.0
 margin_bottom = 108.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/GridContainer/Health"]
+margin_right = 62.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "Health: "
+
+[node name="Value" type="Label" parent="Panel/ScrollContainer/GridContainer/Health"]
+margin_left = 66.0
+margin_right = 139.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "100 / 100"
+
+[node name="DamageRange" type="HBoxContainer" parent="Panel/ScrollContainer/GridContainer"]
+margin_top = 112.0
+margin_right = 209.0
+margin_bottom = 136.0
 
 [node name="Label" type="Label" parent="Panel/ScrollContainer/GridContainer/DamageRange"]
 margin_right = 130.0
@@ -125,9 +143,9 @@ custom_fonts/font = ExtResource( 2 )
 text = "0-0"
 
 [node name="AttackSpeed" type="HBoxContainer" parent="Panel/ScrollContainer/GridContainer"]
-margin_top = 112.0
+margin_top = 140.0
 margin_right = 209.0
-margin_bottom = 136.0
+margin_bottom = 164.0
 
 [node name="Label" type="Label" parent="Panel/ScrollContainer/GridContainer/AttackSpeed"]
 margin_right = 118.0
@@ -143,9 +161,9 @@ custom_fonts/font = ExtResource( 2 )
 text = "0 / second"
 
 [node name="MovementSpeed" type="HBoxContainer" parent="Panel/ScrollContainer/GridContainer"]
-margin_top = 140.0
+margin_top = 168.0
 margin_right = 209.0
-margin_bottom = 164.0
+margin_bottom = 192.0
 
 [node name="Label" type="Label" parent="Panel/ScrollContainer/GridContainer/MovementSpeed"]
 margin_right = 152.0
@@ -161,9 +179,9 @@ custom_fonts/font = ExtResource( 2 )
 text = "0"
 
 [node name="Defence" type="HBoxContainer" parent="Panel/ScrollContainer/GridContainer"]
-margin_top = 168.0
+margin_top = 196.0
 margin_right = 209.0
-margin_bottom = 192.0
+margin_bottom = 220.0
 
 [node name="Label" type="Label" parent="Panel/ScrollContainer/GridContainer/Defence"]
 margin_right = 74.0

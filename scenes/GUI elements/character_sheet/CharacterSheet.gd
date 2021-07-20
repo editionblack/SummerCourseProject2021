@@ -17,6 +17,7 @@ func _physics_process(_delta):
 	if !player:
 		return
 		
+	grid_container.get_node("Health/Value").text = str(player.stats["health"]) + " / " + str(player.stats["max_health"])
 	
 	if player.weapon:
 		grid_container.get_node("DamageRange/Value").text = str(player.weapon.stats["weapon_damage"][0]) + " - " + str(player.weapon.stats["weapon_damage"][1])

@@ -3,7 +3,7 @@
         "shoot_projectile" : {
             "scene" : "res://scenes/abilities/shoot_projectile/ShootProjectile.tscn",
             "stats" : {
-                "base_damage" : [5,10],
+                "base_damage" : [3,7],
                 "base_attack_speed" : 3.0
             }
         },

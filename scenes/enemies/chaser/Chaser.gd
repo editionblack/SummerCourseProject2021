@@ -14,7 +14,6 @@ func attack():
 		rotation_speed = lerp(rotation_speed, min_rotation_speed, 0.25)
 
 func move():
-	var player = world.player
 	var direction = Vector2(0,0)
 	
 	# raycast to player. If hit, the direction is set towards the player. If not, we find a direction to move towards through

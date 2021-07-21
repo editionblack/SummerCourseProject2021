@@ -7,12 +7,10 @@ func _ready():
 	call_deferred("add_child", ability)
 
 func attack():
-	var player = world.player
 	if is_player_in_sight() and distance_to_player() < 500:
 		ability.use_ability((player.global_position - global_position).normalized().rotated(deg2rad(randi() % 21 - 10)))
 
 func move():
-	var player = world.player
 	var direction = Vector2()
 	if !is_player_in_sight() or distance_to_player() > 300:
 		direction = pathfind_direction_to_player()

@@ -23,6 +23,10 @@ func get_stats():
 func get_name():
 	return $Node2D/Label.text
 
+func disable_interaction():
+	$Area2D/CollisionShape2D.disabled = true
+	visible = false
+
 func set_text(text):
 	$Node2D/Label.text = text
 

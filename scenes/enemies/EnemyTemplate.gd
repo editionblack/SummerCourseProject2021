@@ -12,7 +12,6 @@ var is_stunned = false
 var nav2d = null
 var path = []
 var world = null
-var player = null
 
 var weapon = null
 
@@ -25,7 +24,6 @@ func _ready():
 	$Sprite.modulate = color
 	world = get_tree().get_root().get_node("World")
 	nav2d = world.get_node("Navigation2D")
-	player = world.get_node("Entities/Player")
 	scale_stats()
 	$Node2D/Healthbar.set_user(self)
 
@@ -46,6 +44,7 @@ func _process(_delta):
 	move()
 
 func is_player_in_sight():
+	var player = world.player
 	$RayCast2D.cast_to = player.global_position - global_position
 	$RayCast2D.force_raycast_update()
 	var raycast_collision = $RayCast2D.get_collider()
@@ -53,6 +52,7 @@ func is_player_in_sight():
 	return true if raycast_collision == player else false
 
 func pathfind_direction_to_player():
+	var player = world.player
 	if path.empty() or path[path.size() - 1].distance_to(player.global_position) > 100:
 		path = get_path_to_player()
 	if !path.empty():
@@ -63,9 +63,11 @@ func pathfind_direction_to_player():
 	return Vector2(0, 0)
 
 func distance_to_player():
+	var player = world.player
 	return global_position.distance_to(player.global_position)
 
 func get_path_to_player():
+	var player = world.player
 	return nav2d.get_simple_path(global_position, player.global_position, false)
 
 func on_hit(damage, _dealer):

@@ -16,6 +16,7 @@ var current_class
 var base_stats
 var stats
 var resource
+var starter_weapon
 var weapon = null
 
 var current_interactable = null
@@ -25,7 +26,6 @@ var base_primary_ability
 var primary_ability
 var secondary_ability
 var utility_ability
-var abilities_held_down = [] # to be processed every frame and used if possible
 
 var color = Color.white
 
@@ -34,15 +34,15 @@ func _ready():
 	$Sprite.modulate = color
 	utility_ability = AbilityHandler.get_ability("dash", 1 + 4)
 	add_child(utility_ability)
+	var starter_item = ItemHandler.create_item("weapons", starter_weapon)
+	starter_item.disable_interaction()
+	item_equip(starter_item)
 	
 func _process(_delta):
 	if can_move:
 		move()
 	else:
 		velocity = move_and_slide(velocity)
-		
-#	for ability in abilities_held_down:
-#		ability.use_ability((get_global_mouse_position() - position).normalized())
 	
 	var direction_of_mouse = (get_global_mouse_position() - position).normalized()
 	if Input.is_action_pressed("left_click"):
@@ -65,22 +65,7 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("reset", false):
 		emit_signal("reset_game")
-	
-#	if event.is_action_pressed("left_click", true):
-#		abilities_held_down.append(primary_ability)
-#	if event.is_action_released("left_click"):
-#		abilities_held_down.erase(primary_ability)
-#
-#	if event.is_action_pressed("right_click", true):
-#		abilities_held_down.append(secondary_ability)
-#	if event.is_action_released("right_click"):
-#		abilities_held_down.erase(secondary_ability)
-#
-#	if event.is_action_pressed("utility", false):
-#		abilities_held_down.append(utility_ability)
-#	if event.is_action_released("utility"):
-#		abilities_held_down.erase(utility_ability)
-
+		
 # checks for input and moves in appropiate direction
 func move():
 	var direction = Vector2()
@@ -106,11 +91,12 @@ func get_inventory():
 func item_pick_up(item):
 	item.reparent()
 	$Inventory.add_child(item)
-	item.visible = false
+	item.disable_interaction()
 	emit_signal("item_pickup")
 	
 func item_equip(item):
-	$Inventory.remove_child(item)
+	if $Inventory.get_children().has(item):
+		$Inventory.remove_child(item)
 	$Items.add_child(item)
 	item.user = self
 	if item.type == "weapon":
@@ -135,8 +121,9 @@ func item_discard(item):
 	item.queue_free()
 
 func switch_ability(ability_name : String):
-	remove_child(primary_ability)
-	primary_ability.call_deferred("queue_free")
+	if primary_ability:
+		remove_child(primary_ability)
+		primary_ability.call_deferred("queue_free")
 	var new_primary_ability = AbilityHandler.get_ability(ability_name, 1 + 4)
 	add_child(new_primary_ability)
 	primary_ability = new_primary_ability

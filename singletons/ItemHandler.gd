@@ -8,7 +8,7 @@ var rarity_value = {"common" : 1, "uncommon" : 2, "rare" : 3, "epic" : 4, "legen
 func _ready():
 	items_data = read_items_file()["items"]
 
-func create_item(specific_item = null, item_type = null):
+func create_item(item_type = null, specific_item = null):
 	var new_item = item_base.instance()
 	var item = null
 	if !specific_item:
@@ -27,7 +27,7 @@ func create_item(specific_item = null, item_type = null):
 		new_item.rarity = random_rarity(1)
 		new_item.stats = random_stats(new_item.rarity, item)
 	else:
-		new_item.type = item_type
+		new_item.type = item["type"]
 		new_item.rarity = "common"
 		new_item.stats = item["base_stats"]
 	if item.has("primary_ability"):

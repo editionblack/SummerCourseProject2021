@@ -4,14 +4,14 @@
             "scene" : "res://scenes/abilities/shoot_projectile/ShootProjectile.tscn",
             "stats" : {
                 "base_damage" : [3,7],
-                "base_attack_speed" : 3.0
+                "base_attack_speed" : 1.0
             }
         },
         "swing" : {
             "scene" : "res://scenes/abilities/swing/Swing.tscn",
             "stats" : {
                 "base_damage" : [5,10],
-                "base_attack_speed" : 2.0
+                "base_attack_speed" : 1.0
             }
         },
         "stab" : {

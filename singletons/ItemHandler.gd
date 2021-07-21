@@ -8,17 +8,28 @@ var rarity_value = {"common" : 1, "uncommon" : 2, "rare" : 3, "epic" : 4, "legen
 func _ready():
 	items_data = read_items_file()["items"]
 
-func create_item():
+func create_item(specific_item = null, item_type = null):
 	var new_item = item_base.instance()
-	var item_types = items_data.keys()
-	var random_item_type = item_types[randi() % item_types.size()]
-	var items = items_data[random_item_type].keys()
-	var random_item = items[randi() % items.size()]
-	var item = items_data[random_item_type][random_item].duplicate(true)
+	var item = null
+	if !specific_item:
+		var item_types = items_data.keys()
+		var random_item_type = item_types[randi() % item_types.size()]
+		var items = items_data[random_item_type].keys()
+		var random_item = items[randi() % items.size()]
+		item = items_data[random_item_type][random_item].duplicate(true)
+	else:
+		item = items_data[item_type][specific_item].duplicate(true)
+	
 	new_item.set_text(item["name"] + " lvl " + str(Global.get_level()))
-	new_item.type = item["type"]
-	new_item.rarity = random_rarity(1)
-	new_item.stats = random_stats(new_item.rarity, item)
+	
+	if !specific_item:
+		new_item.type = item["type"]
+		new_item.rarity = random_rarity(1)
+		new_item.stats = random_stats(new_item.rarity, item)
+	else:
+		new_item.type = item_type
+		new_item.rarity = "common"
+		new_item.stats = item["base_stats"]
 	if item.has("primary_ability"):
 		new_item.primary_ability = item["primary_ability"]
 	return new_item

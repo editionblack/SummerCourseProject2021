@@ -12,6 +12,7 @@ func use_ability(direction):
 	$Area2D.collision_mask = collision_mask
 	$AnimationPlayer.play("stab")
 	
+	ability_used()
 	update_timer()
 	$AttackSpeed.start()
 

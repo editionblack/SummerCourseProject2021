@@ -45,6 +45,12 @@ func update_timer():
 			timer.wait_time = stats["cooldown"]
 			#TODO: whenever/if cooldown reductions are introduced they should be calculated here
 
+func ability_used():
+	match timer.name:
+		"AttackSpeed":
+			user.emit_signal("primary_used")
+		"Cooldown":
+			user.emit_signal("secondary_used")
 
 func use_ability(_direction):
 	pass

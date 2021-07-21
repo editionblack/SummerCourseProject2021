@@ -1,6 +1,10 @@
 extends KinematicBody2D
 
 signal health_changed(new_value)
+#warning-ignore:unused_signal
+signal primary_used()
+#warning-ignore:unused_signal
+signal secondary_used()
 
 var stats
 var targets = []

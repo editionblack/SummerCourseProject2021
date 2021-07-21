@@ -10,6 +10,10 @@ signal resource_changed(new_value)
 signal damage_taken(value, dealer)
 # warning-ignore:unused_signal
 signal damage_dealt(value, reciever)
+# warning-ignore:unused_signal
+signal primary_used()
+# warning-ignore:unused_signal
+signal secondary_used()
 
 var world = null
 var velocity = Vector2()

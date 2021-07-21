@@ -19,5 +19,6 @@ func use_ability(direction):
 	projectile.collision_mask = collision_mask
 	world.call_deferred("add_child", projectile)
 	
+	ability_used()
 	update_timer()
 	$AttackSpeed.start()

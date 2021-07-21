@@ -17,4 +17,5 @@ func use_ability(_direction):
 	$HealParticles.emitting = true
 	world.call_deferred("add_child", new_floating_number)
 	user.emit_signal("health_changed", user.stats["health"])
+	ability_used()
 	$Cooldown.start()

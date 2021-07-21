@@ -14,6 +14,7 @@ func use_ability(direction):
 	yield($AnimationPlayer, "animation_finished")
 	$Area2D/CollisionShape2D.disabled = true
 	
+	ability_used()
 	update_timer()
 	$AttackSpeed.start()
 

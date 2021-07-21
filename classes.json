@@ -7,7 +7,7 @@
             "starter_weapon" : "basic_bow",
             "primary" : "shoot_projectile",
             "secondary" : "volley",
-            "passive" : "res://scenes/player/class_modules/enraged/Enraged.tscn",
+            "passive" : "res://scenes/player/class_modules/focused/Focused.tscn",
             "resource" : {
                 "name" : "focus",
                 "color" : "c2b927",

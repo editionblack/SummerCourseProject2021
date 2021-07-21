@@ -8,7 +8,10 @@ signal health_changed(new_value)
 # warning-ignore:unused_signal
 signal resource_changed(new_value)
 signal damage_taken(value, dealer)
+# warning-ignore:unused_signal
+signal damage_dealt(value, reciever)
 
+var world = null
 var velocity = Vector2()
 var can_move = true
 var is_stunned = false
@@ -26,6 +29,7 @@ var base_primary_ability
 var primary_ability
 var secondary_ability
 var utility_ability
+var passive_ability
 
 var color = Color.white
 
@@ -43,6 +47,8 @@ func _process(_delta):
 		move()
 	else:
 		velocity = move_and_slide(velocity)
+	
+	
 	
 	var direction_of_mouse = (get_global_mouse_position() - position).normalized()
 	if Input.is_action_pressed("left_click"):
@@ -142,25 +148,13 @@ func recalculate_stats():
 func on_hit(damage, dealer):
 	damage_taken_effect()
 	
-	# could be replaced by some math stuff?? fine for now
-	# for the first ten defence points the damage is reduced by 3%
-	# for every ten points the 3% is halved.
-	var defence_points = stats["defence"]
-	var damage_reduction = 0
-	var reduction_per_point = 3.0
-	var i = 0
-	while defence_points - i > 0:
-		damage_reduction += reduction_per_point
-		i += 1
-		if i % 10 == 0:
-			reduction_per_point /= 2.0
-	damage -= damage * (damage_reduction / 100)
-	stats["health"] -= damage
+	stats["health"] -= DamageCalculationHandler.calculate_damage_reduction(self, damage)
 	emit_signal("health_changed", stats["health"])
 	if stats["health"] <= 0:
 		emit_signal("player_death")
 		collision_layer = 0
-	emit_signal("damage_taken", damage, dealer)
+	else:
+		emit_signal("damage_taken", damage, dealer)
 
 func damage_taken_effect():
 	$Sprite.scale = Vector2(0.38, 0.38)

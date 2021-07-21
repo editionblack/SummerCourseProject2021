@@ -29,6 +29,7 @@ func restart(player_class):
 	var new_player = PlayerClassHandler.create_player(player_class)
 	new_player.get_node("Camera2D").current = true
 	new_player.global_position = player_start
+	new_player.world = self
 	$Entities.add_child(new_player)
 	new_player.connect("player_death", self, "_on_Player_death")
 	new_player.connect("next_level", self, "_on_Next_level")

@@ -69,7 +69,7 @@ func distance_to_player():
 func get_path_to_player():
 	return nav2d.get_simple_path(global_position, player.global_position, false)
 
-func on_hit(damage, _dealer):
+func on_hit(damage, dealer):
 	damage_taken_effect()
 	var fdn = floating_number.instance()
 	fdn.init_floating_number(damage, Color.lightcoral)
@@ -77,11 +77,15 @@ func on_hit(damage, _dealer):
 	world.add_child(fdn)
 	stats["health"] -= damage
 	emit_signal("health_changed", stats["health"])
+	if dealer:
+		dealer.emit_signal("damage_dealt", damage, self)
 	if stats["health"] <= 0:
-		if randi() % 101 >= 0:
-			drop_item()
-		queue_free()
-	
+		die()
+
+func die():
+	if randi() % 101 >= 0:
+		drop_item()
+	queue_free()
 
 func damage_taken_effect():
 	$Sprite.scale = Vector2(0.33, 0.33)

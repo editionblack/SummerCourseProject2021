@@ -29,4 +29,4 @@ func _on_Area2D_body_entered(body):
 		var damage_range = stats["base_damage"]
 		if user.weapon:
 			damage_range = user.weapon.stats["weapon_damage"]
-		body.on_hit(DamageCalculationHandler.calculate_primary_damage(user, damage_range), self)
+		body.on_hit(DamageCalculationHandler.calculate_primary_damage(user, damage_range), user)

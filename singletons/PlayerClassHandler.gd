@@ -14,10 +14,12 @@ func create_player(player_class : String):
 	new_player.color = class_data[player_class]["icon_color"]
 	new_player.starter_weapon = class_data[player_class]["starter_weapon"]
 	new_player.base_primary_ability = class_data[player_class]["primary"]
-	
 	var secondary_ability = AbilityHandler.get_ability(class_data[player_class]["secondary"], 1 + 4)
 	new_player.secondary_ability = secondary_ability
-	new_player.call_deferred("add_child", secondary_ability)
+	new_player.add_child(secondary_ability)
+	var passive_ability = load(class_data[player_class]["passive"]).instance()
+	new_player.passive_ability = passive_ability
+	new_player.add_child(passive_ability)
 	return new_player
 
 func get_class_data():

@@ -101,5 +101,6 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="Panel/Button" to="." method="_on_Button_pressed"]
+[connection signal="item_activated" from="Panel/ItemList" to="." method="_on_ItemList_item_activated"]
 [connection signal="item_selected" from="Panel/ItemList" to="." method="_on_ItemList_item_selected"]
 [connection signal="nothing_selected" from="Panel/ItemList" to="." method="_on_ItemList_nothing_selected"]

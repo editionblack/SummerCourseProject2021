@@ -18,13 +18,17 @@ func _physics_process(_delta):
 		return
 		
 	grid_container.get_node("Health/Value").text = str(player.stats["health"]) + " / " + str(player.stats["max_health"])
-	var bonus_damage = player.stats["damage"]
+	
 	if player.weapon:
-		grid_container.get_node("DamageRange/Value").text = str(player.weapon.stats["weapon_damage"][0] + bonus_damage) + " - " + str(player.weapon.stats["weapon_damage"][1] + bonus_damage)
-		grid_container.get_node("AttackSpeed/Value").text = str(player.weapon.stats["weapon_attack_speed"] * (1.0 + (player.stats["attack_speed"] / 100.0))) + " / second"
+		var damage_range = DamageCalculationHandler.get_damage_range(player, player.weapon.stats["weapon_damage"])
+		var attack_speed = DamageCalculationHandler.get_attack_speed(player, player.weapon.stats["weapon_attack_speed"])
+		grid_container.get_node("DamageRange/Value").text = str(damage_range[0]) + " - " + str(damage_range[1])
+		grid_container.get_node("AttackSpeed/Value").text = str(attack_speed) + " / second"
 	else:
-		grid_container.get_node("DamageRange/Value").text = str(player.primary_ability.stats["base_damage"][0] + bonus_damage) + " - " + str(player.primary_ability.stats["base_damage"][1] + bonus_damage)
-		grid_container.get_node("AttackSpeed/Value").text = str(player.primary_ability.stats["base_attack_speed"] * (1.0 + (player.stats["attack_speed"] / 100.0))) + " / second"
+		var damage_range = DamageCalculationHandler.get_damage_range(player, player.primary_ability.stats["base_damage"])
+		var attack_speed = DamageCalculationHandler.get_attack_speed(player, player.primary_ability.stats["base_attack_speed"])
+		grid_container.get_node("DamageRange/Value").text = str(damage_range[0]) + " - " + str(damage_range[1])
+		grid_container.get_node("AttackSpeed/Value").text = str(attack_speed) + " / second"
 	grid_container.get_node("MovementSpeed/Value").text = str(player.stats["movement_speed"])
 	grid_container.get_node("Defence/Value").text = str(player.stats["defence"])
 

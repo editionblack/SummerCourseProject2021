@@ -29,3 +29,7 @@ func _on_ItemList_nothing_selected():
 func reset_item_list():
 	item_list.unselect_all()
 	button.disabled = true
+
+func _on_ItemList_item_activated(_index):
+	var selected_class = item_list.get_item_text(item_list.get_selected_items()[0])
+	emit_signal("class_chosen", selected_class)

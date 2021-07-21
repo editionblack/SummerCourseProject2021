@@ -5,6 +5,7 @@ signal next_level
 signal item_pickup
 signal reset_game
 signal health_changed(new_value)
+# warning-ignore:unused_signal
 signal resource_changed(new_value)
 signal damage_taken(value, dealer)
 
@@ -40,12 +41,18 @@ func _process(_delta):
 	else:
 		velocity = move_and_slide(velocity)
 		
-	for ability in abilities_held_down:
-		ability.use_ability((get_global_mouse_position() - position).normalized())
-
-# so that the player doesn't accidentally attack while using menus.
-func _unhandled_input(event):
+#	for ability in abilities_held_down:
+#		ability.use_ability((get_global_mouse_position() - position).normalized())
 	
+	var direction_of_mouse = (get_global_mouse_position() - position).normalized()
+	if Input.is_action_pressed("left_click"):
+		primary_ability.use_ability(direction_of_mouse)
+	if Input.is_action_pressed("right_click"):
+		secondary_ability.use_ability(direction_of_mouse)
+	if Input.is_action_pressed("utility"):
+		utility_ability.use_ability(direction_of_mouse)
+		
+func _unhandled_input(event):
 	if event.is_action_pressed("interact", false):
 		if current_interactable:
 			match current_interactable.get_groups()[0]:
@@ -59,20 +66,20 @@ func _unhandled_input(event):
 	if event.is_action_pressed("reset", false):
 		emit_signal("reset_game")
 	
-	if event.is_action_pressed("left_click", true):
-		abilities_held_down.append(primary_ability)
-	if event.is_action_released("left_click"):
-		abilities_held_down.erase(primary_ability)
-	
-	if event.is_action_pressed("right_click", true):
-		abilities_held_down.append(secondary_ability)
-	if event.is_action_released("right_click"):
-		abilities_held_down.erase(secondary_ability)
-		
-	if event.is_action_pressed("utility", false):
-		abilities_held_down.append(utility_ability)
-	if event.is_action_released("utility"):
-		abilities_held_down.erase(utility_ability)
+#	if event.is_action_pressed("left_click", true):
+#		abilities_held_down.append(primary_ability)
+#	if event.is_action_released("left_click"):
+#		abilities_held_down.erase(primary_ability)
+#
+#	if event.is_action_pressed("right_click", true):
+#		abilities_held_down.append(secondary_ability)
+#	if event.is_action_released("right_click"):
+#		abilities_held_down.erase(secondary_ability)
+#
+#	if event.is_action_pressed("utility", false):
+#		abilities_held_down.append(utility_ability)
+#	if event.is_action_released("utility"):
+#		abilities_held_down.erase(utility_ability)
 
 # checks for input and moves in appropiate direction
 func move():

@@ -14,9 +14,8 @@ func _physics_process(_delta):
 			player_secondary_ability.max_value = cooldown.wait_time
 			player_secondary_ability.value = cooldown.wait_time - cooldown.time_left
 			if cooldown.is_stopped():
-				player_secondary_ability.get_node("Label").visible = false
+				player_secondary_ability.get_node("Label").text = "READY"
 			else:
-				player_secondary_ability.get_node("Label").visible = true
 				player_secondary_ability.get_node("Label").text = str(stepify(cooldown.time_left, 0.5))
 
 func set_player(new_player):

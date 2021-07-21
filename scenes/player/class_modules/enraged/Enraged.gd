@@ -3,8 +3,8 @@ extends Node2D
 var floating_number = preload("res://scenes/floating_number/FloatingNumber.tscn")
 
 var user
-var stats = {"damage" : 0.0, "heal_amount" : 100}
-var description = "damaging enemies grant rage. once rage is at 100%, a hit will heal for " + str(stats["heal_amount"])
+var stats = {"damage" : 0.0, "heal_amount" : 100, "rage_per_hit" : 10}
+var description = "damaging enemies grant rage. once rage is at 100%, a hit while under 50% health will heal for " + str(stats["heal_amount"]) + "."
 
 func _physics_process(_delta):
 	if user:
@@ -16,11 +16,11 @@ func _physics_process(_delta):
 			user.connect("damage_taken", self, "_on_User_damage_taken")
 
 func _on_User_dealt_damage(_value, _reciever):
-	user.resource["resource"] = clamp(user.resource["resource"] + 20, 0, user.resource["max_resource"])
+	user.resource["resource"] = clamp(user.resource["resource"] + stats["rage_per_hit"], 0, user.resource["max_resource"])
 	user.emit_signal("resource_changed", user.resource["resource"])
 
-func _on_User_damage_taken(_value, _dealer):
-	if user.resource["resource"] >= user.resource["max_resource"]:
+func _on_User_damage_taken(value, _dealer):
+	if user.resource["resource"] >= user.resource["max_resource"] and user.stats["health"] + value <= user.stats["max_health"] / 2:
 		user.stats["health"] = clamp(user.stats["health"] + stats["heal_amount"], 0, user.stats["max_health"])
 		var new_floating_number = floating_number.instance()
 		new_floating_number.init_floating_number(stats["heal_amount"], Color.lightgreen)

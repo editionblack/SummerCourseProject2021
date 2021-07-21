@@ -7,7 +7,7 @@
             "starter_weapon" : "basic_bow",
             "primary" : "shoot_projectile",
             "secondary" : "volley",
-            "passive" : "res://scenes/player/class_modules/enraged.tscn",
+            "passive" : "res://scenes/player/class_modules/enraged/Enraged.tscn",
             "resource" : {
                 "name" : "focus",
                 "color" : "c2b927",
@@ -29,7 +29,7 @@
             "starter_weapon" : "basic_sword",
             "primary" : "swing",
             "secondary" : "heal",
-            "passive" : "res://scenes/player/class_modules/Enraged.tscn",
+            "passive" : "res://scenes/player/class_modules/enraged/Enraged.tscn",
             "resource" : {
                 "name" : "rage",
                 "color" : "bb2626",

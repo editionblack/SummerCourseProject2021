@@ -53,7 +53,6 @@ func _process(_delta):
 		velocity = move_and_slide(velocity)
 	
 	
-	
 	var direction_of_mouse = (get_global_mouse_position() - position).normalized()
 	if Input.is_action_pressed("left_click"):
 		primary_ability.use_ability(direction_of_mouse)

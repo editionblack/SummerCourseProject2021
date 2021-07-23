@@ -32,4 +32,4 @@ func calculate_damage_reduction(user, damage):
 		i += 1
 		if i % 10 == 0:
 			reduction_per_point /= 2.0
-	return (damage - (damage * (damage_reduction / 100)))
+	return stepify((damage - (damage * (damage_reduction / 100))), 0.1)

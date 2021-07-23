@@ -18,4 +18,3 @@ func _on_User_primary_used():
 	user.resource["resource"] = clamp(user.resource["resource"]-5, 0, user.resource["max_resource"])
 	user.emit_signal("resource_changed", user.resource["resource"])
 	$LastAttacked.start()
-	print("last attacked starts")

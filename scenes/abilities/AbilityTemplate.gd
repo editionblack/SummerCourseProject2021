@@ -5,13 +5,16 @@ var user
 var collision_mask
 var stats = null
 var timer = null
+var ability_used_signal = ""
 
 func _ready():
 	user = get_parent()
 	if stats.has("cooldown"):
 		create_cooldown_timer()
+		ability_used_signal = "secondary_used"
 	else:
 		create_attackspeed_timer()
+		ability_used_signal = "primary_used"
 
 func create_cooldown_timer():
 	var cooldown_timer = Timer.new()
@@ -46,11 +49,7 @@ func update_timer():
 			#TODO: whenever/if cooldown reductions are introduced they should be calculated here
 
 func ability_used():
-	match timer.name:
-		"AttackSpeed":
-			user.emit_signal("primary_used")
-		"Cooldown":
-			user.emit_signal("secondary_used")
+	user.emit_signal(ability_used_signal)
 
 func use_ability(_direction):
 	pass

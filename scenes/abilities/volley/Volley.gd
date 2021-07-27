@@ -20,6 +20,5 @@ func use_ability(direction):
 		new_projectile.rotation = adjusted_direction.angle()
 		new_projectile.collision_mask = collision_mask
 		world.call_deferred("add_child", new_projectile)
-		#yield(get_tree().create_timer(stats["delay"]), "timeout")
 	ability_used()
 	$Cooldown.start()

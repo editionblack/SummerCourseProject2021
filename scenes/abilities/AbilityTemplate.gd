@@ -45,8 +45,12 @@ func update_timer():
 			
 			timer.wait_time = 1.0 / timer_modifier
 		"Cooldown":
-			timer.wait_time = stats["cooldown"]
-			#TODO: whenever/if cooldown reductions are introduced they should be calculated here
+			timer_modifier = stats["cooldown"]
+			if user.stats.has("cooldown_reduction"):
+				timer_modifier *= (1.0 - (user.stats["cooldown_reduction"] / 100.0))
+			if timer_modifier == 0:
+				timer_modifier = 0.001 # since the timer can't be set to 0 seconds we set it to the lowest possible value instead.
+			timer.wait_time = timer_modifier
 
 func ability_used():
 	user.emit_signal(ability_used_signal)

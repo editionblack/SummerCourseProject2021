@@ -11,7 +11,7 @@ func _ready():
 	var i = 0
 	for player_class in data.keys():
 		classes.append(player_class)
-		item_list.add_item(player_class.capitalize(), load(data[player_class]["icon"]), true)
+		item_list.add_item(player_class.capitalize(), load(data[player_class]["icon"]), true) 
 		item_list.set_item_icon_modulate(i, data[player_class]["icon_color"])
 		item_list.set_item_tooltip_enabled(i, false)
 		i += 1

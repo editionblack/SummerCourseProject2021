@@ -20,6 +20,7 @@
                 "defence" : 0.0,
                 "damage" : 0,
                 "ability_power": 10,
+                "cooldown_reduction" : 0,
                 "movement_speed" : 250,
                 "attack_speed" : 0.0
             }
@@ -43,6 +44,7 @@
                 "defence" : 0.0,
                 "damage" : 0,
                 "ability_power": 0,
+                "cooldown_reduction" : 0,
                 "movement_speed" : 200,
                 "attack_speed" : 0.0
             }

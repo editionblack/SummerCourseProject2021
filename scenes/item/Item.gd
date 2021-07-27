@@ -6,7 +6,7 @@ var type
 var rarity
 var rarity_colors = {"common" : Color.white, "uncommon" : Color.mediumseagreen, "rare" : Color.dodgerblue, "epic" : Color.mediumpurple, "legendary" : Color.gold}
 var primary_ability = null
-
+var passive = null
 
 func _ready():
 	$Sprite.self_modulate = rarity_colors[rarity]

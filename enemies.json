@@ -21,6 +21,17 @@
                 "damage" : 5,
                 "attack_speed" : 1.0
             }
+        },
+        "bomber" : {
+            "scene" : "res://scenes/enemies/bomber/Bomber.tscn",
+            "color" : "bc1717",
+            "stats" : {
+                "max_health" : 10.0,
+                "health" : 10.0,
+                "movement_speed" : 200,
+                "damage" : 10
+            }
         }
+
     }
 }

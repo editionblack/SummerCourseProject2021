@@ -42,7 +42,7 @@ func spawn_exit(world, position):
 	world.get_node("Entities").call_deferred("add_child", new_exit)
 
 func spawn_enemy(world, position):
-	var new_enemy = EnemyHandler.create_enemy(["chaser", "ranged_test"][randi() % 2])
+	var new_enemy = EnemyHandler.create_enemy(["chaser", "ranged_test", "bomber"][randi() % 3])
 	new_enemy.global_position = position
 	world.get_node("Entities").call_deferred("add_child", new_enemy)
 	

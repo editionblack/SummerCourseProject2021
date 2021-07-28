@@ -9,6 +9,7 @@ signal secondary_used()
 var stats
 var targets = []
 var color = null
+var initial_scale
 
 var awake = false
 var can_move = true
@@ -27,6 +28,7 @@ var floating_number = preload("res://scenes/floating_number/FloatingNumber.tscn"
 func _ready():
 	add_to_group("enemies")
 	$Sprite.modulate = color
+	initial_scale = $Sprite.scale
 	world = get_tree().get_root().get_node("World")
 	nav2d = world.get_node("Navigation2D")
 	scale_stats()
@@ -92,9 +94,9 @@ func die():
 	queue_free()
 
 func damage_taken_effect():
-	$Sprite.scale = Vector2(0.33, 0.33)
+	$Sprite.scale = initial_scale / 1.3
 	$Sprite.modulate = Color.white
-	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, Vector2(0.48, 0.48), 0.25)
+	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, initial_scale, 0.25)
 	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(color), 0.25)
 	$Tween.start()
 

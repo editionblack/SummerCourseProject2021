@@ -6,7 +6,7 @@
             "stats" : {
                 "max_health" : 20.0,
                 "health" : 20.0,
-                "movement_speed" : 100,
+                "movement_speed" : 75,
                 "damage" : 5,
                 "damage_frequency" : 0.1
             }
@@ -17,9 +17,10 @@
             "stats" : {
                 "max_health" : 20.0,
                 "health" : 20.0,
-                "movement_speed" : 100,
+                "movement_speed" : 125,
                 "damage" : 5,
-                "attack_speed" : 1.0
+                "range" : 500,
+                "attack_speed" : 0.0
             }
         },
         "bomber" : {
@@ -28,7 +29,7 @@
             "stats" : {
                 "max_health" : 10.0,
                 "health" : 10.0,
-                "movement_speed" : 200,
+                "movement_speed" : 175,
                 "damage" : 10
             }
         }

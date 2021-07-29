@@ -79,9 +79,7 @@ func random_stats(rarity : String, item : Dictionary):
 				base_stat = base_stat * rarity_modifier * deviance * scaling
 				base_stat = stepify(base_stat, 0.1)
 				stats[stat] = base_stat
-	
 	return stats
-	
 
 # debug tool to check how common different rarities are
 func test_rarity_function(iterations):

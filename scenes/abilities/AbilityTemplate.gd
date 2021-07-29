@@ -48,7 +48,7 @@ func update_timer():
 			timer_modifier = stats["cooldown"]
 			if user.stats.has("cooldown_reduction"):
 				timer_modifier *= (1.0 - (user.stats["cooldown_reduction"] / 100.0))
-			if timer_modifier == 0:
+			if timer_modifier <= 0:
 				timer_modifier = 0.001 # since the timer can't be set to 0 seconds we set it to the lowest possible value instead.
 			timer.wait_time = timer_modifier
 

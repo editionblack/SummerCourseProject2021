@@ -15,6 +15,7 @@ func use_ability(direction):
 		var adjusted_direction
 		adjusted_direction = direction.rotated(deg2rad((i - floor(amount / 2)) * 10))
 		new_projectile.damage = damage
+		new_projectile.color = user.projectile_color
 		new_projectile.position = user.position + adjusted_direction * offset
 		new_projectile.direction = adjusted_direction
 		new_projectile.rotation = adjusted_direction.angle()

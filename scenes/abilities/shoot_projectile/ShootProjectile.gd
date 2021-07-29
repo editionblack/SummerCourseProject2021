@@ -12,6 +12,7 @@ func use_ability(direction):
 	if user.weapon:
 		damage_range = user.weapon.stats["weapon_damage"]
 	projectile.damage = DamageCalculationHandler.calculate_primary_damage(user, damage_range)
+	projectile.color = user.projectile_color
 	projectile.user = user
 	projectile.position = user.position + direction * offset
 	projectile.direction = direction

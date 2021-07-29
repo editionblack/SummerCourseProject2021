@@ -68,8 +68,8 @@
                 "name" : "Silk Gloves",
                 "type" : "gloves",
                 "base_stats" : {
-                    "cooldown_reduction" : 1.0,
-                    "ability_power" : 3.0,
+                    "cooldown_reduction" : 0.5,
+                    "ability_power" : 1.0,
                     "defence" : 0.1
                 }
             },
@@ -78,7 +78,7 @@
                 "type" : "chest",
                 "base_stats" : {
                     "max_health" : 2.5,
-                    "ability_power" : 5.0,
+                    "ability_power" : 2.0,
                     "defence" : 0.5
                     
                 }
@@ -88,7 +88,7 @@
                 "type" : "helmet",
                 "base_stats" : {
                     "cooldown_reduction" : 0.5,
-                    "ability_power" : 4.0,
+                    "ability_power" : 1.0,
                     "defence" : 0.1
                 }
             },

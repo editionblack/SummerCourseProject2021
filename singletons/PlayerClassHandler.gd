@@ -12,6 +12,7 @@ func create_player(player_class : String):
 	new_player.resource = class_data[player_class]["resource"].duplicate(true)
 	new_player.current_class = player_class
 	new_player.color = class_data[player_class]["icon_color"]
+	new_player.projectile_color = class_data[player_class]["projectile_color"]
 	new_player.starter_weapon = class_data[player_class]["starter_weapon"]
 	new_player.base_primary_ability = class_data[player_class]["primary"]
 	var secondary_ability = AbilityHandler.get_ability(class_data[player_class]["secondary"], 1 + 4)

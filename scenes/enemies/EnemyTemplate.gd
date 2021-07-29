@@ -9,6 +9,7 @@ signal secondary_used()
 var stats
 var targets = []
 var color = null
+var projectile_color = Color(1,0.2,.02,1)
 var initial_scale
 
 var awake = false

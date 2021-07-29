@@ -25,6 +25,7 @@ var stats
 var resource
 var starter_weapon
 var weapon = null
+var projectile_color
 
 var current_interactable = null
 var close_interactables = []

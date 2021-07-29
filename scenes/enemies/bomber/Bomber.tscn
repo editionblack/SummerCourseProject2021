@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/sprites/highres_circle.png" type="Texture" id=1]
 [ext_resource path="res://scenes/enemies/bomber/Bomber.gd" type="Script" id=2]
@@ -9,7 +9,6 @@ radius = 24.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "Blinking"
-length = 3.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite/Sprite2:self_modulate")
@@ -18,11 +17,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5, 3 ),
+"times": PoolRealArray( 0.1, 0.5, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.121569, 0.117647, 0.117647, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 0.121569, 0.117647, 0.117647, 1 ), Color( 0.971758, 0.971631, 0.971631, 1 ), Color( 0.121569, 0.117647, 0.117647, 1 ) ]
 }
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 80.0
 
 [node name="Bomber" type="KinematicBody2D"]
 z_index = 2
@@ -40,7 +42,7 @@ scale = Vector2( 0.708333, 0.708333 )
 texture = ExtResource( 1 )
 
 [node name="Sprite2" type="Sprite" parent="Sprite"]
-self_modulate = Color( 0.381462, 0.378701, 0.378701, 1 )
+self_modulate = Color( 0.303784, 0.300676, 0.300676, 1 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 1 )
 
@@ -67,4 +69,18 @@ anims/Blinking = SubResource( 2 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
 collision_mask = 3
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource( 3 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

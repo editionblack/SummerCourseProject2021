@@ -9,7 +9,8 @@ func _ready():
 func attack():
 	if is_player_in_sight() and distance_to_player() < stats["range"]:
 		var accuracy = distance_to_player() / stats["range"]
-		var deviation = (randi() % 101 - 50) * accuracy
+		accuracy /= 2
+		var deviation = (randi() % 51 - 25) * accuracy
 		ability.use_ability((player.global_position - global_position).normalized().rotated(deg2rad(deviation)))
 
 func move():

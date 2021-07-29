@@ -63,7 +63,7 @@ func pathfind_direction_to_player():
 	if path.empty() or path[path.size() - 1].distance_to(player.global_position) > 100:
 		path = get_path_to_player()
 	if !path.empty():
-		if global_position.distance_to(path[0]) < 1:
+		if global_position.distance_to(path[0]) < 3:
 			path.remove(0)
 		else:
 			return (path[0] - global_position).normalized()

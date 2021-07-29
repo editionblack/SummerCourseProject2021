@@ -7,7 +7,7 @@ func use_ability(direction):
 		return
 	
 	# snapshot the damage so that its consistent through the entire ability.
-	var damage = stats["damage"] * (1.0 + (user.stats["ability_power"] / 10))
+	var damage = DamageCalculationHandler.calculate_secondary_damage(user, stats)
 	var amount = int(stats["projectile_amount"])
 	for i in range(amount):
 		var new_projectile = projectile_scene.instance()

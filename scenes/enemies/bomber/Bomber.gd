@@ -11,7 +11,7 @@ func _ready():
 	timer.wait_time = stats["explosion_delay"]
 
 func attack():
-	if distance_to_player() < 100 and timer.is_stopped():
+	if is_player_in_sight() and distance_to_player() < 100 and timer.is_stopped():
 		can_move = false
 		animation_player.playback_speed = 4
 		timer.start()

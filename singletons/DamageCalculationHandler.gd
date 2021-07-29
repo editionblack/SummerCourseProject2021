@@ -15,7 +15,7 @@ func calculate_secondary_damage(user, ability_stats):
 		if "ability_power" in stats:
 			bonus_ap += stats["ability_power"]
 	var ap_modifier = (1.0 + ( (user.stats["ability_power"]+bonus_ap) / ability_stats["ability_power_scaling"]))
-	var final_damage = ability_stats["damage"] * ap_modifier
+	var final_damage = ability_stats["ability_power"] * ap_modifier
 	return stepify(final_damage, 0.1)
 	
 func get_damage_range(user, damage_range : Array):

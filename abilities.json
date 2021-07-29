@@ -30,7 +30,7 @@
         "volley" : {
             "scene" : "res://scenes/abilities/volley/Volley.tscn",
             "stats" : {
-                "damage" : 5,
+                "ability_power" : 5,
                 "cooldown" : 2.0,
                 "projectile_amount" : 5,
                 "ability_power_scaling" : 10
@@ -39,7 +39,7 @@
         "heal" : {
             "scene" : "res://scenes/abilities/heal/Heal.tscn",
             "stats" : {
-                "heal_amount" : 50,
+                "ability_power" : 50,
                 "cooldown" : 5.0,
                 "ability_power_scaling" : 10
             }

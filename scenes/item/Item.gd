@@ -42,7 +42,9 @@ func get_tooltip():
 			"weapon_attack_speed":
 				result += "Attacks/second : " + str(stats["weapon_attack_speed"])
 			"attack_speed":
-				result += "Attack speed: +" + str(stats[stat]) + "%"
+				result += "Attack speed: " + str(stats[stat]) + "%"
+			"cooldown_reduction":
+				result += "Cooldown reduction: " + str(stats[stat]) + "%"
 			_:
 				result += stat + " : " + str(stats[stat])
 		result += '\n'

@@ -11,13 +11,13 @@ func _ready():
 	label.text = str(value)
 	label.set("custom_colors/font_color", color)
 	velocity = Vector2(randi() % 101 - 50, 10)
-	tween.interpolate_property(self, "scale", Vector2(1.25, 1.25), Vector2(0.1, 0.1), 0.6, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0.4)
+	tween.interpolate_property(self, "scale", scale, Vector2(0.1, 0.1), 0.6, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0.4)
 	tween.start()
 
-func init_floating_number(val : float, col : Color):
+func init_floating_number(val : float, col : Color, size : Vector2):
 	value = val
 	color = col
-	
+	scale = size
 
 func _process(delta):
 	position += velocity * delta

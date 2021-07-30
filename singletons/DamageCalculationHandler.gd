@@ -6,7 +6,8 @@ func calculate_primary_damage(user, damage_range : Array):
 		var stats = user.passive_ability.get_stats()
 		if "damage" in stats:
 			bonus_damage += stats["damage"]
-	return stepify(rand_range(damage_range[0], damage_range[1]) + bonus_damage, 0.1)
+	var actual_damage = stepify(rand_range(damage_range[0], damage_range[1]) + bonus_damage, 0.1)
+	return actual_damage
 
 func calculate_secondary_damage(user, ability_stats):
 	var bonus_ap = 0

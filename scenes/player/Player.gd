@@ -9,7 +9,7 @@ signal health_changed(new_value)
 signal resource_changed(new_value)
 signal damage_taken(value, dealer)
 # warning-ignore:unused_signal
-signal damage_dealt(value, reciever)
+signal damage_dealt(value, reciever, is_critical)
 # warning-ignore:unused_signal
 signal primary_used()
 # warning-ignore:unused_signal
@@ -149,7 +149,7 @@ func recalculate_stats():
 		stats[stat] = base_stats[stat] + accumulator
 	emit_signal("health_changed", stats["health"])
 
-func on_hit(damage, dealer):
+func on_hit(damage, dealer, is_critical = false):
 	damage_taken_effect()
 	
 	stats["health"] -= DamageCalculationHandler.calculate_damage_reduction(self, damage)
@@ -158,7 +158,7 @@ func on_hit(damage, dealer):
 		emit_signal("player_death")
 		collision_layer = 0
 	else:
-		emit_signal("damage_taken", damage, dealer)
+		emit_signal("damage_taken", damage, dealer, is_critical)
 
 func damage_taken_effect():
 	$Sprite.scale = Vector2(0.38, 0.38)

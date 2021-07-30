@@ -9,13 +9,20 @@ func use_ability(direction):
 	# snapshot the damage so that its consistent through the entire ability.
 	var damage = DamageCalculationHandler.calculate_secondary_damage(user, stats)
 	var amount = int(stats["projectile_amount"])
+	var is_critical = false
+	if "critical_chance" in user.stats:
+		if user.stats["critical_chance"] > randi() % 101:
+			is_critical = true
+			damage *= user.stats["critical_damage"]
 	for i in range(amount):
 		var new_projectile = projectile_scene.instance()
 		var offset = 35
 		var adjusted_direction
 		adjusted_direction = direction.rotated(deg2rad((i - floor(amount / 2)) * 10))
 		new_projectile.damage = damage
+		new_projectile.is_critical = is_critical
 		new_projectile.color = user.projectile_color
+		new_projectile.user = user
 		new_projectile.position = user.position + adjusted_direction * offset
 		new_projectile.direction = adjusted_direction
 		new_projectile.rotation = adjusted_direction.angle()

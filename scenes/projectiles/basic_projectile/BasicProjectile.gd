@@ -6,10 +6,11 @@ onready var sprite = $Sprite
 
 var direction = Vector2()
 var user = null
+var damage = null
 var speed = 600
-var damage = 0
 var spent = false
 var color = null
+var is_critical = false
 
 func _ready():
 	sprite.modulate = color
@@ -19,7 +20,7 @@ func _process(delta):
 
 func _on_Basic_projectile_body_entered(body):
 	if body.has_method("on_hit") and spent == false:
-		body.on_hit(damage, user)
+		CombatHandler.hit_with_calculated_damage(body, user, damage, is_critical)
 		spent = true
 	create_particles()
 	queue_free()

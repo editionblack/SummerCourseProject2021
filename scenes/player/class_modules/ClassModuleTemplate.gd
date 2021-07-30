@@ -15,10 +15,10 @@ func _physics_process(_delta):
 			user.connect("primary_used", self, "_on_User_primary_used")
 			user.connect("secondary_used", self, "_on_User_secondary_used")
 
-func _on_User_damage_taken(_value, _dealer):
+func _on_User_damage_taken(_value, _dealer, _is_critical):
 	pass
 
-func _on_User_dealt_damage(_value, _reciever):
+func _on_User_dealt_damage(_value, _reciever, _is_critical):
 	pass
 
 func _on_User_primary_used():

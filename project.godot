@@ -24,6 +24,7 @@ LevelGenerator="*res://singletons/LevelGenerator.gd"
 LevelDirector="*res://singletons/LevelDirector.gd"
 Global="*res://singletons/Global.gd"
 DamageCalculationHandler="*res://singletons/DamageCalculationHandler.gd"
+CombatHandler="*res://singletons/CombatHandler.gd"
 
 [display]
 

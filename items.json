@@ -85,7 +85,7 @@
             },
             "silk_hood" : {
                 "name" : "Silk Hood",
-                "type" : "helmet",
+                "type" : "head",
                 "base_stats" : {
                     "cooldown_reduction" : 0.5,
                     "ability_power" : 1.0,

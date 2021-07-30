@@ -14,7 +14,7 @@ func use_ability(_direction):
 	var healing_power = DamageCalculationHandler.calculate_secondary_damage(user, stats)
 	user.stats["health"] = clamp(previous_user_health + healing_power, 0, user.stats["max_health"])
 	var new_floating_number = floating_number.instance()
-	new_floating_number.init_floating_number(user.stats["health"] - previous_user_health, Color.lightgreen)
+	new_floating_number.init_floating_number(user.stats["health"] - previous_user_health, Color.lightgreen, Vector2(1.25, 1.25))
 	new_floating_number.position = user.position
 	$HealParticles.emitting = true
 	world.call_deferred("add_child", new_floating_number)

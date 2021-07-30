@@ -15,6 +15,8 @@ signal primary_used()
 # warning-ignore:unused_signal
 signal secondary_used()
 
+var floating_number = preload("res://scenes/floating_number/FloatingNumber.tscn")
+
 var world = null
 var velocity = Vector2()
 var can_move = true
@@ -46,6 +48,8 @@ func _ready():
 	var starter_item = ItemHandler.create_item("weapons", starter_weapon)
 	starter_item.disable_interaction()
 	item_equip(starter_item)
+	# warning-ignore:return_value_discarded
+	connect("damage_dealt", self, "_on_Player_damage_dealt")
 	
 func _process(_delta):
 	if can_move:
@@ -167,6 +171,17 @@ func damage_taken_effect():
 	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(color), 0.25)
 	$Tween.start()
 
+
+func _on_Player_damage_dealt(value, _reciever, _is_critical):
+	if stats["lifesteal"] > 0 and stats["health"] < stats["max_health"]:
+		var previous_health = stats["health"]
+		var healing_power = stepify(value * (stats["lifesteal"] / 100), 0.1)
+		stats["health"] = clamp(previous_health + healing_power, 0, stats["max_health"])
+		var new_floating_number = floating_number.instance()
+		new_floating_number.init_floating_number(stats["health"] - previous_health, Color.lightgreen, Vector2(1.25, 1.25))
+		new_floating_number.position = position
+		world.call_deferred("add_child", new_floating_number)
+		emit_signal("health_changed", stats["health"])
 
 func _on_InteractRange_area_entered(area):
 	close_interactables.append(area.get_parent())

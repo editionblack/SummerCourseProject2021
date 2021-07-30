@@ -25,7 +25,8 @@
                 "movement_speed" : 250,
                 "attack_speed" : 0.0,
                 "critical_chance" : 50.0,
-                "critical_damage" : 2.0
+                "critical_damage" : 2.0,
+                "lifesteal" : 0.0
             }
         },
         "bruiser" : {
@@ -52,7 +53,8 @@
                 "movement_speed" : 200,
                 "attack_speed" : 0.0,
                 "critical_chance" : 10.0,
-                "critical_damage" : 2.0
+                "critical_damage" : 2.0,
+                "lifesteal" : 0.0
             }
         }
     }

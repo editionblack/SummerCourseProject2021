@@ -14,7 +14,7 @@ func _on_User_damage_taken(value, _dealer, _is_critical):
 	if user.resource["resource"] >= user.resource["max_resource"] and user.stats["health"] + value <= user.stats["max_health"] / 2:
 		user.stats["health"] = clamp(user.stats["health"] + stats["heal_amount"], 0, user.stats["max_health"])
 		var new_floating_number = floating_number.instance()
-		new_floating_number.init_floating_number(stats["heal_amount"], Color.lightgreen)
+		new_floating_number.init_floating_number(stats["heal_amount"], Color.lightgreen, Vector2(1.25, 1.25))
 		new_floating_number.position = user.position
 		user.world.call_deferred("add_child", new_floating_number)
 		user.resource["resource"] = 0

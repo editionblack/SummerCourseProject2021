@@ -4,7 +4,7 @@
         "archer" : {
             "icon" : "res://assets/sprites/rectangle.png",
             "icon_color" : "4b9131",
-            "projectile_color" : "447554",
+            "projectile_color" : "1a461d",
             "starter_weapon" : "basic_bow",
             "primary" : "shoot_projectile",
             "secondary" : "volley",
@@ -32,7 +32,7 @@
         "bruiser" : {
             "icon" : "res://assets/sprites/octagon.png",
             "icon_color" : "3f2d1b",
-            "projectile_color" : "75391d",
+            "projectile_color" : "381a11",
             "starter_weapon" : "basic_sword",
             "primary" : "swing",
             "secondary" : "heal",

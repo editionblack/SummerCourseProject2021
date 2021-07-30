@@ -28,6 +28,8 @@ var resource
 var starter_weapon
 var weapon = null
 var projectile_color
+var original_scale = Vector2(0.48, 0.48)
+
 
 var current_interactable = null
 var close_interactables = []
@@ -167,7 +169,7 @@ func on_hit(damage, dealer, is_critical = false):
 func damage_taken_effect():
 	$Sprite.scale = Vector2(0.38, 0.38)
 	$Sprite.modulate = Color.white
-	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, Vector2(0.48, 0.48), 0.25)
+	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, original_scale, 0.25)
 	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(color), 0.25)
 	$Tween.start()
 

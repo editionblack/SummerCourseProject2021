@@ -12,6 +12,7 @@ var color = null
 var projectile_color = Color("4e0606")
 var initial_scale
 
+var is_dead = false
 var awake = false
 var can_move = true
 var is_stunned = false
@@ -88,10 +89,11 @@ func on_hit(damage, dealer, is_critical = false):
 	emit_signal("health_changed", stats["health"])
 	if dealer:
 		dealer.emit_signal("damage_dealt", damage, self, is_critical)
-	if stats["health"] <= 0:
+	if stats["health"] <= 0 and !is_dead:
 		die()
 
 func die():
+	is_dead = true
 	if randi() % 101 >= 0:
 		drop_item()
 	queue_free()

@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/GUI elements/character_sheet/CharacterSheet.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/munro.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/fonts/munro.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/themes/ToolTipTheme.tres" type="Theme" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.890196, 0.894118, 0.894118, 1 )
@@ -12,18 +12,13 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 12
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 3 )
-
 [node name="CharacterSheet" type="Control"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -186.0
 margin_right = 418.0
 margin_bottom = 186.0
+theme = ExtResource( 3 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -37,193 +32,231 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="Panel"]
-margin_left = 9.0
-margin_top = 6.0
-margin_right = 408.0
-margin_bottom = 366.0
-rect_min_size = Vector2( 304, 355 )
-custom_constants/vseparation = 1
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Class" type="HBoxContainer" parent="Panel/GridContainer"]
-margin_right = 320.0
-margin_bottom = 24.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+margin_right = 226.0
+margin_bottom = 332.0
 
-[node name="Label" type="Label" parent="Panel/GridContainer/Class"]
-margin_right = 48.0
+[node name="Class" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_right = 226.0
 margin_bottom = 24.0
-custom_fonts/font = ExtResource( 2 )
-text = "Class: "
+alignment = 1
 
-[node name="Value" type="Label" parent="Panel/GridContainer/Class"]
-margin_left = 52.0
-margin_right = 86.0
+[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/Class"]
+margin_left = 96.0
+margin_right = 130.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "test"
 
-[node name="PrimaryAbility" type="HBoxContainer" parent="Panel/GridContainer"]
-margin_top = 25.0
-margin_right = 320.0
-margin_bottom = 49.0
+[node name="PrimaryAbility" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 226.0
+margin_bottom = 52.0
 
-[node name="Label" type="Label" parent="Panel/GridContainer/PrimaryAbility"]
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/PrimaryAbility"]
 margin_right = 132.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "Primary ability: "
 
-[node name="Value" type="Label" parent="Panel/GridContainer/PrimaryAbility"]
+[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/PrimaryAbility"]
 margin_left = 136.0
 margin_right = 170.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "test"
 
-[node name="SecondaryAbility" type="HBoxContainer" parent="Panel/GridContainer"]
-margin_top = 50.0
-margin_right = 320.0
-margin_bottom = 74.0
+[node name="SecondaryAbility" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 56.0
+margin_right = 226.0
+margin_bottom = 80.0
 
-[node name="Label" type="Label" parent="Panel/GridContainer/SecondaryAbility"]
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/SecondaryAbility"]
 margin_right = 150.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "Secondary ability: "
 
-[node name="Value" type="Label" parent="Panel/GridContainer/SecondaryAbility"]
+[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/SecondaryAbility"]
 margin_left = 154.0
 margin_right = 188.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "test"
 
-[node name="Value2" type="Label" parent="Panel/GridContainer/SecondaryAbility"]
+[node name="Value2" type="Label" parent="Panel/ScrollContainer/VBoxContainer/SecondaryAbility"]
 margin_left = 192.0
 margin_right = 226.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "test"
 
-[node name="PassiveAbility" type="HBoxContainer" parent="Panel/GridContainer"]
-margin_top = 75.0
-margin_right = 320.0
-margin_bottom = 208.0
+[node name="PassiveAbility" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 84.0
+margin_right = 226.0
+margin_bottom = 108.0
 
-[node name="Label" type="Label" parent="Panel/GridContainer/PassiveAbility"]
-margin_top = 54.0
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/PassiveAbility"]
 margin_right = 128.0
-margin_bottom = 78.0
+margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "Passive ability: "
 
-[node name="Value" type="Label" parent="Panel/GridContainer/PassiveAbility"]
+[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/PassiveAbility"]
 margin_left = 132.0
-margin_top = 54.0
 margin_right = 166.0
-margin_bottom = 78.0
+margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "test"
 
-[node name="Value2" type="Label" parent="Panel/GridContainer/PassiveAbility"]
-margin_left = 170.0
-margin_right = 320.0
-margin_bottom = 133.0
-rect_min_size = Vector2( 150, 72 )
-custom_fonts/font = SubResource( 2 )
-text = "test test test test test test test test test test test tes tes tes test stasrfasfdasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfafsqafasfasfasfasfasfasfasfasfasfasfasfasfasfasfafasfafsafasfafasfasfasfasfa"
-valign = 1
-autowrap = true
+[node name="Health" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 112.0
+margin_right = 226.0
+margin_bottom = 136.0
 
-[node name="Health" type="HBoxContainer" parent="Panel/GridContainer"]
-margin_top = 209.0
-margin_right = 320.0
-margin_bottom = 233.0
-
-[node name="Label" type="Label" parent="Panel/GridContainer/Health"]
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/Health"]
 margin_right = 62.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "Health: "
 
-[node name="Value" type="Label" parent="Panel/GridContainer/Health"]
+[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/Health"]
 margin_left = 66.0
 margin_right = 139.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "100 / 100"
 
-[node name="DamageRange" type="HBoxContainer" parent="Panel/GridContainer"]
-margin_top = 234.0
-margin_right = 320.0
-margin_bottom = 258.0
+[node name="Damage" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 140.0
+margin_right = 226.0
+margin_bottom = 164.0
 
-[node name="Label" type="Label" parent="Panel/GridContainer/DamageRange"]
-margin_right = 130.0
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/Damage"]
+margin_right = 76.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
-text = "Damage range: "
+text = "Damage: "
 
-[node name="Value" type="Label" parent="Panel/GridContainer/DamageRange"]
-margin_left = 134.0
-margin_right = 162.0
+[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/Damage"]
+margin_left = 80.0
+margin_right = 108.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "0-0"
 
-[node name="AttackSpeed" type="HBoxContainer" parent="Panel/GridContainer"]
-margin_top = 259.0
-margin_right = 320.0
-margin_bottom = 283.0
+[node name="AttackSpeed" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 168.0
+margin_right = 226.0
+margin_bottom = 192.0
 
-[node name="Label" type="Label" parent="Panel/GridContainer/AttackSpeed"]
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/AttackSpeed"]
 margin_right = 118.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "Attack speed: "
 
-[node name="Value" type="Label" parent="Panel/GridContainer/AttackSpeed"]
+[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/AttackSpeed"]
 margin_left = 122.0
 margin_right = 209.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "0 / second"
 
-[node name="MovementSpeed" type="HBoxContainer" parent="Panel/GridContainer"]
-margin_top = 284.0
-margin_right = 320.0
-margin_bottom = 308.0
+[node name="MovementSpeed" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 196.0
+margin_right = 226.0
+margin_bottom = 220.0
 
-[node name="Label" type="Label" parent="Panel/GridContainer/MovementSpeed"]
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/MovementSpeed"]
 margin_right = 152.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "Movement speed: "
 
-[node name="Value" type="Label" parent="Panel/GridContainer/MovementSpeed"]
+[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/MovementSpeed"]
 margin_left = 156.0
 margin_right = 166.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "0"
 
-[node name="Defence" type="HBoxContainer" parent="Panel/GridContainer"]
-margin_top = 309.0
-margin_right = 320.0
-margin_bottom = 333.0
+[node name="Defence" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 224.0
+margin_right = 226.0
+margin_bottom = 248.0
 
-[node name="Label" type="Label" parent="Panel/GridContainer/Defence"]
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/Defence"]
 margin_right = 74.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "Defence: "
 
-[node name="Value" type="Label" parent="Panel/GridContainer/Defence"]
+[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/Defence"]
 margin_left = 78.0
 margin_right = 88.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+
+[node name="CriticalChance" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 252.0
+margin_right = 226.0
+margin_bottom = 276.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/CriticalChance"]
+margin_right = 154.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "Critical Hit Chance: "
+
+[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/CriticalChance"]
+margin_left = 158.0
+margin_right = 168.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+
+[node name="CriticalDamage" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 280.0
+margin_right = 226.0
+margin_bottom = 304.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/CriticalDamage"]
+margin_right = 164.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "Critical Hit Damage: "
+
+[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/CriticalDamage"]
+margin_left = 168.0
+margin_right = 178.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+
+[node name="Lifesteal" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 308.0
+margin_right = 226.0
+margin_bottom = 332.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/Lifesteal"]
+margin_right = 78.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 2 )
+text = "Lifesteal: "
+
+[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/Lifesteal"]
+margin_left = 82.0
+margin_right = 92.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "0"

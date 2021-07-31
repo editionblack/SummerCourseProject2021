@@ -2,9 +2,7 @@
 
 [ext_resource path="res://scenes/GUI elements/inventory_sheet/InventorySheet.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/munro.tres" type="DynamicFont" id=2]
-
-[sub_resource type="Theme" id=1]
-default_font = ExtResource( 2 )
+[ext_resource path="res://assets/themes/ToolTipTheme.tres" type="Theme" id=3]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.890196, 0.894118, 0.894118, 1 )
@@ -52,7 +50,7 @@ anchor_bottom = 0.5
 margin_left = -392.0
 margin_top = -188.0
 margin_bottom = 188.0
-theme = SubResource( 1 )
+theme = ExtResource( 3 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

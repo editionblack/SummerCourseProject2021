@@ -4,7 +4,7 @@ var floating_number = preload("res://scenes/floating_number/FloatingNumber.tscn"
 
 func _ready():
 	stats = {"damage" : 0.0, "heal_amount" : 100, "rage_per_hit" : 10}
-	description = "Hits grant rage. Taking damage at 50% health and 100% rage heals for" + str(stats["heal_amount"]) + " health."
+	description = "Hits grant rage.\nTaking damage at 50% health and 100% rage heals for " + str(stats["heal_amount"]) + " health."
 	
 func _on_User_dealt_damage(_value, _reciever, _is_critical):
 	user.resource["resource"] = clamp(user.resource["resource"] + stats["rage_per_hit"], 0, user.resource["max_resource"])

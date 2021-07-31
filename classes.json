@@ -54,7 +54,7 @@
                 "attack_speed" : 0.0,
                 "critical_chance" : 10.0,
                 "critical_damage" : 2.0,
-                "lifesteal" : 0.0
+                "lifesteal" : 50.0
             }
         }
     }

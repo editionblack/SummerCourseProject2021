@@ -1,7 +1,6 @@
 extends Control
 
 onready var scroll_container = $Panel/ScrollContainer/VBoxContainer
-var stat_box_container = preload("StatBoxContainer.tscn")
 
 # reload values that are typically "static".
 func reload_character_sheet():
@@ -37,11 +36,4 @@ func _physics_process(_delta):
 	scroll_container.get_node("CriticalChance/Value").text = str(player.stats["critical_chance"]) + "%"
 	scroll_container.get_node("CriticalDamage/Value").text = str(player.stats["critical_damage"] * 100 - 100) + "%"
 	scroll_container.get_node("Lifesteal/Value").text = str(player.stats["lifesteal"]) + "% of damage dealt"
-	
-func new_stat_box(text, value, is_static):
-	var result = stat_box_container.instance()
-	result.set_stat_name(text)
-	result.set_stat_value(value)
-	result.set_static_value(is_static)
-	return result
 

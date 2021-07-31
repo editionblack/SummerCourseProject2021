@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/fonts/munro.tres" type="DynamicFont" id=1]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.862745, 0.831373, 0.831373, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -21,4 +21,4 @@ TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 0.1 )
 TooltipLabel/constants/shadow_offset_x = 1
 TooltipLabel/constants/shadow_offset_y = 1
 TooltipLabel/fonts/font = null
-TooltipPanel/styles/panel = SubResource( 3 )
+TooltipPanel/styles/panel = SubResource( 1 )

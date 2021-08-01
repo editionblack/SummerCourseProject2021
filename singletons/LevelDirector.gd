@@ -23,10 +23,18 @@ func populate_level(world, level_start):
 			furthest_away = floor_cell
 	floor_cells.erase(furthest_away)
 	
-	# randomly spawn in enemies and loot
-	for floor_cell in floor_cells:
-		if randi() % 101 > 95.0 - scaling / 2.0:
+	# randomly spawn in enemies
+	var enemy_amount = 3.0 * ceil(Global.get_level() / 3.0)
+	floor_cells.shuffle()
+	for _i in enemy_amount:
+		var spawned_cell = null
+		for floor_cell in floor_cells:
 			spawn_enemy(world, tilemap.map_to_world(floor_cell) + Vector2(50, 50))
+			enemy_amount -= 1
+			spawned_cell = floor_cell
+			break
+		if spawned_cell:
+			floor_cells.erase(spawned_cell)
 	spawn_entrance(world, tilemap.map_to_world(level_start) + Vector2(50, 50))
 	spawn_exit(world, tilemap.map_to_world(furthest_away) + Vector2(50, 50))
 

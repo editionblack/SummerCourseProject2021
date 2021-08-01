@@ -4,7 +4,7 @@ extends "res://scenes/player/class_modules/ClassModuleTemplate.gd"
 
 func _ready():
 	stats = {"damage" : 0.0}
-	description = "Not attacking increases focus. Higher focus, higher damge. Attacking decreases focus."
+	description = "Not attacking increases focus. Higher focus, higher damage. Attacking decreases focus."
 
 func _physics_process(_delta):
 	

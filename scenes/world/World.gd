@@ -57,7 +57,7 @@ func update_minimap():
 	var exit_cell = minimap.world_to_map(exit.position)
 	var offset = Vector2(1, 1)
 	
-	var size = 19
+	var size = 13
 	for x in range(0, size):
 		for y in range(0, size):
 			if x == floor(size/2) and y == floor(size/2):
@@ -79,7 +79,7 @@ func get_player():
 	return player
 
 func _on_Next_level():
-	Global.increase_scaling(0.1)
+	Global.increase_scaling(0.5)
 	$AntiBugCamera2D.current = true
 	clear_entities()
 	HUD.clear_minimap()

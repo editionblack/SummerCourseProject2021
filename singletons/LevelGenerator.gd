@@ -3,13 +3,12 @@ extends Node
 const width = 100
 const height = 100
 var walk_amount = 5
-var step_amount = 7
-var least_amount = 8
+var step_amount = 8
 var room_size = Vector2(3, 3)
 var enabled_smoothing = true
 
 func generate_level(tilemap : TileMap):
-	var scaling = Global.get_scaling()
+	var scaling = Global.get_level()
 	
 	tilemap.clear()
 	var visited_coordinates = []
@@ -21,7 +20,7 @@ func generate_level(tilemap : TileMap):
 	visited_coordinates.append(current_point)
 	var current_direction = null
 	
-	for _walk in range(walk_amount + (Global.get_level() - 1) * 5):
+	for _walk in range(walk_amount + (scaling - 1) * 5):
 		var directions = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 		
 		if current_point.x - 1 == 0:

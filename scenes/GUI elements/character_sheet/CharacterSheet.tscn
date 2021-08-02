@@ -12,7 +12,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.180392, 0.262745, 0.427451, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -24,7 +24,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.301961, 0.411765, 0.639216, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -36,7 +36,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.301961, 0.411765, 0.639216, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -48,7 +48,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id=10]
+[sub_resource type="StyleBoxFlat" id=5]
 content_margin_left = 10.0
 content_margin_right = 10.0
 bg_color = Color( 1, 1, 1, 1 )
@@ -67,10 +67,10 @@ VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = SubResource( 11 )
-VScrollBar/styles/grabber_highlight = SubResource( 8 )
-VScrollBar/styles/grabber_pressed = SubResource( 9 )
-VScrollBar/styles/scroll = SubResource( 10 )
+VScrollBar/styles/grabber = SubResource( 2 )
+VScrollBar/styles/grabber_highlight = SubResource( 3 )
+VScrollBar/styles/grabber_pressed = SubResource( 4 )
+VScrollBar/styles/scroll = SubResource( 5 )
 VScrollBar/styles/scroll_focus = null
 
 [node name="CharacterSheet" type="Control"]
@@ -231,7 +231,7 @@ margin_bottom = 192.0
 margin_right = 124.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
-text = " Attack speed: "
+text = " Attack Speed: "
 
 [node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/AttackSpeed"]
 margin_left = 128.0
@@ -249,7 +249,7 @@ margin_bottom = 220.0
 margin_right = 158.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
-text = " Movement speed: "
+text = " Movement Speed: "
 
 [node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/MovementSpeed"]
 margin_left = 162.0
@@ -330,38 +330,38 @@ margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "0"
 
-[node name="Lifesteal2" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+[node name="CooldownReduction" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
 margin_top = 336.0
 margin_right = 370.0
 margin_bottom = 360.0
 
-[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/Lifesteal2"]
-margin_right = 84.0
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/CooldownReduction"]
+margin_right = 180.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
-text = " Lifesteal: "
+text = " Cooldown Reduction: "
 
-[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/Lifesteal2"]
-margin_left = 88.0
-margin_right = 98.0
+[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/CooldownReduction"]
+margin_left = 184.0
+margin_right = 194.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "0"
 
-[node name="Lifesteal3" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+[node name="AbilityPower" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
 margin_top = 364.0
 margin_right = 370.0
 margin_bottom = 388.0
 
-[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/Lifesteal3"]
-margin_right = 84.0
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/AbilityPower"]
+margin_right = 126.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
-text = " Lifesteal: "
+text = " Ability Power: "
 
-[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/Lifesteal3"]
-margin_left = 88.0
-margin_right = 98.0
+[node name="Value" type="Label" parent="Panel/ScrollContainer/VBoxContainer/AbilityPower"]
+margin_left = 130.0
+margin_right = 140.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 text = "0"

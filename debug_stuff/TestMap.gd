@@ -3,7 +3,6 @@ extends TileMap
 func _ready():
 	$CanvasLayer/VBoxContainer/HBoxContainer/ScalingSpinBox.value = Global.scaling
 	$CanvasLayer/VBoxContainer/HBoxContainer2/StepSpinBox.value = LevelGenerator.step_amount
-	#$CanvasLayer/VBoxContainer/HBoxContainer2/StepSpinBox.min_value = LevelGenerator.least_amount + 1
 	$CanvasLayer/VBoxContainer/HBoxContainer3/WalkSpinBox.value = LevelGenerator.walk_amount
 	$CanvasLayer/VBoxContainer/CheckBox.pressed = LevelGenerator.enabled_smoothing
 	$CanvasLayer/VBoxContainer/HBoxContainer4/RoomX.value = LevelGenerator.room_size.x

@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/sprites/square.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 40, 40 )
+extents = Vector2( 20, 20 )
 
 [node name="Exit" type="Node2D" groups=[
 "exits",

@@ -2,8 +2,8 @@ extends Node
 
 const width = 100
 const height = 100
-var walk_amount = 10
-var step_amount = 12
+var walk_amount = 5
+var step_amount = 7
 var least_amount = 8
 var room_size = Vector2(3, 3)
 var enabled_smoothing = true
@@ -21,7 +21,7 @@ func generate_level(tilemap : TileMap):
 	visited_coordinates.append(current_point)
 	var current_direction = null
 	
-	for _walk in range(walk_amount * scaling):
+	for _walk in range(walk_amount + (Global.get_level() - 1) * 5):
 		var directions = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 		
 		if current_point.x - 1 == 0:
@@ -53,20 +53,23 @@ func generate_level(tilemap : TileMap):
 	return starting_point
 
 # adds positions to COORDINATES in x by z SIZE grid. Starts in the MIDDLE pos.
-# if RANDOM_MODE enabled, SIZE is between 0.5-1.5x
+# if RANDOM_MODE enabled, the room layout will be chosen from a list of generated layouts
 func generate_room(size : Vector2, middle : Vector2, coordinates : Array, random_mode = false):
 	var current_position = middle - size/2 + Vector2(1,1)
 	if random_mode:
-		var random_x = randi() % int(size.x / 2)
-		var random_y = randi() % int(size.y / 2)
-		var random_size = Vector2(random_x, random_y)
-		size += random_size if randi() % 2 == 0 else -random_size
+		var rooms = []
+		for i in range(2, 7):
+			for j in range(2, 7):
+				var layout = Vector2(i, j)
+				if not layout in rooms:
+					rooms.append(layout)
+		size = rooms[randi() % rooms.size() - 1]
 	for x in range(size.x):
 		for y in range(size.y):
 			var room_tile = current_position + Vector2(x,y)
 			coordinates.append(room_tile) 
 
-func smooth_out_map(tilemap : TileMap):
+func smooth_out_map(tilemap : TileMap, wall_limit = 2):
 	var clean_copy = tilemap.duplicate()
 	for x in range(0, width):
 		for y in range(0, height):
@@ -77,7 +80,7 @@ func smooth_out_map(tilemap : TileMap):
 						continue
 					if clean_copy.get_cellv(Vector2(i,j)) == 0:
 						walls += 1
-			if clean_copy.get_cellv(Vector2(x, y)) == 0 and walls < 2:
+			if clean_copy.get_cellv(Vector2(x, y)) == 0 and walls < wall_limit:
 				tilemap.set_cellv(Vector2(x,y), 1)
 				
 func fill(tilemap : TileMap, cell_id : int):

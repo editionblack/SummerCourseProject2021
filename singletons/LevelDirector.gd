@@ -1,7 +1,7 @@
 extends Node
 
 func populate_level(world, level_start):
-	var scaling = Global.get_scaling()
+	#var scaling = Global.get_scaling()
 	
 	var tilemap = world.get_node("Navigation2D/TileMap")
 	var floor_cells = []
@@ -24,7 +24,7 @@ func populate_level(world, level_start):
 	floor_cells.erase(furthest_away)
 	
 	# randomly spawn in enemies
-	var enemy_amount = 3.0 * ceil(Global.get_level() / 3.0)
+	var enemy_amount = 3.0 * ceil(Global.get_level() / 2.0)
 	floor_cells.shuffle()
 	for _i in enemy_amount:
 		var spawned_cell = null

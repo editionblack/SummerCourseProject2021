@@ -15,6 +15,9 @@ func reset_scaling():
 	scaling = 1.0
 	emit_signal("level_changed", level)
 
+func set_scaling(value : float):
+	scaling = value
+
 func get_scaling():
 	return scaling
 

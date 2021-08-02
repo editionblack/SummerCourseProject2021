@@ -2,9 +2,11 @@ extends Node
 
 const width = 100
 const height = 100
-const walk_amount = 25
-const step_amount = 5
-const least_amount = 1
+var walk_amount = 10
+var step_amount = 12
+var least_amount = 8
+var room_size = Vector2(3, 3)
+var enabled_smoothing = true
 
 func generate_level(tilemap : TileMap):
 	var scaling = Global.get_scaling()
@@ -13,9 +15,8 @@ func generate_level(tilemap : TileMap):
 	var visited_coordinates = []
 	
 	fill(tilemap, 0)
-			
-	var starting_points = [Vector2(width/2.0, height/2.0), Vector2(1, 1), Vector2(1, height-2), Vector2(width-2, 1), Vector2(width-2, height-2)]
-	var starting_point = starting_points[randi() % starting_points.size()]
+	
+	var starting_point = Vector2(width/2.0, height/2.0)
 	var current_point = starting_point
 	visited_coordinates.append(current_point)
 	var current_direction = null
@@ -33,21 +34,38 @@ func generate_level(tilemap : TileMap):
 			directions.erase(Vector2.DOWN)
 		if current_direction:
 			directions.erase(current_direction)
-		
+	
 		current_direction = directions[randi() % directions.size()]
-		
-		for _step in range(randi() % step_amount + least_amount):
+		for step in step_amount:
 			var next_step = current_point + current_direction
 			if next_step.x == 0 or next_step.x == width-1 or next_step.y == 0 or next_step.y == height-1:
 				break
 			current_point = next_step
 			if !visited_coordinates.has(current_point):
 				visited_coordinates.append(current_point)
+			if step == step_amount - 1:
+				generate_room(room_size, current_point, visited_coordinates, true)
+	generate_room(room_size, starting_point, visited_coordinates)
 	for coordinate in visited_coordinates:
 		tilemap.set_cell(coordinate.x, coordinate.y, 1)
-	smooth_out_map(tilemap)
+	if enabled_smoothing:
+		smooth_out_map(tilemap)
 	return starting_point
-	
+
+# adds positions to COORDINATES in x by z SIZE grid. Starts in the MIDDLE pos.
+# if RANDOM_MODE enabled, SIZE is between 0.5-1.5x
+func generate_room(size : Vector2, middle : Vector2, coordinates : Array, random_mode = false):
+	var current_position = middle - size/2 + Vector2(1,1)
+	if random_mode:
+		var random_x = randi() % int(size.x / 2)
+		var random_y = randi() % int(size.y / 2)
+		var random_size = Vector2(random_x, random_y)
+		size += random_size if randi() % 2 == 0 else -random_size
+	for x in range(size.x):
+		for y in range(size.y):
+			var room_tile = current_position + Vector2(x,y)
+			coordinates.append(room_tile) 
+
 func smooth_out_map(tilemap : TileMap):
 	var clean_copy = tilemap.duplicate()
 	for x in range(0, width):

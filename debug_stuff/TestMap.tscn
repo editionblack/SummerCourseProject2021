@@ -1,0 +1,156 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/tilemaps/base.tres" type="TileSet" id=1]
+[ext_resource path="res://debug_stuff/TestMap.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/munro.tres" type="DynamicFont" id=3]
+
+[node name="TestMap" type="TileMap"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 100, 100 )
+format = 1
+tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, 65535, 0, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 0, 0, 131071, 0, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 0, 0, 196607, 0, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 0, 0, 262143, 0, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 0, 0, 327679, 0, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 0, 0, 393215, 0, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0 )
+script = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 10000, 6000 )
+current = true
+zoom = Vector2( 20, 20 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -232.0
+margin_bottom = 168.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+margin_right = 232.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+margin_right = 54.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 3 )
+text = "Scaling"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScalingSpinBox" type="SpinBox" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+margin_left = 58.0
+margin_right = 132.0
+margin_bottom = 24.0
+min_value = 1.0
+step = 0.1
+value = 1.0
+allow_greater = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 232.0
+margin_bottom = 52.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+margin_right = 44.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 3 )
+text = "Steps"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StepSpinBox" type="SpinBox" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+margin_left = 48.0
+margin_right = 122.0
+margin_bottom = 24.0
+min_value = 1.0
+value = 1.0
+allow_greater = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+margin_top = 56.0
+margin_right = 232.0
+margin_bottom = 80.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer3"]
+margin_right = 44.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 3 )
+text = "Walks"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WalkSpinBox" type="SpinBox" parent="CanvasLayer/VBoxContainer/HBoxContainer3"]
+margin_left = 48.0
+margin_right = 122.0
+margin_bottom = 24.0
+min_value = 1.0
+value = 1.0
+allow_greater = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox" type="CheckBox" parent="CanvasLayer/VBoxContainer"]
+margin_top = 84.0
+margin_right = 232.0
+margin_bottom = 116.0
+custom_fonts/font = ExtResource( 3 )
+text = "Smoothing?"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+margin_top = 120.0
+margin_right = 232.0
+margin_bottom = 144.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer4"]
+margin_right = 76.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 3 )
+text = "Roomsize"
+
+[node name="RoomX" type="SpinBox" parent="CanvasLayer/VBoxContainer/HBoxContainer4"]
+margin_left = 80.0
+margin_right = 154.0
+margin_bottom = 24.0
+min_value = 1.0
+value = 1.0
+
+[node name="RoomY" type="SpinBox" parent="CanvasLayer/VBoxContainer/HBoxContainer4"]
+margin_left = 158.0
+margin_right = 232.0
+margin_bottom = 24.0
+min_value = 1.0
+value = 1.0
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+margin_top = 148.0
+margin_right = 232.0
+margin_bottom = 178.0
+custom_fonts/font = ExtResource( 3 )
+text = "GENERATE"
+
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/HBoxContainer/ScalingSpinBox" to="." method="_on_SpinBox_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/HBoxContainer2/StepSpinBox" to="." method="_on_StepSpinBox_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/HBoxContainer3/WalkSpinBox" to="." method="_on_WalkSpinBox_value_changed"]
+[connection signal="toggled" from="CanvasLayer/VBoxContainer/CheckBox" to="." method="_on_CheckBox_toggled"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/HBoxContainer4/RoomX" to="." method="_on_RoomX_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/HBoxContainer4/RoomY" to="." method="_on_RoomY_value_changed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_Button_pressed"]

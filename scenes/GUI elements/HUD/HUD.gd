@@ -24,6 +24,8 @@ func _unhandled_input(event):
 		inventory_sheet.visible = !inventory_sheet.visible
 	if event.is_action_pressed("tab") and !class_picker.visible:
 		minimap.visible = !minimap.visible
+	if event.is_action_pressed("exit_game"):
+		get_tree().quit(0)
 		
 func show_class_picker():
 	class_picker.visible = true

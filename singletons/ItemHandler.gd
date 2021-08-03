@@ -3,35 +3,47 @@ extends Node
 var item_base = preload("res://scenes/item/Item.tscn")
 var items_data
 var rarity_value = {"common" : 1, "uncommon" : 2, "rare" : 3, "epic" : 4, "legendary" : 5}
-
+var stat_values = {"max_health" : 10, 
+				"defence" : 2.0, 
+				"damage" : 2.0, 
+				"ability_power" : 2.0,
+				"cooldown_reduction" : 0.5,
+				"movement_speed" : 10,
+				"attack_speed" : 5,
+				"critical_chance" : 2.5,
+				"critical_damage" : 2.5,
+				"lifesteal" : 2.0}
 
 func _ready():
-	items_data = read_items_file()["items"]
+	items_data = read_items_file()
 
-func create_item(item_type = null, specific_item = null):
+# specific item should be an array with item_type [0] and item_name [1]
+func create_item(specific_item = null):
 	var new_item = item_base.instance()
-	var item = null
-	if !specific_item:
+	var item_type
+	var item_name
+	var item
+	if specific_item == null:
 		var item_types = items_data.keys()
-		var random_item_type = item_types[randi() % item_types.size()]
-		var items = items_data[random_item_type].keys()
-		var random_item = items[randi() % items.size()]
-		item = items_data[random_item_type][random_item].duplicate(true)
-	else:
-		item = items_data[item_type][specific_item].duplicate(true)
-	
-	new_item.set_text(item["name"] + " lvl " + str(Global.get_level()))
-	
-	if !specific_item:
-		new_item.type = item["type"]
+		item_type = item_types[randi() % item_types.size()]
+		var items = items_data[item_type].keys()
+		item_name = items[randi() % items.size()]
+		item = items_data[item_type][item_name].duplicate(true)
 		new_item.rarity = random_rarity(1)
-		new_item.stats = random_stats(new_item.rarity, item)
+		new_item.stats = generate_random_stats(new_item.rarity, item)
+		new_item.set_text(item_name + " LVL " + str(Global.get_level()))
 	else:
-		new_item.type = item["type"]
+		item_type = specific_item[0]
+		item_name = specific_item[1]
+		item = items_data[item_type][item_name].duplicate(true)
 		new_item.rarity = "common"
 		new_item.stats = item["base_stats"]
-	if item.has("primary_ability"):
+		new_item.set_text("Starter " + item_name)
+		
+	new_item.type = item_type
+	if "primary_ability" in item:
 		new_item.primary_ability = item["primary_ability"]
+	
 	return new_item
 
 # placeholder rarity function. TODO: make it based on a "luck"-stat
@@ -49,37 +61,38 @@ func random_rarity(_luck : int):
 		return rarities[4]
 	return rarities[0]
 
-func random_stats(rarity : String, item : Dictionary):
-	var stats = {}
-	var rarity_power = rarity_value[rarity]
+func generate_random_stats(rarity : String, item : Dictionary):
+	var result = {}
 	var scaling = Global.get_scaling()
-	var base_stats = item["base_stats"]
-
-	stats = base_stats
-	for stat in stats:
+	# assign and scale base modifiers
+	result = item["base_stats"]
+	for stat in result:
 		match stat:
+			# if weapon_damage exists, we know it's a weapon and will also scale 
+			# weapon_attack_speed.
 			"weapon_damage":
-				var base_weapon_damage = base_stats["weapon_damage"]
+				var base_weapon_damage = result["weapon_damage"]
 				var deviance = rand_range(0.75, 1.50)
-				var min_weapon_damage = stepify(base_weapon_damage[0] + rarity_power * deviance * scaling, 0.1)
-				var max_weapon_damage = stepify(base_weapon_damage[1] + rarity_power * deviance * scaling, 0.1)
-				stats["weapon_damage"] = [min_weapon_damage, max_weapon_damage]
-			"weapon_attack_speed":
-				var weapon_attack_speed = base_stats["weapon_attack_speed"]
-				var deviance = rand_range(0.75, 1.50)
-				stats["weapon_attack_speed"] = stepify(weapon_attack_speed * deviance, 0.1)
+				var min_weapon_damage = stepify(base_weapon_damage[0] * deviance * scaling, 0.1)
+				var max_weapon_damage = stepify(base_weapon_damage[1] * deviance * scaling, 0.1)
+				result["weapon_damage"] = [min_weapon_damage, max_weapon_damage]
+				
+				var weapon_attack_speed = result["weapon_attack_speed"]
+				print(weapon_attack_speed)
+				deviance = rand_range(0.75, 1.50)
+				print(weapon_attack_speed * deviance)
+				result["weapon_attack_speed"] = stepify(weapon_attack_speed * deviance, 0.1)
 			_:
-				var base_stat = stats[stat]
-				# the item can deviate by 25% less than the base or 50% more than the base
-				var deviance = rand_range(0.75, 1.50)
+				result[stat] *= scaling
 				
-				# items with a rarity of uncommon or higher gets 25% stronger base, up to 100%
-				var rarity_modifier = 1.0 + (rarity_power - 1 / 4)
-				
-				base_stat = base_stat * rarity_modifier * deviance * scaling
-				base_stat = stepify(base_stat, 0.1)
-				stats[stat] = base_stat
-	return stats
+	# assign and scale random modifiers
+	var stat_pool = item["potential_stats"]
+	for _i in rarity_value[rarity]:
+		# choose a random stat and set it to 1.0, unless it already exists in which
+		# case we add 1.0 more to it.
+		var random_stat = stat_pool[randi() % stat_pool.size()]
+		result[random_stat] = 1.0 * stat_values[random_stat] if not random_stat in result else (1.0 * stat_values[random_stat] + result[random_stat])
+	return result
 
 # debug tool to check how common different rarities are
 func test_rarity_function(iterations):

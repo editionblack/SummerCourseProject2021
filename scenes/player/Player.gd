@@ -47,7 +47,7 @@ func _ready():
 	$Sprite.modulate = color
 	utility_ability = AbilityHandler.get_ability("dash", 1 + 4)
 	add_child(utility_ability)
-	var starter_item = ItemHandler.create_item("weapons", starter_weapon)
+	var starter_item = ItemHandler.create_item(["weapon", starter_weapon])
 	starter_item.disable_interaction()
 	item_equip(starter_item)
 	# warning-ignore:return_value_discarded

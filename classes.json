@@ -5,7 +5,7 @@
             "icon" : "res://assets/sprites/rectangle.png",
             "icon_color" : "4b9131",
             "projectile_color" : "1a461d",
-            "starter_weapon" : "basic_bow",
+            "starter_weapon" : "Bow",
             "primary" : "shoot_projectile",
             "secondary" : "volley",
             "passive" : "res://scenes/player/class_modules/focused/Focused.tscn",
@@ -24,8 +24,8 @@
                 "cooldown_reduction" : 0,
                 "movement_speed" : 250,
                 "attack_speed" : 0.0,
-                "critical_chance" : 50.0,
-                "critical_damage" : 2.0,
+                "critical_chance" : 0.0,
+                "critical_damage" : 150.0,
                 "lifesteal" : 0.0
             }
         },
@@ -33,7 +33,7 @@
             "icon" : "res://assets/sprites/octagon.png",
             "icon_color" : "3f2d1b",
             "projectile_color" : "381a11",
-            "starter_weapon" : "basic_sword",
+            "starter_weapon" : "Sword",
             "primary" : "swing",
             "secondary" : "heal",
             "passive" : "res://scenes/player/class_modules/enraged/Enraged.tscn",
@@ -52,9 +52,9 @@
                 "cooldown_reduction" : 0,
                 "movement_speed" : 200,
                 "attack_speed" : 0.0,
-                "critical_chance" : 10.0,
-                "critical_damage" : 2.0,
-                "lifesteal" : 50.0
+                "critical_chance" : 0.0,
+                "critical_damage" : 150.0,
+                "lifesteal" : 0.0
             }
         }
     }

@@ -19,8 +19,9 @@ func generate_level(tilemap : TileMap):
 	var current_point = starting_point
 	visited_coordinates.append(current_point)
 	var current_direction = null
-	
-	for _walk in range(walk_amount + (scaling - 1) * 5):
+	var scaled_walk_amount = clamp(walk_amount + ((scaling - 1) * 2), 0, 50)
+	print(scaled_walk_amount)
+	for _walk in range(scaled_walk_amount):
 		var directions = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 		
 		if current_point.x - 1 == 0:
@@ -35,7 +36,7 @@ func generate_level(tilemap : TileMap):
 			directions.erase(current_direction)
 	
 		current_direction = directions[randi() % directions.size()]
-		for step in step_amount:
+		for step in step_amount + randi() % 3:
 			var next_step = current_point + current_direction
 			if next_step.x == 0 or next_step.x == width-1 or next_step.y == 0 or next_step.y == height-1:
 				break
@@ -62,7 +63,8 @@ func generate_room(size : Vector2, middle : Vector2, coordinates : Array, random
 				var layout = Vector2(i, j)
 				if not layout in rooms:
 					rooms.append(layout)
-		size = rooms[randi() % rooms.size() - 1]
+		size = rooms[randi() % rooms.size()]
+		rooms.erase(size)
 	for x in range(size.x):
 		for y in range(size.y):
 			var room_tile = current_position + Vector2(x,y)

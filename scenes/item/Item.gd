@@ -39,16 +39,20 @@ func get_tooltip():
 		match stat:
 			"weapon_damage":
 				result += "Weapon Damage: " + str(stats["weapon_damage"][0]) + " - " + str(stats["weapon_damage"][1])
+			
 			"weapon_attack_speed":
-				result += "Attacks / second : " + str(stats["weapon_attack_speed"])
-			"attack_speed":
-				result += "Attack Speed: " + str(stats[stat]) + "%"
-			"cooldown_reduction":
-				result += "Cooldown Reduction: " + str(stats[stat]) + "%"
-			_:
+				result += "Attacks per Second: " + str(stats["weapon_attack_speed"])
+				
+			"ability_power", "defence", "damage", "movement_speed", "max_health":
 				if stats[stat] > 0:
-					result += stat + ": +" + str(stats[stat])
+					result += stat.capitalize() + ": +" + str(stats[stat])
 				else:
-					result += stat + ": " + str(stats[stat])
+					result += stat.capitalize() + ": " + str(stats[stat])
+			
+			"attack_speed", "cooldown_reduction", "critical_chance", "critical_damage", "lifesteal":
+				if stats[stat] > 0:
+					result += stat.capitalize() + ": +" + str(stats[stat]) + "%"
+				else:
+					result += stat.capitalize() + ": " + str(stats[stat]) + ("%")
 		result += '\n'
 	return result

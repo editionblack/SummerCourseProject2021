@@ -14,7 +14,7 @@ func _input(event):
 		LevelGenerator.generate_level(self)
 
 func _on_SpinBox_value_changed(value):
-	Global.set_scaling(value)
+	Global.level = value
 
 func _on_StepSpinBox_value_changed(value):
 	LevelGenerator.step_amount = value

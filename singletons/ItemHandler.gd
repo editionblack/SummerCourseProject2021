@@ -3,16 +3,16 @@ extends Node
 var item_base = preload("res://scenes/item/Item.tscn")
 var items_data
 var rarity_value = {"common" : 1, "uncommon" : 2, "rare" : 3, "epic" : 4, "legendary" : 5}
-var stat_values = {"max_health" : 10, 
-				"defence" : 2.0, 
-				"damage" : 2.0, 
-				"ability_power" : 2.0,
-				"cooldown_reduction" : 0.5,
-				"movement_speed" : 10,
-				"attack_speed" : 5,
-				"critical_chance" : 2.5,
-				"critical_damage" : 2.5,
-				"lifesteal" : 2.0}
+var stat_values = {"max_health" : [10.0, 200.0], 
+				"defence" : [2.0, 10.0], 
+				"damage" : [2.0, 20.0], 
+				"ability_power" : [2.0, 20.0],
+				"cooldown_reduction" : [1.0, 10.0],
+				"movement_speed" : [5, 150],
+				"attack_speed" : [5.0, 100.0],
+				"critical_chance" : [1.0, 25.0],
+				"critical_damage" : [1.0, 50.0],
+				"lifesteal" : [1.0, 25.0]}
 
 func _ready():
 	items_data = read_items_file()
@@ -68,19 +68,15 @@ func generate_random_stats(rarity : String, item : Dictionary):
 	result = item["base_stats"]
 	for stat in result:
 		match stat:
-			# if weapon_damage exists, we know it's a weapon and will also scale 
-			# weapon_attack_speed.
 			"weapon_damage":
 				var base_weapon_damage = result["weapon_damage"]
 				var deviance = rand_range(0.75, 1.50)
 				var min_weapon_damage = stepify(base_weapon_damage[0] * deviance * scaling, 0.1)
 				var max_weapon_damage = stepify(base_weapon_damage[1] * deviance * scaling, 0.1)
 				result["weapon_damage"] = [min_weapon_damage, max_weapon_damage]
-				
+			"weapon_attack_speed":
 				var weapon_attack_speed = result["weapon_attack_speed"]
-				print(weapon_attack_speed)
-				deviance = rand_range(0.75, 1.50)
-				print(weapon_attack_speed * deviance)
+				var deviance = rand_range(0.5, 1.5)
 				result["weapon_attack_speed"] = stepify(weapon_attack_speed * deviance, 0.1)
 			_:
 				result[stat] *= scaling
@@ -88,10 +84,13 @@ func generate_random_stats(rarity : String, item : Dictionary):
 	# assign and scale random modifiers
 	var stat_pool = item["potential_stats"]
 	for _i in rarity_value[rarity]:
-		# choose a random stat and set it to 1.0, unless it already exists in which
-		# case we add 1.0 more to it.
+		# choose a random stat from potential stats, get the minimum value and maximum value (is nullable)
 		var random_stat = stat_pool[randi() % stat_pool.size()]
-		result[random_stat] = 1.0 * stat_values[random_stat] if not random_stat in result else (1.0 * stat_values[random_stat] + result[random_stat])
+		var random_stat_min = stat_values[random_stat][0] * scaling / 5.0
+		var random_stat_max = stat_values[random_stat][1] * scaling / 5.0
+		if not random_stat in result:
+			var random_value = rand_range(random_stat_min, random_stat_max)
+			result[random_stat] = stepify(random_value, 0.1)
 	return result
 
 # debug tool to check how common different rarities are

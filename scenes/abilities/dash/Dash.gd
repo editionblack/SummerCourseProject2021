@@ -11,7 +11,7 @@ func use_ability(_direction):
 	user.can_move = false
 	var speed = 1200
 	while speed > 150:
-		user.velocity = user.velocity.normalized() * speed
+		user.velocity = user.last_direction * speed
 		speed /= 2
 		yield(get_tree().create_timer(0.1),"timeout")
 	user.can_move = true

@@ -21,6 +21,7 @@ onready var hurt_sound = $HurtSound
 
 var world = null
 var velocity = Vector2()
+var last_direction = Vector2.UP
 var can_move = true
 var is_stunned = false
 var current_class
@@ -101,6 +102,9 @@ func move():
 	
 	
 	direction = direction.normalized()
+	
+	if direction != Vector2():
+		last_direction = direction
 	
 	if direction != Vector2():
 		velocity = lerp(velocity, direction * movement_speed, 0.1)

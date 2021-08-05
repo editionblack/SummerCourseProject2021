@@ -12,6 +12,7 @@ func hit(target, dealer, damage, type : String):
 		if dealer.stats["critical_chance"] > randi() % 101:
 			is_critical = true
 			actual_damage *= (dealer.stats["critical_damage"] / 100)
+			actual_damage = stepify(actual_damage, 0.1)
 	target.on_hit(actual_damage, dealer, is_critical)
 
 # everything including crits has already been calculated.

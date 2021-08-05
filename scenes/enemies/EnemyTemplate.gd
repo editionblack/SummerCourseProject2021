@@ -29,7 +29,6 @@ var floating_number = preload("res://scenes/floating_number/FloatingNumber.tscn"
 
 func _ready():
 	add_to_group("enemies")
-	$Sprite.modulate = color
 	initial_scale = $Sprite.scale
 	world = get_tree().get_root().get_node("World")
 	nav2d = world.get_node("Navigation2D")
@@ -100,9 +99,9 @@ func die():
 
 func damage_taken_effect():
 	$Sprite.scale = initial_scale / 1.3
-	$Sprite.modulate = Color.white
+	$Sprite.modulate = Color.red
 	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, initial_scale, 0.25)
-	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(color), 0.25)
+	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(1,1,1), 0.25)
 	$Tween.start()
 
 func drop_item():

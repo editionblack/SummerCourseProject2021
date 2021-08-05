@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/fonts/munro.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/sprites/circle.png" type="Texture" id=2]
 [ext_resource path="res://scenes/item/Item.gd" type="Script" id=3]
+[ext_resource path="res://assets/sprites/highres_circle_with_outline.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
@@ -20,8 +21,9 @@ scale = Vector2( 0.21, 0.21 )
 texture = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.16, 0.16 )
-texture = ExtResource( 2 )
+position = Vector2( -2.98023e-07, 2.38419e-07 )
+scale = Vector2( 0.016, 0.016 )
+texture = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8

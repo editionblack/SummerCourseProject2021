@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/sprites/square.png" type="Texture" id=1]
 [ext_resource path="res://scenes/abilities/stab/Stab.gd" type="Script" id=2]
 [ext_resource path="res://assets/sprites/rectangle.png" type="Texture" id=3]
+[ext_resource path="res://scenes/sound_players/HitSound.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 10 )
@@ -81,5 +82,7 @@ disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/stab = SubResource( 2 )
+
+[node name="HitSound" parent="." instance=ExtResource( 4 )]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

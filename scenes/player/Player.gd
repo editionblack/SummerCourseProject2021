@@ -16,6 +16,8 @@ signal primary_used()
 signal secondary_used()
 
 var floating_number = preload("res://scenes/floating_number/FloatingNumber.tscn")
+onready var hurt_sound = $HurtSound
+
 
 var world = null
 var velocity = Vector2()
@@ -28,7 +30,7 @@ var resource
 var starter_weapon
 var weapon = null
 var projectile_color
-var original_scale = Vector2(0.48, 0.48)
+var original_scale
 
 
 var current_interactable = null
@@ -43,6 +45,7 @@ var passive_ability
 var color = Color.white
 
 func _ready():
+	original_scale = $Sprite.scale
 	base_stats = stats.duplicate(true)
 	$Sprite.modulate = color
 	utility_ability = AbilityHandler.get_ability("dash", 1 + 4)
@@ -157,7 +160,7 @@ func recalculate_stats():
 
 func on_hit(damage, dealer, is_critical = false):
 	damage_taken_effect()
-	
+	hurt_sound.play()
 	stats["health"] -= DamageCalculationHandler.calculate_damage_reduction(self, damage)
 	emit_signal("health_changed", stats["health"])
 	if stats["health"] <= 0:
@@ -167,7 +170,7 @@ func on_hit(damage, dealer, is_critical = false):
 		emit_signal("damage_taken", damage, dealer, is_critical)
 
 func damage_taken_effect():
-	$Sprite.scale = Vector2(0.38, 0.38)
+	$Sprite.scale = original_scale / 1.3
 	$Sprite.modulate = Color.white
 	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, original_scale, 0.25)
 	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(color), 0.25)

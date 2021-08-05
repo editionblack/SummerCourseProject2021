@@ -2,6 +2,7 @@ extends "res://scenes/abilities/AbilityTemplate.gd"
 
 var floating_number = preload("res://scenes/floating_number/FloatingNumber.tscn")
 onready var heal_particles = $HealParticles
+onready var heal_sound = $HealSound
 
 func _ready():
 	$HealParticles.emitting = false
@@ -20,6 +21,7 @@ func use_ability(_direction):
 	world.call_deferred("add_child", new_floating_number)
 	user.emit_signal("health_changed", user.stats["health"])
 	
+	heal_sound.play()
 	update_timer()
 	ability_used()
 	$Cooldown.start()

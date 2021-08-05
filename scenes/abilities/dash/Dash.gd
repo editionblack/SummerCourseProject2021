@@ -1,11 +1,12 @@
 extends "res://scenes/abilities/AbilityTemplate.gd"
 
 var in_use = false
+onready var dash_sound = $DashSound
 
 func use_ability(_direction):
 	if !$Cooldown.is_stopped() or in_use:
 		return
-		
+	dash_sound.play()
 	in_use = true
 	user.can_move = false
 	var speed = 1200

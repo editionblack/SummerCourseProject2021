@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/abilities/swing/Swing.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/rectangle.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/SwordSprite.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/sound_players/HitSound.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 112, 24 )
@@ -109,5 +110,7 @@ texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 5 )
+
+[node name="HitSound" parent="." instance=ExtResource( 4 )]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -1,6 +1,7 @@
 extends "res://scenes/enemies/EnemyTemplate.gd"
 
 var explosion_particles = preload("res://scenes/particles/explosion/Explosion.tscn")
+var explosion_sound = preload("res://scenes/sound_players/ExplosionSound.tscn")
 onready var animation_player = $AnimationPlayer
 onready var timer = $Timer
 onready var hurtbox = $Hurtbox
@@ -32,8 +33,11 @@ func move():
 
 func _on_Timer_timeout():
 	var new_explosion_particle = explosion_particles.instance()
+	var new_explosion_sound = explosion_sound.instance()
 	new_explosion_particle.position = position
-	world.call_deferred("add_child", new_explosion_particle)
+	new_explosion_sound.position = position
+	world.get_node("Entities").call_deferred("add_child", new_explosion_particle)
+	world.get_node("Entities").call_deferred("add_child", new_explosion_sound)
 	for body in hurtbox.get_overlapping_bodies():
 		body.on_hit(stats["damage"], self)
 	queue_free()

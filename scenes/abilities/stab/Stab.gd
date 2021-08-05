@@ -1,5 +1,7 @@
 extends "res://scenes/abilities/AbilityTemplate.gd"
 
+onready var hit_sound = $HitSound
+
 func _ready():
 	$Area2D/SpearSprite.visible = false
 	$Area2D/CollisionShape2D.disabled = true
@@ -19,5 +21,6 @@ func use_ability(direction):
 
 func _on_Area2D_body_entered(body):
 	if body.has_method("on_hit"):
+		hit_sound.play()
 		var damage = stats["base_damage"] if user.weapon == null else user.weapon.stats["weapon_damage"]
 		CombatHandler.hit(body, user, damage, "primary")

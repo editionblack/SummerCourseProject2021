@@ -88,6 +88,7 @@ func _unhandled_input(event):
 # checks for input and moves in appropiate direction
 func move():
 	var direction = Vector2()
+	var movement_speed = stats["movement_speed"]
 	
 	if Input.is_action_pressed("w"):
 		direction.y += -1
@@ -98,9 +99,16 @@ func move():
 	if Input.is_action_pressed("d"):
 		direction.x += 1
 	
+	
 	direction = direction.normalized()
-	velocity = move_and_slide(direction * stats["movement_speed"])
-
+	
+	if direction != Vector2():
+		velocity = lerp(velocity, direction * movement_speed, 0.1)
+	else:
+		velocity = lerp(velocity, Vector2(), 0.05)
+	
+	var _unhandled = move_and_slide(velocity)
+	
 func get_items():
 	return $Items.get_children()
 	
@@ -171,7 +179,7 @@ func on_hit(damage, dealer, is_critical = false):
 
 func damage_taken_effect():
 	$Sprite.scale = original_scale / 1.3
-	$Sprite.modulate = Color.white
+	$Sprite.modulate = Color.red
 	$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, original_scale, 0.25)
 	$Tween.interpolate_property($Sprite, "modulate", $Sprite.modulate, Color(color), 0.25)
 	$Tween.start()

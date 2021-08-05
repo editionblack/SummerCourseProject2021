@@ -22,6 +22,7 @@ texture = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 self_modulate = Color( 0.239216, 0.141176, 0.0431373, 1 )
+rotation = 1.5708
 scale = Vector2( 0.075, 0.075 )
 texture = ExtResource( 2 )
 

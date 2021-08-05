@@ -56,10 +56,25 @@ texture = ExtResource( 4 )
 [node name="Sprite" type="Sprite" parent="Sprite"]
 self_modulate = Color( 0.231373, 0.219608, 0.219608, 1 )
 position = Vector2( 320, 0 )
-scale = Vector2( 0.0733333, 0.213333 )
-texture = ExtResource( 2 )
+scale = Vector2( 0.266667, 2.4 )
+texture = ExtResource( 4 )
+
+[node name="Sprite6" type="Sprite" parent="Sprite"]
+self_modulate = Color( 0.231373, 0.219608, 0.219608, 1 )
+position = Vector2( 299.863, -133.333 )
+rotation = 1.5708
+scale = Vector2( 0.266667, 0.668166 )
+texture = ExtResource( 4 )
+
+[node name="Sprite7" type="Sprite" parent="Sprite"]
+self_modulate = Color( 0.231373, 0.219608, 0.219608, 1 )
+position = Vector2( 299.863, 133.333 )
+rotation = 1.5708
+scale = Vector2( 0.266667, 0.668166 )
+texture = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 0
 

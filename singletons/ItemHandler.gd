@@ -79,8 +79,8 @@ func generate_random_stats(rarity : String, item : Dictionary):
 				var deviance = rand_range(0.5, 1.5)
 				result["weapon_attack_speed"] = stepify(weapon_attack_speed * deviance, 0.1)
 			_:
-				var random_stat_min = stat_values[stat][0] * clamp(scaling / 5.0, 0.0, 1.0)
-				var random_stat_max = stat_values[stat][1] * clamp(scaling / 5.0, 0.0, 1.0)
+				var random_stat_min = stat_values[stat][0] * clamp(scaling / 5.0, 0.0, 2.0)
+				var random_stat_max = stat_values[stat][1] * clamp(scaling / 5.0, 0.0, 2.0)
 				result[stat] = stepify(rand_range(random_stat_min, random_stat_max), 0.1)
 				
 	# assign and scale random modifiers
@@ -88,8 +88,8 @@ func generate_random_stats(rarity : String, item : Dictionary):
 	for _i in rarity_value[rarity]:
 		# choose a random stat from potential stats, get the minimum value and maximum value (is nullable)
 		var random_stat = stat_pool[randi() % stat_pool.size()]
-		var random_stat_min = stat_values[random_stat][0] * clamp(scaling / 5.0, 0.0, 1.0)
-		var random_stat_max = stat_values[random_stat][1] * clamp(scaling / 5.0, 0.0, 1.0)
+		var random_stat_min = stat_values[random_stat][0] * clamp(scaling / 5.0, 0.0, 1.5)
+		var random_stat_max = stat_values[random_stat][1] * clamp(scaling / 5.0, 0.0, 1.5)
 		if not random_stat in result:
 			var random_value = rand_range(random_stat_min, random_stat_max)
 			result[random_stat] = stepify(random_value, 0.1)
